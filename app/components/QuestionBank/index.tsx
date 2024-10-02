@@ -1,5 +1,7 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import React, { useState, useEffect } from "react";
+
 import List from "@/app/components/List"; // Ensure you have the List component in place
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
@@ -34,9 +36,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
         <DialogTrigger>
           <div className="flex justify-center">
             <img
-              src={
-                "https://scontent-fra3-1.cdninstagram.com/v/t51.29350-15/412831027_920044783062893_3171879095891739096_n.jpg?stp=dst-jpg_e35_p1080x1080&_nc_ht=scontent-fra3-1.cdninstagram.com&_nc_cat=105&_nc_ohc=Csoe8RBJF-MQ7kNvgH5t2qj&_nc_gid=16fe24f921474e30987d1c8132d673c2&edm=AP_V10EBAAAA&ccb=7-5&oh=00_AYADnvETwQXUQnxz59a13gB5N94uDaPnO9AW04hQiPm8Ww&oe=670264C8&_nc_sid=2999b8"
-              }
+              src={""}
               alt="question image"
               className="w-full h-64 object-cover"
             />
