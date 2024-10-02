@@ -16,8 +16,7 @@ export const questions = [
       { id: 4, english: "To drive vehicles", nepali: "र्ाडी कुदाउँन" },
     ],
     correctAnswerId: 2,
-    image:
-      "https://scontent-fra3-1.cdninstagram.com/v/t51.29350-15/412831027_920044783062893_3171879095891739096_n.jpg?stp=dst-jpg_e35_p1080x1080&_nc_ht=scontent-fra3-1.cdninstagram.com&_nc_cat=105&_nc_ohc=Csoe8RBJF-MQ7kNvgH5t2qj&_nc_gid=16fe24f921474e30987d1c8132d673c2&edm=AP_V10EBAAAA&ccb=7-5&oh=00_AYADnvETwQXUQnxz59a13gB5N94uDaPnO9AW04hQiPm8Ww&oe=670264C8&_nc_sid=2999b8",
+    image: "",
   },
   {
     id: 2,
@@ -32,8 +31,7 @@ export const questions = [
       { id: 4, english: "In fourth gear", nepali: "चार गियरमा" },
     ],
     correctAnswerId: 1,
-    image:
-      "https://scontent-fra3-1.cdninstagram.com/v/t51.29350-15/412831027_920044783062893_3171879095891739096_n.jpg?stp=dst-jpg_e35_p1080x1080&_nc_ht=scontent-fra3-1.cdninstagram.com&_nc_cat=105&_nc_ohc=Csoe8RBJF-MQ7kNvgH5t2qj&_nc_gid=16fe24f921474e30987d1c8132d673c2&edm=AP_V10EBAAAA&ccb=7-5&oh=00_AYADnvETwQXUQnxz59a13gB5N94uDaPnO9AW04hQiPm8Ww&oe=670264C8&_nc_sid=2999b8",
+    image: "",
   },
   {
     id: 3,
@@ -48,8 +46,7 @@ export const questions = [
       { id: 4, english: "All of the above", nepali: "माथिका सबै" },
     ],
     correctAnswerId: 2,
-    image:
-      "https://scontent-fra3-1.cdninstagram.com/v/t51.29350-15/412831027_920044783062893_3171879095891739096_n.jpg?stp=dst-jpg_e35_p1080x1080&_nc_ht=scontent-fra3-1.cdninstagram.com&_nc_cat=105&_nc_ohc=Csoe8RBJF-MQ7kNvgH5t2qj&_nc_gid=16fe24f921474e30987d1c8132d673c2&edm=AP_V10EBAAAA&ccb=7-5&oh=00_AYADnvETwQXUQnxz59a13gB5N94uDaPnO9AW04hQiPm8Ww&oe=670264C8&_nc_sid=2999b8.com/v/t51.29350-15/412831027_920044783062893_3171879095891739096_n.jpg?stp=dst-jpg_e35_p1080x1080&_nc_ht=scontent-fra3-1.cdninstagram.com&_nc_cat=105&_nc_ohc=Csoe8RBJF-MQ7kNvgH5t2qj&_nc_gid=16fe24f921474e30987d1c8132d673c2&edm=AP_V10EBAAAA&ccb=7-5&oh=00_AYADnvETwQXUQnxz59a13gB5N94uDaPnO9AW04hQiPm8Ww&oe=670264C8&_nc_sid=2999b8",
+    image: "",
   },
   {
     id: 4,
@@ -76,8 +73,7 @@ export const questions = [
       { id: 4, english: "All of the above", nepali: "माथिका सबै" },
     ],
     correctAnswerId: 4,
-    image:
-      "https://scontent-fra3-1.cdninstagram.com/v/t51.29350-15/412831027_920044783062893_3171879095891739096_n.jpg?stp=dst-jpg_e35_p1080x1080&_nc_ht=scontent-fra3-1.cdninstagram.com&_nc_cat=105&_nc_ohc=Csoe8RBJF-MQ7kNvgH5t2qj&_nc_gid=16fe24f921474e30987d1c8132d673c2&edm=AP_V10EBAAAA&ccb=7-5&oh=00_AYADnvETwQXUQnxz59a13gB5N94uDaPnO9AW04hQiPm8Ww&oe=670264C8&_nc_sid=2999b8",
+    image: "",
   },
   {
     id: 5,
@@ -101,8 +97,7 @@ export const questions = [
       { id: 4, english: "Shift down the gear", nepali: "गियर डाउन गर्ने" },
     ],
     correctAnswerId: 1,
-    image:
-      "https://scontent-fra3-1.cdninstagram.com/v/t51.29350-15/412831027_920044783062893_3171879095891739096_n.jpg?stp=dst-jpg_e35_p1080x1080&_nc_ht=scontent-fra3-1.cdninstagram.com&_nc_cat=105&_nc_ohc=Csoe8RBJF-MQ7kNvgH5t2qj&_nc_gid=16fe24f921474e30987d1c8132d673c2&edm=AP_V10EBAAAA&ccb=7-5&oh=00_AYADnvETwQXUQnxz59a13gB5N94uDaPnO9AW04hQiPm8Ww&oe=670264C8&_nc_sid=2999b8",
+    image: "",
   },
   {
     id: 6,
@@ -134,8 +129,7 @@ export const questions = [
       },
     ],
     correctAnswerId: 3,
-    image:
-      "https://scontent-fra3-1.cdninstagram.com/v/t51.29350-15/412831027_920044783062893_3171879095891739096_n.jpg?stp=dst-jpg_e35_p1080x1080&_nc_ht=scontent-fra3-1.cdninstagram.com&_nc_cat=105&_nc_ohc=Csoe8RBJF-MQ7kNvgH5t2qj&_nc_gid=16fe24f921474e30987d1c8132d673c2&edm=AP_V10EBAAAA&ccb=7-5&oh=00_AYADnvETwQXUQnxz59a13gB5N94uDaPnO9AW04hQiPm8Ww&oe=670264C8&_nc_sid=2999b8",
+    image: "",
   },
   {
     id: 7,
@@ -150,7 +144,6 @@ export const questions = [
       { id: 4, english: "Emergency light", nepali: "इमर्जेन्सी लाइट" },
     ],
     correctAnswerId: 3,
-    image:
-      "https://scontent-fra3-1.cdninstagram.com/v/t51.29350-15/412831027_920044783062893_3171879095891739096_n.jpg?stp=dst-jpg_e35_p1080x1080&_nc_ht=scontent-fra3-1.cdninstagram.com&_nc_cat=105&_nc_ohc=Csoe8RBJF-MQ7kNvgH5t2qj&_nc_gid=16fe24f921474e30987d1c8132d673c2&edm=AP_V10EBAAAA&ccb=7-5&oh=00_AYADnvETwQXUQnxz59a13gB5N94uDaPnO9AW04hQiPm8Ww&oe=670264C8&_nc_sid=2999b8",
+    image: "",
   },
 ];
