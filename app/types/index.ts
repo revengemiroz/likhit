@@ -7,6 +7,20 @@ export interface ListProps {
   onAnswerSelect: () => void;
 }
 
+export interface QuestionType {
+  id: number;
+  question: {
+    english: string;
+    nepali: string;
+  };
+  options: {
+    id: number;
+    english: string;
+    nepali: string;
+  }[];
+  correctAnswerId: number;
+  image: string;
+}
 export type Variant = "neutral" | "right" | "wrong" | "disabled";
 
 export interface Option {

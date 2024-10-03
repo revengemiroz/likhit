@@ -19,6 +19,7 @@ import {
 
 import { useState, useEffect } from "react";
 import { questions } from "@/data/en";
+import { QuestionType } from "./types";
 // import { cookies } from "next/headers";
 
 export default function Home() {
@@ -28,10 +29,12 @@ export default function Home() {
   const [open, setOpen] = useState(false);
   // Track the current question index
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [shuffledQuestions, setShuffledQuestions] = useState([]);
+  const [shuffledQuestions, setShuffledQuestions] = useState<QuestionType[]>(
+    []
+  );
   const [selectedLanguage, setSelectedLanguage] = useState(ENGLISH);
 
-  const shuffleArray = (array) => {
+  const shuffleArray = (array: QuestionType[]) => {
     return array.sort(() => Math.random() - 0.5);
   };
 
@@ -80,7 +83,7 @@ export default function Home() {
           )}
         </div>
         <div className="w-4/6 flex flex-row gap-4">
-          {/* <ScoreBoard /> */}
+          <ScoreBoard />
 
           {shuffledQuestions.length > 0 ? (
             <QuestionBank
