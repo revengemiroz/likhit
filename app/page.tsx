@@ -35,7 +35,7 @@ export default function Home() {
     return array.sort(() => Math.random() - 0.5);
   };
 
-  const handleLanguageChange = (lang) => {
+  const handleLanguageChange = (lang: string) => {
     setSelectedLanguage(lang); // Change language
   };
 
@@ -46,7 +46,7 @@ export default function Home() {
   const handleNextQuestion = () => {
     // Check if we are not at the last question
     if (currentQuestionIndex < shuffledQuestions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setCurrentQuestionIndex((prev) => prev + 1);
     }
   };
 
@@ -80,7 +80,7 @@ export default function Home() {
           )}
         </div>
         <div className="w-4/6 flex flex-row gap-4">
-          <ScoreBoard />
+          {/* <ScoreBoard /> */}
 
           {shuffledQuestions.length > 0 ? (
             <QuestionBank

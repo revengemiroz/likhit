@@ -1,22 +1,8 @@
+import { Language, ListProps, RadioButtonProps, Variant } from "@/app/types";
 import { Check, X } from "lucide-react";
 import React, { useState } from "react";
 
-type Variant = "neutral" | "right" | "wrong" | "disabled";
-type Language = "english" | "nepali"; // Expandable for more languages
-
-interface Option {
-  id: number;
-  english: string;
-  other: string;
-}
-
-interface RadioButtonProps {
-  variant: Variant;
-  label: string;
-  language: Language;
-  onClick: () => void;
-  isDisabled: boolean;
-}
+// Expandable for more languages
 
 const RadioButton: React.FC<RadioButtonProps> = ({
   variant,
@@ -77,13 +63,17 @@ const RadioButton: React.FC<RadioButtonProps> = ({
         );
       default:
         return (
-          <input
-            type="radio"
-            disabled={isDisabled}
-            className={`transition-all mr-4 w-5 h-5 border-4 rounded-full ${getRadioStyles(
-              variant
-            )}`}
-          />
+          <>
+            <label title="normal" htmlFor="normal"></label>
+            <input
+              id="normal"
+              type="radio"
+              disabled={isDisabled}
+              className={`transition-all mr-4 w-5 h-5 border-4 rounded-full ${getRadioStyles(
+                variant
+              )}`}
+            />
+          </>
         );
     }
   };
@@ -106,13 +96,6 @@ const RadioButton: React.FC<RadioButtonProps> = ({
     </div>
   );
 };
-
-interface ListProps {
-  options: Option[];
-  correctAnswerId: number;
-  language: Language;
-  onAnswerSelect: () => void;
-}
 
 const List: React.FC<ListProps> = ({
   options,
