@@ -7,6 +7,14 @@ export interface ListProps {
   onAnswerSelect: () => void;
 }
 
+export type QuestionStoreType = {
+  questions: QuestionType[];
+  shuffledQuestions: QuestionType[];
+  started: boolean;
+  answers: number[];
+  count: { correct: number; incorrect: number };
+};
+
 export interface QuestionType {
   id: number;
   question: {

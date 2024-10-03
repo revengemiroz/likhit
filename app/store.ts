@@ -1,10 +1,9 @@
 import { create } from "zustand";
 
-type QuestionStore = {};
-
 import { questions } from "../data/en";
+import { QuestionStoreType } from "./types";
 
-const useQuestionStore = create<QuestionStore>((set, get) => ({
+const useQuestionStore = create<QuestionStoreType>((set, get) => ({
   questions: [...questions], // fetches all the questions to be displayed
   shuffledQuestions: [...questions].sort(() => Math.random() - 0.5), // shuffles the questions only if the started is false
   started: false, // sets it true once one question is clicked, can be reseted with reset
