@@ -37,7 +37,9 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
         <DialogTrigger>
           <div className="flex justify-center">
             <img
-              src={""}
+              src={
+                "https://s.g1.ca/wp-content/uploads/autotest/202001302249003541.jpg"
+              }
               alt="question image"
               className="w-full h-64 object-cover"
             />
