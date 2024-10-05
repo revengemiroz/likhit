@@ -1,6 +1,6 @@
 import { Language, ListProps, RadioButtonProps, Variant } from "@/app/types";
 import { Check, X } from "lucide-react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Expandable for more languages
 
@@ -20,11 +20,11 @@ const RadioButton: React.FC<RadioButtonProps> = ({
   const getVariantStyles = (variant: Variant) => {
     switch (variant) {
       case "neutral":
-        return "font-medium text-sm hover:bg-[#F2F2F7] text-black p-4 rounded-lg";
+        return "cursor-pointer font-medium text-sm hover:bg-[#F2F2F7] text-black p-4 rounded-lg";
       case "right":
-        return "bg-green-100 rounded-lg p-4";
+        return "cursor-default bg-green-100 rounded-lg p-4";
       case "wrong":
-        return "bg-red-100 p-4 rounded-lg";
+        return "cursor-default bg-red-100 p-4 rounded-lg";
       case "disabled":
         return "p-4 rounded-lg opacity-50 cursor-not-allowed";
       default:
@@ -80,9 +80,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 
   return (
     <div
-      className={`flex items-center cursor-pointer ${getVariantStyles(
-        variant
-      )}`}
+      className={`flex items-center  ${getVariantStyles(variant)}`}
       onClick={handleClick}
     >
       {renderIcon(variant)}
@@ -101,15 +99,27 @@ const List: React.FC<ListProps> = ({
   options,
   correctAnswerId,
   language,
-  onAnswerSelect,
+  handleAnswerSelect,
+  userAnswer,
 }) => {
   const [selectedOptionId, setSelectedOptionId] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
 
+  useEffect(() => {
+    if (userAnswer !== null) {
+      setSelectedOptionId(userAnswer);
+      setShowResult(true);
+    } else {
+      setSelectedOptionId(null);
+      setShowResult(false);
+    }
+  }, [userAnswer]);
+
   const handleOptionClick = (optionId: number) => {
     setSelectedOptionId(optionId);
     setShowResult(true);
-    onAnswerSelect(); // Notify the parent component that an answer has been selected
+
+    handleAnswerSelect(optionId); // Notify the parent component that an answer has been selected
   };
 
   return (

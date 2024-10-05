@@ -54,7 +54,7 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col">
+    <div className="w-full min-h-screen flex flex-col py-6">
       <Nav />
       <div className="flex items-center flex-col flex-1 justify-center ">
         <div className="w-4/6 flex items-center  justify-end  mb-4 gap-2">

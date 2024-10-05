@@ -4,15 +4,23 @@ export interface ListProps {
   options: Option[];
   correctAnswerId: number;
   language: Language;
-  onAnswerSelect: () => void;
+  handleAnswerSelect: (answerId: number) => void;
+  userAnswer: number | null;
 }
 
 export type QuestionStoreType = {
+  nextQuestion: any;
+  start: any;
+  saveUserAnswer: (questionId: number, userAnswer: number) => void;
   questions: QuestionType[];
   shuffledQuestions: QuestionType[];
   started: boolean;
-  answers: number[];
   count: { correct: number; incorrect: number };
+  resetAll: () => void;
+  currentQuestionIndex: number;
+  getSpecificQuestion: () => QuestionType;
+  increaseCorrect: () => void;
+  increaseIncorrect: () => void;
 };
 
 export interface QuestionType {
