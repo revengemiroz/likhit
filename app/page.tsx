@@ -19,7 +19,7 @@ import {
 
 import { useState, useEffect } from "react";
 import { questions } from "@/data/en";
-import { QuestionType } from "../types";
+import { Language, QuestionType } from "../types";
 // import { cookies } from "next/headers";
 
 export default function Home() {
@@ -32,13 +32,13 @@ export default function Home() {
   const [shuffledQuestions, setShuffledQuestions] = useState<QuestionType[]>(
     []
   );
-  const [selectedLanguage, setSelectedLanguage] = useState(ENGLISH);
+  const [selectedLanguage, setSelectedLanguage] = useState<Language>(ENGLISH);
 
   const shuffleArray = (array: QuestionType[]) => {
     return array.sort(() => Math.random() - 0.5);
   };
 
-  const handleLanguageChange = (lang: string) => {
+  const handleLanguageChange = (lang: Language) => {
     setSelectedLanguage(lang); // Change language
   };
 

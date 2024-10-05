@@ -57,7 +57,7 @@ function ScoreBoard() {
       </div>
       <div className="flex flex-col border justify-center items-center shadow-sm bg-white rounded-xl py-4 px-6">
         <p className="text-xl font-semibold mb-4">Your Progress</p>
-        <div className="flex gap-2 flex-wrap ">
+        <div className="grid grid-cols-7 gap-2  ">
           {/* Render answer buttons dynamically based on the number of shuffled questions */}
           {shuffledQuestions.map((question, index) => (
             <AnswerButton
