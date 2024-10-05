@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import React, { useState, useEffect } from "react";
 
-import List from "@/app/components/List"; // Ensure you have the List component in place
+import List from "@/components/home/ListComponent"; // Ensure you have the List component in place
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Language } from "@/app/types";
 import useQuestionStore from "@/app/store";

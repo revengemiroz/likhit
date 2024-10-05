@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, RotateCcw } from "lucide-react";
 import React from "react";
 
-import AnswerButton from "@/app/components/AnswerButton";
-import useQuestionStore from "../../store"; // Import the Zustand store
+import AnswerButton from "@/components/home/AnswerButton";
+import useQuestionStore from "../../app/store"; // Import the Zustand store
 
 function ScoreBoard() {
   // Access shuffledQuestions and currentQuestionIndex from Zustand

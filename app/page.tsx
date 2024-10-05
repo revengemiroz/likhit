@@ -2,11 +2,11 @@
 import Image from "next/image";
 
 import { RotateCcw, ChevronLeft, Flag } from "lucide-react";
-import ScoreBoard from "@/app/components/ScoreBoard";
-import QuestionBank from "@/app/components/QuestionBank";
+import ScoreBoard from "@/components/home/ScoreBoard";
+import QuestionBank from "@/components/home/QuestionBank";
 
 import { Button } from "@/components/ui/button";
-import Nav from "./components/Nav";
+import Nav from "../components/home/Nav";
 
 import {
   Dialog,
