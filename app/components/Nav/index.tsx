@@ -14,8 +14,8 @@ import {
 
 function Nav() {
   return (
-    <div className=" flex items-center py-4 justify-center">
-      <div className="w-4/6 flex items-center justify-between  ">
+    <div className=" flex items-center py-4 justify-center  bg-white">
+      <div className="w-[90%] md:w-4/6 flex items-center justify-between  ">
         <Link className="text-xl font-bold text-blue-600" href="/">
           Likhit.np
         </Link>

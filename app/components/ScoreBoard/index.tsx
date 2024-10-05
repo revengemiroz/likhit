@@ -32,7 +32,7 @@ function ScoreBoard() {
   };
 
   return (
-    <div className="flex flex-col max-w-[370px] h-fit ">
+    <div className="flex flex-col w-full lg:max-w-[370px] h-fit ">
       <div className="flex flex-row gap-4 w-full mb-4">
         <Button
           className="w-full hover:bg-white flex items-center py-5 justify-center gap-2 group"
@@ -55,7 +55,7 @@ function ScoreBoard() {
           <span className="group-hover:text-blue-500">Restart</span>
         </Button>
       </div>
-      <div className="flex flex-col border shadow-sm bg-white rounded-xl py-4 px-6">
+      <div className="flex flex-col border justify-center items-center shadow-sm bg-white rounded-xl py-4 px-6">
         <p className="text-xl font-semibold mb-4">Your Progress</p>
         <div className="flex gap-2 flex-wrap ">
           {/* Render answer buttons dynamically based on the number of shuffled questions */}
