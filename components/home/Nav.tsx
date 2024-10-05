@@ -15,11 +15,11 @@ import {
 function Nav() {
   return (
     <div className=" flex items-center py-4 justify-center  bg-white">
-      <div className="w-[90%] md:w-5/6 xl:w-4/6 flex items-center justify-between  ">
+      <div className="w-full md:w-5/6 xl:w-4/6 flex items-center justify-between  mx-auto px-2">
         <Link className="text-xl font-bold text-blue-600" href="/">
           Likhit.np
         </Link>
-        <div className="flex flex-row items-center gap-4 ">
+        <div className="flex flex-row items-center md:gap-4  gap-2">
           <Link
             className="text-sm hover:underline transition-all font-medium"
             href="/"

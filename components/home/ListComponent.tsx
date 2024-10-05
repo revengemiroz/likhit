@@ -123,7 +123,7 @@ const List: React.FC<ListProps> = ({
   };
 
   return (
-    <div className="flex flex-col transition-all gap-2">
+    <div className="flex flex-col transition-all md:gap-2 gap-0">
       {options.map((option) => {
         let variant: Variant = "neutral";
 

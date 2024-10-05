@@ -84,7 +84,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
         </DialogContent>
       </Dialog>
       <div className="p-6">
-        <p className="text-2xl font-bold">
+        <p className="md:text-2xl text-xl font-bold">
           {currentQuestion?.question?.[language]}
         </p>
 
