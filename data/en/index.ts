@@ -1,4 +1,6 @@
-export const questions = [
+import { QuestionType } from "@/app/types";
+
+export const questions: QuestionType[] = [
   {
     id: 1,
     question: {

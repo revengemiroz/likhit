@@ -1,22 +1,8 @@
+import { Language, ListProps, RadioButtonProps, Variant } from "@/app/types";
 import { Check, X } from "lucide-react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-type Variant = "neutral" | "right" | "wrong" | "disabled";
-type Language = "english" | "nepali"; // Expandable for more languages
-
-interface Option {
-  id: number;
-  english: string;
-  other: string;
-}
-
-interface RadioButtonProps {
-  variant: Variant;
-  label: string;
-  language: Language;
-  onClick: () => void;
-  isDisabled: boolean;
-}
+// Expandable for more languages
 
 const RadioButton: React.FC<RadioButtonProps> = ({
   variant,
@@ -34,11 +20,11 @@ const RadioButton: React.FC<RadioButtonProps> = ({
   const getVariantStyles = (variant: Variant) => {
     switch (variant) {
       case "neutral":
-        return "font-medium text-sm hover:bg-[#F2F2F7] text-black p-4 rounded-lg";
+        return "cursor-pointer font-medium text-sm hover:bg-[#F2F2F7] text-black p-4 rounded-lg";
       case "right":
-        return "bg-green-100 rounded-lg p-4";
+        return "cursor-default bg-green-100 rounded-lg p-4";
       case "wrong":
-        return "bg-red-100 p-4 rounded-lg";
+        return "cursor-default bg-red-100 p-4 rounded-lg";
       case "disabled":
         return "p-4 rounded-lg opacity-50 cursor-not-allowed";
       default:
@@ -77,22 +63,24 @@ const RadioButton: React.FC<RadioButtonProps> = ({
         );
       default:
         return (
-          <input
-            type="radio"
-            disabled={isDisabled}
-            className={`transition-all mr-4 w-5 h-5 border-4 rounded-full ${getRadioStyles(
-              variant
-            )}`}
-          />
+          <>
+            <label title="normal" htmlFor="normal"></label>
+            <input
+              id="normal"
+              type="radio"
+              disabled={isDisabled}
+              className={`transition-all mr-4 w-5 h-5 border-4 rounded-full ${getRadioStyles(
+                variant
+              )}`}
+            />
+          </>
         );
     }
   };
 
   return (
     <div
-      className={`flex items-center cursor-pointer ${getVariantStyles(
-        variant
-      )}`}
+      className={`flex items-center  ${getVariantStyles(variant)}`}
       onClick={handleClick}
     >
       {renderIcon(variant)}
@@ -107,26 +95,31 @@ const RadioButton: React.FC<RadioButtonProps> = ({
   );
 };
 
-interface ListProps {
-  options: Option[];
-  correctAnswerId: number;
-  language: Language;
-  onAnswerSelect: () => void;
-}
-
 const List: React.FC<ListProps> = ({
   options,
   correctAnswerId,
   language,
-  onAnswerSelect,
+  handleAnswerSelect,
+  userAnswer,
 }) => {
   const [selectedOptionId, setSelectedOptionId] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
 
+  useEffect(() => {
+    if (userAnswer !== null) {
+      setSelectedOptionId(userAnswer);
+      setShowResult(true);
+    } else {
+      setSelectedOptionId(null);
+      setShowResult(false);
+    }
+  }, [userAnswer]);
+
   const handleOptionClick = (optionId: number) => {
     setSelectedOptionId(optionId);
     setShowResult(true);
-    onAnswerSelect(); // Notify the parent component that an answer has been selected
+
+    handleAnswerSelect(optionId); // Notify the parent component that an answer has been selected
   };
 
   return (

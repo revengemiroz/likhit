@@ -19,6 +19,7 @@ import {
 
 import { useState, useEffect } from "react";
 import { questions } from "@/data/en";
+import { QuestionType } from "./types";
 // import { cookies } from "next/headers";
 
 export default function Home() {
@@ -28,14 +29,16 @@ export default function Home() {
   const [open, setOpen] = useState(false);
   // Track the current question index
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [shuffledQuestions, setShuffledQuestions] = useState([]);
+  const [shuffledQuestions, setShuffledQuestions] = useState<QuestionType[]>(
+    []
+  );
   const [selectedLanguage, setSelectedLanguage] = useState(ENGLISH);
 
-  const shuffleArray = (array) => {
+  const shuffleArray = (array: QuestionType[]) => {
     return array.sort(() => Math.random() - 0.5);
   };
 
-  const handleLanguageChange = (lang) => {
+  const handleLanguageChange = (lang: string) => {
     setSelectedLanguage(lang); // Change language
   };
 
@@ -46,12 +49,12 @@ export default function Home() {
   const handleNextQuestion = () => {
     // Check if we are not at the last question
     if (currentQuestionIndex < shuffledQuestions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setCurrentQuestionIndex((prev) => prev + 1);
     }
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col">
+    <div className="w-full min-h-screen flex flex-col py-6">
       <Nav />
       <div className="flex items-center flex-col flex-1 justify-center ">
         <div className="w-4/6 flex items-center  justify-end  mb-4 gap-2">
