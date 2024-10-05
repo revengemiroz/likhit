@@ -12,7 +12,7 @@ interface QuestionBankProps {
   questionList: any;
   handleNextQuestion: () => void;
   disabled: boolean;
-  language: string;
+  language: Language;
 }
 
 const QuestionBank: React.FC<QuestionBankProps> = ({
@@ -35,6 +35,8 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
       ? shuffledQuestions[currentQuestionIndex]
       : null;
 
+  if (!currentQuestion) return <div> No question to display </div>;
+
   console.log({ currentQuestion });
 
   const handleAnswerSelect = (answerId: number) => {
@@ -49,7 +51,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
     }
 
     // Save the user's answer to the store
-    saveUserAnswer(currentQuestion?.id, answerId); // Save the user's answer to the store
+    saveUserAnswer(currentQuestion?.id as number, answerId); // Save the user's answer to the store
   };
 
   return (
@@ -98,7 +100,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
             />
           )}
         </div>
-        {console.log({ currentQuestion })}
+
         {currentQuestion?.user_answer &&
           shuffledQuestions[currentQuestionIndex + 1] && (
             <div className="flex justify-end mt-4">

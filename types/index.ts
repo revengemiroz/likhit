@@ -36,6 +36,7 @@ export interface QuestionType {
   }[];
   correctAnswerId: number;
   image: string;
+  user_answer: number | null;
 }
 export type Variant = "neutral" | "right" | "wrong" | "disabled";
 
