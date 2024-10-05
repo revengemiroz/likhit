@@ -58,7 +58,7 @@ export default function Home() {
       <Nav />
       <main className="">
         <div className="flex items-center  flex-col flex-1 justify-center ">
-          <div className="w-[90%] md:w-4/6 flex items-center  justify-end  my-4 gap-2">
+          <div className="w-[90%] md:w-5/6 xl:w-4/6 flex items-center  justify-end  my-4 gap-2">
             <span className="group w-8 h-8 flex justify-center items-center rounded-full cursor-pointer transition-all hover:bg-gray-200">
               <Flag
                 className="w-4 h-4 text-gray-500 group-hover:fill-blue-500 group-hover:stroke-blue-500"
@@ -83,7 +83,7 @@ export default function Home() {
               </span>
             )}
           </div>
-          <div className="w-[90%] md:w-4/6 flex flex-col lg:flex-row gap-4">
+          <div className="w-[90%] md:w-5/6 xl:w-4/6 flex flex-col lg:flex-row gap-4">
             <ScoreBoard />
 
             {shuffledQuestions.length > 0 ? (
