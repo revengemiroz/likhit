@@ -1,4 +1,4 @@
-import { Language, ListProps, RadioButtonProps, Variant } from "@/app/types";
+import { Language, ListProps, RadioButtonProps, Variant } from "@/types";
 import { Check, X } from "lucide-react";
 import React, { useState, useEffect } from "react";
 

@@ -19,7 +19,7 @@ import {
 
 import { useState, useEffect } from "react";
 import { questions } from "@/data/en";
-import { QuestionType } from "./types";
+import { QuestionType } from "../types";
 // import { cookies } from "next/headers";
 
 export default function Home() {

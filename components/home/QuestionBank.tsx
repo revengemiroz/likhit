@@ -4,8 +4,9 @@ import React, { useState, useEffect } from "react";
 
 import List from "@/components/home/ListComponent"; // Ensure you have the List component in place
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Language } from "@/app/types";
+import { Language } from "@/types";
 import useQuestionStore from "@/app/store";
+import Image from "next/image";
 
 interface QuestionBankProps {
   questionList: any;
@@ -55,23 +56,27 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
     <div className="bg-white  border shadow-sm w-full overflow-hidden flex flex-col rounded-xl">
       <Dialog>
         <DialogTrigger>
-          <div className="flex justify-center">
-            <img
+          <div className="flex justify-center relative w-full h-64 md:h-80 lg:h-64">
+            <Image
               src={
                 "https://s.g1.ca/wp-content/uploads/autotest/202001302249003541.jpg"
               }
               alt="question image"
-              className="w-full h-64 object-cover"
+              className="object-contain"
+              fill
             />
           </div>
         </DialogTrigger>
 
-        <DialogContent className="md:w-[400px] bg-transparent border-0 rounded-lg overflow-hidden xl:min-w-[700px] p-0">
-          <div className="flex justify-between overflow-hidden">
-            <img
-              src={questionList?.image}
+        <DialogContent className="md:w-full bg-transparent border-0 rounded-lg overflow-hidden xl:min-w-[700px] p-0 max-sm:w-[90%]  ">
+          <div className="flex justify-between relative h-64 md:h-80 lg:h-64 overflow-hidden">
+            <Image
+              src={
+                "https://s.g1.ca/wp-content/uploads/autotest/202001302249003541.jpg"
+              }
               alt="question image"
-              className="w-full h-64 object-cover"
+              className=" object-contain"
+              fill
             />
           </div>
         </DialogContent>
