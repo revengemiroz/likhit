@@ -64,7 +64,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
                 "https://s.g1.ca/wp-content/uploads/autotest/202001302249003541.jpg"
               }
               alt="question image"
-              className="object-contain"
+              className="object-cover"
               fill
             />
           </div>
