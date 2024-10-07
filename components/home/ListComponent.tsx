@@ -52,13 +52,13 @@ const RadioButton: React.FC<RadioButtonProps> = ({
     switch (variant) {
       case "right":
         return (
-          <div className="w-5 h-5 mr-5 bg-green-500 rounded-md flex items-center justify-center rotate-45">
+          <div className="w-4 h-4 sm:w-5 sm:h-5 mr-5 bg-green-500 rounded-md flex items-center justify-center rotate-45">
             <Check className="w-4 h-4 text-white rotate-[-45deg]" />
           </div>
         );
       case "wrong":
         return (
-          <div className="w-5 h-5 mr-5 bg-red-500 rounded-md flex items-center justify-center rotate-45">
+          <div className="w-4 h-4  sm:w-5 sm:h-5 mr-5 bg-red-500 rounded-md flex items-center justify-center rotate-45">
             <X className="w-4 h-4 text-white rotate-[-45deg]" />
           </div>
         );
