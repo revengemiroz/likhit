@@ -16,17 +16,18 @@ const RadioButton: React.FC<RadioButtonProps> = ({
       onClick();
     }
   };
+  19;
 
   const getVariantStyles = (variant: Variant) => {
     switch (variant) {
       case "neutral":
-        return "cursor-pointer font-medium text-sm hover:bg-[#F2F2F7] text-black p-4 rounded-lg";
+        return "cursor-pointer font-medium text-sm hover:bg-[#F2F2F7] text-black p-4 py-1 sm:py-2 rounded-lg";
       case "right":
-        return "cursor-default bg-green-100 rounded-lg p-4";
+        return "cursor-default bg-green-100 rounded-lg p-4 py-1 sm:py-2";
       case "wrong":
-        return "cursor-default bg-red-100 p-4 rounded-lg";
+        return "cursor-default bg-red-100 p-4 py-1 sm:py-2 rounded-lg";
       case "disabled":
-        return "p-4 rounded-lg opacity-50 cursor-not-allowed";
+        return "p-4 py-1 sm:py-2 rounded-lg opacity-50 cursor-not-allowed";
       default:
         return "";
     }
@@ -80,14 +81,14 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 
   return (
     <div
-      className={`flex items-center  ${getVariantStyles(variant)}`}
+      className={`flex items-center   ${getVariantStyles(variant)} `}
       onClick={handleClick}
     >
       {renderIcon(variant)}
       <span
         className={`${
           language === "english" ? "font-normal" : "font-medium"
-        } text-sm text-black`}
+        }  text-[13px] sm:text-sm text-black`}
       >
         {label}
       </span>
@@ -123,7 +124,7 @@ const List: React.FC<ListProps> = ({
   };
 
   return (
-    <div className="flex flex-col transition-all md:gap-2 gap-0">
+    <div className="flex flex-col transition-all  md:gap-2 gap-1">
       {options.map((option) => {
         let variant: Variant = "neutral";
 

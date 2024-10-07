@@ -36,7 +36,6 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
       : null;
 
   if (!currentQuestion) return <div> No question to display </div>;
-
   console.log({ currentQuestion });
 
   const handleAnswerSelect = (answerId: number) => {
@@ -84,7 +83,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
         </DialogContent>
       </Dialog>
       <div className="p-6">
-        <p className="md:text-2xl text-xl font-bold">
+        <p className="text-lg md:text-2xl sm:text-xl font-bold">
           {currentQuestion?.question?.[language]}
         </p>
 
