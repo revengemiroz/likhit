@@ -21,13 +21,13 @@ const RadioButton: React.FC<RadioButtonProps> = ({
   const getVariantStyles = (variant: Variant) => {
     switch (variant) {
       case "neutral":
-        return "cursor-pointer font-medium text-sm hover:bg-[#F2F2F7] text-black p-4 py-1 sm:py-2 rounded-lg";
+        return "cursor-pointer font-medium text-sm hover:bg-[#F2F2F7] text-black   rounded-lg";
       case "right":
-        return "cursor-default bg-green-100 rounded-lg p-4 py-1 sm:py-2";
+        return "cursor-default bg-green-100 rounded-lg  ";
       case "wrong":
-        return "cursor-default bg-red-100 p-4 py-1 sm:py-2 rounded-lg";
+        return "cursor-default bg-red-100   rounded-lg";
       case "disabled":
-        return "p-4 py-1 sm:py-2 rounded-lg opacity-50 cursor-not-allowed";
+        return "  rounded-lg opacity-50 cursor-not-allowed";
       default:
         return "";
     }
@@ -64,31 +64,33 @@ const RadioButton: React.FC<RadioButtonProps> = ({
         );
       default:
         return (
-          <>
+          <div className="flex items-center">
             <label title="normal" htmlFor="normal"></label>
             <input
               id="normal"
               type="radio"
               disabled={isDisabled}
-              className={`transition-all mr-4 w-5 h-5 border-4 rounded-full ${getRadioStyles(
+              className={`transition-all  mr-4 w-5 h-5 border-4 rounded-full ${getRadioStyles(
                 variant
               )}`}
             />
-          </>
+          </div>
         );
     }
   };
 
   return (
     <div
-      className={`flex items-center   ${getVariantStyles(variant)} `}
+      className={`grid grid-cols-16  items-center  ${getVariantStyles(
+        variant
+      )}  p-4 py-1 sm:py-2 gap-5`}
       onClick={handleClick}
     >
       {renderIcon(variant)}
       <span
         className={`${
           language === "english" ? "font-normal" : "font-medium"
-        }  text-[13px] sm:text-sm text-black`}
+        }   text-[13px] sm:text-sm text-black col-span-12`}
       >
         {label}
       </span>
