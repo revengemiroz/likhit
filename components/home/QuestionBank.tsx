@@ -57,7 +57,10 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
     <div className="bg-white  border shadow-sm w-full overflow-hidden flex flex-col rounded-xl">
       <Dialog>
         <DialogTrigger>
-          <div className="flex justify-center relative w-full h-64 md:h-80 lg:h-64">
+          <div
+            className="flex justify-center relative w-full 
+           h-40 smh-64 md:h-80 lg:h-64"
+          >
             <Image
               src={
                 "https://s.g1.ca/wp-content/uploads/autotest/202001302249003541.jpg"
