@@ -36,7 +36,6 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
       : null;
 
   if (!currentQuestion) return <div> No question to display </div>;
-
   console.log({ currentQuestion });
 
   const handleAnswerSelect = (answerId: number) => {
@@ -58,7 +57,10 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
     <div className="bg-white  border shadow-sm w-full overflow-hidden flex flex-col rounded-xl">
       <Dialog>
         <DialogTrigger>
-          <div className="flex justify-center relative w-full h-64 md:h-80 lg:h-64">
+          <div
+            className="flex justify-center relative w-full 
+           h-40 smh-64 md:h-80 lg:h-64"
+          >
             <Image
               src={
                 "https://s.g1.ca/wp-content/uploads/autotest/202001302249003541.jpg"
@@ -84,7 +86,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
         </DialogContent>
       </Dialog>
       <div className="">
-        <p className="md:text-2xl text-xl font-bold px-6 pt-6">
+        <p className=" px-6 pt-6 text-lg md:text-2xl sm:text-xl font-bold">
           {currentQuestion?.question?.[language]}
         </p>
 

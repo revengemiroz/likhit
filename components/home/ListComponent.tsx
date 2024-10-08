@@ -16,17 +16,18 @@ const RadioButton: React.FC<RadioButtonProps> = ({
       onClick();
     }
   };
+  19;
 
   const getVariantStyles = (variant: Variant) => {
     switch (variant) {
       case "neutral":
-        return "cursor-pointer font-medium text-sm hover:bg-[#F2F2F7] text-black p-4 rounded-lg";
+        return "cursor-pointer font-medium text-sm hover:bg-[#F2F2F7] text-black   rounded-lg";
       case "right":
-        return "cursor-default bg-green-100 rounded-lg p-4";
+        return "cursor-default bg-green-100 rounded-lg  ";
       case "wrong":
-        return "cursor-default bg-red-100 p-4 rounded-lg";
+        return "cursor-default bg-red-100   rounded-lg";
       case "disabled":
-        return "p-4 rounded-lg opacity-50 cursor-not-allowed";
+        return "  rounded-lg opacity-50 cursor-not-allowed";
       default:
         return "";
     }
@@ -51,19 +52,19 @@ const RadioButton: React.FC<RadioButtonProps> = ({
     switch (variant) {
       case "right":
         return (
-          <div className="w-5 h-5 mr-5 bg-green-500 rounded-md flex items-center justify-center rotate-45">
+          <div className="w-4 h-4 sm:w-5 sm:h-5 mr-5 bg-green-500 rounded-md flex items-center justify-center rotate-45">
             <Check className="w-4 h-4 text-white rotate-[-45deg]" />
           </div>
         );
       case "wrong":
         return (
-          <div className="w-5 h-5 mr-5 bg-red-500 rounded-md flex items-center justify-center rotate-45">
+          <div className="w-4 h-4  sm:w-5 sm:h-5 mr-5 bg-red-500 rounded-md flex items-center justify-center rotate-45">
             <X className="w-4 h-4 text-white rotate-[-45deg]" />
           </div>
         );
       default:
         return (
-          <>
+          <div className="flex items-center">
             <label title="normal" htmlFor="normal"></label>
             <input
               id="normal"
@@ -73,7 +74,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
                 variant
               )}`}
             />
-          </>
+          </div>
         );
     }
   };
@@ -91,7 +92,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
       <span
         className={`${
           language === "english" ? "font-normal" : "font-medium"
-        } text-sm text-black`}
+        }   text-[13px] sm:text-sm text-black col-span-12`}
       >
         {label}
       </span>
