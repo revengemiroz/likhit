@@ -39,8 +39,31 @@ function Nav() {
                       Resources
                     </Link>
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="min-w-56 border-green">
-                    <NavigationMenuLink>Link</NavigationMenuLink>
+                  <NavigationMenuContent className="min-w-max px-4 py-2 pb-3 flex flex-col gap-2">
+                    <NavigationMenuLink className="m-0 p-0">
+                      <Link
+                        href="blind-test"
+                        className="text-xs font-medium hover:underline transition-all"
+                      >
+                        Color Blindness Test
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink className="m-0 p-0">
+                      <Link
+                        href="blind-test"
+                        className="text-xs font-medium hover:underline transition-all"
+                      >
+                        Find nearest driving exam center
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink className="m-0 p-0">
+                      <Link
+                        href="blind-test"
+                        className="text-xs font-medium hover:underline transition-all"
+                      >
+                        How it works ?
+                      </Link>
+                    </NavigationMenuLink>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
               </NavigationMenuList>
