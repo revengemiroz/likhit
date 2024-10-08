@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 import { questions } from "../data/en";
-import { QuestionStoreType } from "./types";
+import { QuestionStoreType } from "../types";
 
 // Add `user_answer` property to each question during initialization
 const initializeQuestions = questions.map((question) => ({

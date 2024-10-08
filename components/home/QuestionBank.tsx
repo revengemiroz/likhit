@@ -2,16 +2,17 @@
 import { Button } from "@/components/ui/button";
 import React, { useState, useEffect } from "react";
 
-import List from "@/app/components/List"; // Ensure you have the List component in place
+import List from "@/components/home/ListComponent"; // Ensure you have the List component in place
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Language } from "@/app/types";
+import { Language } from "@/types";
 import useQuestionStore from "@/app/store";
+import Image from "next/image";
 
 interface QuestionBankProps {
   questionList: any;
   handleNextQuestion: () => void;
   disabled: boolean;
-  language: string;
+  language: Language;
 }
 
 const QuestionBank: React.FC<QuestionBankProps> = ({
@@ -34,6 +35,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
       ? shuffledQuestions[currentQuestionIndex]
       : null;
 
+  if (!currentQuestion) return <div> No question to display </div>;
   console.log({ currentQuestion });
 
   const handleAnswerSelect = (answerId: number) => {
@@ -48,40 +50,47 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
     }
 
     // Save the user's answer to the store
-    saveUserAnswer(currentQuestion?.id, answerId); // Save the user's answer to the store
+    saveUserAnswer(currentQuestion?.id as number, answerId); // Save the user's answer to the store
   };
 
   return (
     <div className="bg-white  border shadow-sm w-full overflow-hidden flex flex-col rounded-xl">
       <Dialog>
         <DialogTrigger>
-          <div className="flex justify-center">
-            <img
+          <div
+            className="flex justify-center relative w-full 
+           h-40 smh-64 md:h-80 lg:h-64"
+          >
+            <Image
               src={
                 "https://s.g1.ca/wp-content/uploads/autotest/202001302249003541.jpg"
               }
               alt="question image"
-              className="w-full h-64 object-cover"
+              objectFit="cover"
+              fill
             />
           </div>
         </DialogTrigger>
 
-        <DialogContent className="md:w-[400px] bg-transparent border-0 rounded-lg overflow-hidden xl:min-w-[700px] p-0">
-          <div className="flex justify-between overflow-hidden">
-            <img
-              src={questionList?.image}
+        <DialogContent className="md:w-full bg-transparent border-0  overflow-hidden xl:min-w-[700px] p-0 max-sm:w-[90%]  ">
+          <div className="flex justify-between relative h-64 md:h-80 lg:h-64 overflow-hidden">
+            <Image
+              src={
+                "https://s.g1.ca/wp-content/uploads/autotest/202001302249003541.jpg"
+              }
               alt="question image"
-              className="w-full h-64 object-cover"
+              className="contain"
+              fill
             />
           </div>
         </DialogContent>
       </Dialog>
-      <div className="p-6">
-        <p className="text-2xl font-bold">
+      <div className="">
+        <p className=" px-6 pt-6 text-lg md:text-2xl sm:text-xl font-bold">
           {currentQuestion?.question?.[language]}
         </p>
 
-        <div className="flex-1 mt-4">
+        <div className="flex-1 mt-4 px-6 md:px-6 pb-6">
           {/* Render the List component */}
           {currentQuestion && (
             <List
@@ -93,10 +102,10 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
             />
           )}
         </div>
-        {console.log({ currentQuestion })}
+
         {currentQuestion?.user_answer &&
           shuffledQuestions[currentQuestionIndex + 1] && (
-            <div className="flex justify-end mt-4">
+            <div className="flex justify-end pb-6 pr-6">
               <Button
                 onClick={nextQuestion}
                 disabled={currentQuestion?.user_answer == null} // Disable until answered
