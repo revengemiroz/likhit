@@ -15,7 +15,7 @@ function Quiz({ selected = false }: { selected: boolean }) {
     setCurrentQuestionIndex(randomIndex);
   }, []);
 
-  const handleAnswer = (selectedAnswer: string) => {
+  const handleAnswer = (selectedAnswer: string | number) => {
     const correctAnswer =
       ishiharaTestPlate[currentQuestionIndex].correctAnswerId;
 

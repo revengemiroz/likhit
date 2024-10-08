@@ -12,7 +12,7 @@ function page() {
 
       <div className="flex items-center justify-center p-4 md:p-0">
         <div className="shadow-lg bg-white rounded-md md:w-2/5 mb-12 m-auto">
-          <Quiz />
+          <Quiz selected={false} />
         </div>
       </div>
     </div>

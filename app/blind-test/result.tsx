@@ -5,7 +5,7 @@
  */
 import Link from "next/link";
 
-export default function Component({ answer, lowScore }) {
+export default function Component({ answer, lowScore }: any) {
   const isColorBlind = lowScore;
   return (
     <div className="w-full max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
