@@ -64,31 +64,31 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
                 "https://s.g1.ca/wp-content/uploads/autotest/202001302249003541.jpg"
               }
               alt="question image"
-              className="object-contain"
+              objectFit="cover"
               fill
             />
           </div>
         </DialogTrigger>
 
-        <DialogContent className="md:w-full bg-transparent border-0 rounded-lg overflow-hidden xl:min-w-[700px] p-0 max-sm:w-[90%]  ">
+        <DialogContent className="md:w-full bg-transparent border-0  overflow-hidden xl:min-w-[700px] p-0 max-sm:w-[90%]  ">
           <div className="flex justify-between relative h-64 md:h-80 lg:h-64 overflow-hidden">
             <Image
               src={
                 "https://s.g1.ca/wp-content/uploads/autotest/202001302249003541.jpg"
               }
               alt="question image"
-              className=" object-contain"
+              className="contain"
               fill
             />
           </div>
         </DialogContent>
       </Dialog>
-      <div className="p-6">
-        <p className="md:text-2xl text-xl font-bold">
+      <div className="">
+        <p className="md:text-2xl text-xl font-bold px-6 pt-6">
           {currentQuestion?.question?.[language]}
         </p>
 
-        <div className="flex-1 mt-4">
+        <div className="flex-1 mt-4 px-6 md:px-6 pb-6">
           {/* Render the List component */}
           {currentQuestion && (
             <List
@@ -103,7 +103,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
 
         {currentQuestion?.user_answer &&
           shuffledQuestions[currentQuestionIndex + 1] && (
-            <div className="flex justify-end mt-4">
+            <div className="flex justify-end pb-6 pr-6">
               <Button
                 onClick={nextQuestion}
                 disabled={currentQuestion?.user_answer == null} // Disable until answered
