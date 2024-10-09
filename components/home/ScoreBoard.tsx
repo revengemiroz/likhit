@@ -56,7 +56,7 @@ function ScoreBoard() {
         </Button>
       </div>
       <div className="flex flex-col border justify-center items-center shadow-sm bg-white rounded-xl py-4 px-6">
-        <p className="text-xl font-semibold mb-4">Your Progress</p>
+        <p className="text-lg sm:text-xl font-semibold mb-4">Your Progress</p>
         <div className="grid grid-cols-7 gap-2  ">
           {/* Render answer buttons dynamically based on the number of shuffled questions */}
           {shuffledQuestions.map((question, index) => (
@@ -72,13 +72,13 @@ function ScoreBoard() {
         <div className="flex gap-2 mt-4 ">
           <div className="flex gap-2 items-center justify-center">
             <span className="text-green w-[6px] h-[6px] rounded-full bg-green-300" />
-            <span className="font-semibold text-sm">
+            <span className="font-semibold text-[13px] sm:text-sm">
               {correctCount} Correct
             </span>
           </div>
           <div className="flex gap-2 items-center justify-center">
             <span className="text-green w-[6px] h-[6px] rounded-full bg-red-300" />
-            <span className="font-semibold text-sm">
+            <span className="font-semibold text-[13px] sm:text-sm">
               {incorrectCount} Incorrect
             </span>
           </div>

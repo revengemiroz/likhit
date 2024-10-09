@@ -125,7 +125,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
                 // onClick={handleNextQuestion}
                 // disabled={currentQuestion?.user_answer == null} // Disable until answered
                 variant="outline"
-                className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
+                className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 text-[12px] sm:text-sm"
               >
                 Finish quiz
               </Button>
