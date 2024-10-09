@@ -70,7 +70,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
               id="normal"
               type="radio"
               disabled={isDisabled}
-              className={`transition-all  w-5 h-5 border-4 rounded-full ${getRadioStyles(
+              className={`transition-all  mr-4 w-5 h-5 border-4 rounded-full ${getRadioStyles(
                 variant
               )}`}
             />
@@ -81,18 +81,16 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 
   return (
     <div
-      className={`grid grid-cols-[25px_auto] gap-4 items-center p-3 ${getVariantStyles(
+      className={`grid grid-cols-16  items-center  ${getVariantStyles(
         variant
-      )}`}
+      )}  p-4 py-1 sm:py-2 gap-5`}
       onClick={handleClick}
     >
-      <span className="flex  items-center m-auto justify-center">
-        {renderIcon(variant)}
-      </span>
+      {renderIcon(variant)}
       <span
         className={`${
           language === "english" ? "font-normal" : "font-medium"
-        }   text-[13px] sm:text-sm text-black`}
+        }   text-[13px] sm:text-sm text-black col-span-12 `}
       >
         {label}
       </span>
@@ -128,7 +126,7 @@ const List: React.FC<ListProps> = ({
   };
 
   return (
-    <div className="flex flex-col transition-all md:gap-2 gap-2">
+    <div className="flex flex-col transition-all  md:gap-2 gap-1">
       {options.map((option) => {
         let variant: Variant = "neutral";
 

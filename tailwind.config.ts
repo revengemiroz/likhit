@@ -12,6 +12,9 @@ const config: Config = {
       gridTemplateColumns: {
         "16": "repeat(16, minmax(0, 1fr))",
       },
+      gridColumn: {
+        "14": "span 14 / span 14",
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
