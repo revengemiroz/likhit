@@ -81,18 +81,18 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 
   return (
     <div
-      className={`grid grid-cols-[25px_auto] gap-4 items-center  ${getVariantStyles(
+      className={`grid grid-cols-[25px_auto] gap-4 items-center p-3 ${getVariantStyles(
         variant
       )}`}
       onClick={handleClick}
     >
-      <span className="flex items-center m-auto justify-center">
+      <span className="flex  items-center m-auto justify-center">
         {renderIcon(variant)}
       </span>
       <span
         className={`${
           language === "english" ? "font-normal" : "font-medium"
-        }   text-[13px] sm:text-sm text-black col-span-12`}
+        }   text-[13px] sm:text-sm text-black`}
       >
         {label}
       </span>

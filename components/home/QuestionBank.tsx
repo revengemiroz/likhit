@@ -7,6 +7,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Language } from "@/types";
 import useQuestionStore from "@/app/store";
 import Image from "next/image";
+import Link from "next/link";
 
 interface QuestionBankProps {
   questionList: any;
@@ -116,6 +117,21 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
               </Button>
             </div>
           )}
+
+        {shuffledQuestions.length - 1 === currentQuestionIndex && (
+          <div className="flex justify-end pb-6 pr-6">
+            <Link href="/result">
+              <Button
+                // onClick={handleNextQuestion}
+                // disabled={currentQuestion?.user_answer == null} // Disable until answered
+                variant="outline"
+                className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
+              >
+                Finish quiz
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
