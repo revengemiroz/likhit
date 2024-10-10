@@ -12,6 +12,8 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 
+import Feedback from "@/components/home/Feedback";
+
 function Nav() {
   return (
     <div className="bg-white w-full">
@@ -20,10 +22,8 @@ function Nav() {
           <Link className="text-xl font-bold text-blue-600" href="/">
             Likhit.np
           </Link>
-          <div className="flex flex-row border-green items-center md:gap-2  gap-2">
-            <Button variant="link" className="text-sm font-medium">
-              Feedback
-            </Button>
+          <div className="flex flex-row  items-center md:gap-2  gap-2">
+            <Feedback />
 
             <NavigationMenu className=" hidden sm:block">
               <NavigationMenuList>
