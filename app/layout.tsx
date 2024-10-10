@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Head from "next/head";
+import "leaflet/dist/leaflet.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
