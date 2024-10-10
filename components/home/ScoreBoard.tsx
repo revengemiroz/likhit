@@ -11,6 +11,7 @@ function ScoreBoard() {
   const shuffledQuestions = useQuestionStore(
     (state) => state.shuffledQuestions
   );
+  console.log({ shuffledQuestions });
   const currentQuestionIndex = useQuestionStore(
     (state) => state.currentQuestionIndex
   );
