@@ -17,7 +17,7 @@ function Nav() {
     <div className="bg-white w-full">
       <div className=" flex items-center justify-center  bg-white py-4   lg:container lg:mx-auto">
         <div className="w-[90%] md:w-5/6 xl:w-4/6 flex items-center justify-between  ">
-          <Link className="text-xl font-bold text-blue-600" href="/">
+          <Link className="text-lg sm:text-xl font-bold text-blue-600" href="/">
             Likhit.np
           </Link>
           <div className="flex flex-row items-center md:gap-4  gap-2">
@@ -69,7 +69,7 @@ function Nav() {
               </NavigationMenuList>
             </NavigationMenu>
 
-            <Button className="text-sm font-medium bg-blue-500 hover:bg-blue-600">
+            <Button className=" text-[12px] sm:text-sm  font-medium bg-blue-500 hover:bg-blue-600">
               Take a test
             </Button>
           </div>
