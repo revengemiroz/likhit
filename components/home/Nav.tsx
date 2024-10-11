@@ -50,7 +50,7 @@ function Nav() {
                     </NavigationMenuLink>
                     <NavigationMenuLink className="m-0 p-0">
                       <Link
-                        href="blind-test"
+                        href="/find-centers-near"
                         className="text-xs font-medium hover:underline transition-all"
                       >
                         Find nearest driving exam center

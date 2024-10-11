@@ -11,8 +11,8 @@ import { Label } from "@/components/ui/label";
 // Fixing Leaflet's default icon issue
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: "/images/marker.png",
-  iconUrl: "/images/marker.png",
+  iconRetinaUrl: "/images/marker1.png",
+  iconUrl: "/images/marker1.png",
   shadowUrl: "/leaflet/images/marker-shadow.png",
 });
 
