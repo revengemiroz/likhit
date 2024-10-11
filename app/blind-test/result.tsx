@@ -14,7 +14,7 @@ export default function Component({ answer, lowScore }: any) {
           <h1 className="text-3xl sm:text-4xl font-bold text-foreground">
             Color Blindness Test Results
           </h1>
-          <p className="text-sm sm:text-md mt-4 text-muted-foreground">
+          <p className="text-sm sm:text-[16px] mt-4 text-muted-foreground">
             {isColorBlind
               ? "Congratulations on completing our color blindness test! Here are your results:"
               : "You do not have any color blindness."}
@@ -27,7 +27,7 @@ export default function Component({ answer, lowScore }: any) {
                 <h2 className="text-xl md:text-2xl font-bold text-foreground">
                   {lowScore ? "Protanopia" : "Congratulations"}
                 </h2>
-                <p className="mt-2 text-sm md:text-md text-muted-foreground">
+                <p className="mt-2 text-sm md:sm:text-[16px] text-muted-foreground">
                   {answer}
                 </p>
               </div>
@@ -44,14 +44,14 @@ export default function Component({ answer, lowScore }: any) {
             </h2>
             <div className="mt-4 space-y-4">
               <div>
-                <h3 className="text-md sm:text-lg font-medium text-foreground">
+                <h3 className="sm:text-[16px] sm:text-lg font-medium text-foreground">
                   Adjusting to Color Blindness
                 </h3>
-                <p className="mt-2 text-muted-foreground text-sm sm:text-md">
+                <p className="mt-2 text-muted-foreground text-sm sm:sm:text-[16px]">
                   Here are some tips to help you adjust to living with color
                   blindness:
                 </p>
-                <ul className="mt-2 list-disc pl-6 space-y-2 text-sm sm:text-md text-muted-foreground">
+                <ul className="mt-2 list-disc pl-6 space-y-2 text-sm sm:sm:text-[16px] text-muted-foreground">
                   <li>
                     Learn to identify colors by their brightness and saturation
                   </li>
@@ -66,14 +66,14 @@ export default function Component({ answer, lowScore }: any) {
                 </ul>
               </div>
               <div>
-                <h3 className="text-md font-medium text-foreground sm:text-lg ">
+                <h3 className="sm:text-[16px] font-medium text-foreground sm:text-lg ">
                   Resources
                 </h3>
-                <p className="mt-2 text-muted-foreground text-sm sm:text-md ">
+                <p className="mt-2 text-muted-foreground text-sm sm:sm:text-[16px] ">
                   Here are some helpful resources for living with color
                   blindness:
                 </p>
-                <ul className="mt-2 text-sm sm:text-md  list-disc pl-6 space-y-2 text-muted-foreground">
+                <ul className="mt-2 text-sm sm:sm:text-[16px]  list-disc pl-6 space-y-2 text-muted-foreground">
                   <li>
                     <Link
                       href="https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/color-blindness"
