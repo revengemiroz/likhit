@@ -1,11 +1,16 @@
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
-
+import { LoaderCircle } from "lucide-react";
 export default async function Page() {
   const Map = useMemo(
     () =>
       dynamic(() => import("@/components/Map"), {
-        loading: () => <p>A map is loading</p>,
+        loading: () => (
+          <div className="w-full h-screen flex items-center justify-center">
+            {" "}
+            <LoaderCircle size={30} className="animate-spin" />
+          </div>
+        ),
         ssr: false,
       }),
     []
