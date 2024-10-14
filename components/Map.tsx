@@ -170,7 +170,7 @@ export default function DrivingTestCentersLocator() {
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">
-      <Card className="max-w-4xl mx-auto">
+      <Card className=" mx-auto">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center">
             Find Nearby Driving Test Centers
