@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Head from "next/head";
 import "leaflet/dist/leaflet.css";
+import Nav from "@/components/home/Nav";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({
         <meta name="author" content="Your Name or Your Company Name" />
       </Head>
       <body className={`${poppins.className} antialiased`}>
+        <Nav />
         <div className="min-h-screen w-full relative">
           {children}
           <div

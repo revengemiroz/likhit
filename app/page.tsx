@@ -55,7 +55,6 @@ export default function Home() {
 
   return (
     <div className="w-full min-h-screen pb-6 flex flex-col  lg:container lg:mx-auto">
-      <Nav />
       <main className="">
         <div className="flex items-center  flex-col flex-1 justify-center ">
           <div className="w-[90%] md:w-5/6 xl:w-4/6 flex items-center  justify-end  my-4 gap-2">
