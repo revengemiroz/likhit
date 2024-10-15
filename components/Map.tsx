@@ -169,44 +169,47 @@ export default function DrivingTestCentersLocator() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4">
-      <Card className=" mx-auto">
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">
-            Find Nearby Driving Test Centers
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="mb-4 flex items-end gap-4">
-            <div className="flex-1">
-              <Label htmlFor="searchRadius">Search Radius (km)</Label>
-              <Input
-                id="searchRadius"
-                type="number"
-                min="1"
-                max="50"
-                value={searchRadius}
-                onChange={handleRadiusChange}
-              />
+    <>
+      <div className=" bg-gray-100 p-4">
+        <Card className=" mx-auto">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold text-center">
+              Find Nearby Driving Test Centers
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="mb-4 flex items-end gap-4">
+              <div className="flex-1">
+                <Label htmlFor="searchRadius">Search Radius (km)</Label>
+                <Input
+                  id="searchRadius"
+                  type="number"
+                  min="1"
+                  max="50"
+                  value={searchRadius}
+                  onChange={handleRadiusChange}
+                />
+              </div>
+              <Button onClick={searchNearbyTestCenters}>Search</Button>
             </div>
-            <Button onClick={searchNearbyTestCenters}>Search</Button>
-          </div>
-          <div
-            id="map"
-            className="w-full h-[400px] rounded-lg overflow-hidden"
-          ></div>
-          <div className="mt-4">
-            <h3 className="font-semibold mb-2">Nearby Test Centers:</h3>
-            <ul className="space-y-2">
-              {testCenters.map((center, index) => (
-                <li key={index} className="bg-white p-2 rounded shadow">
-                  {center.name} - {center.distance} km away
-                </li>
-              ))}
-            </ul>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+
+            <div className="mt-4">
+              <h3 className="font-semibold mb-2">Nearby Test Centers:</h3>
+              <ul className="space-y-2">
+                {testCenters.map((center, index) => (
+                  <li key={index} className="bg-white p-2 rounded shadow">
+                    {center.name} - {center.distance} km away
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+      <div
+        id="map"
+        className="w-full h-[400px] rounded-lg overflow-hidden"
+      ></div>
+    </>
   );
 }

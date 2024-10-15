@@ -52,7 +52,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
     switch (variant) {
       case "right":
         return (
-          <div className="w-4 h-4 sm:w-5 sm:h-5 mr-5 bg-green-500 rounded-md flex items-center justify-center rotate-45">
+          <div className="w-4 h-4  sm:w-5 sm:h-5 mr-5 bg-green-500 rounded-md flex items-center justify-center rotate-45">
             <Check className="w-4 h-4 text-white rotate-[-45deg]" />
           </div>
         );
@@ -81,12 +81,12 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 
   return (
     <div
-      className={`grid grid-cols-16  items-center  ${getVariantStyles(
+      className={`grid grid-cols-16 items-center  ${getVariantStyles(
         variant
-      )}  p-4 py-1 sm:py-2 gap-5`}
+      )}  p-4 py-1 sm:py-4 gap-5`}
       onClick={handleClick}
     >
-      {renderIcon(variant)}
+      <span className="mx-auto w-fit col-span-2">{renderIcon(variant)}</span>
       <span
         className={`${
           language === "english" ? "font-normal" : "font-medium"
