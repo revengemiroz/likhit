@@ -170,7 +170,7 @@ export default function DrivingTestCentersLocator() {
 
   return (
     <>
-      <div className=" bg-gray-100 p-4">
+      {/* <div className=" bg-gray-100 p-4">
         <Card className=" mx-auto">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-center">
@@ -205,10 +205,10 @@ export default function DrivingTestCentersLocator() {
             </div>
           </CardContent>
         </Card>
-      </div>
+      </div> */}
       <div
         id="map"
-        className="w-full h-[400px] rounded-lg overflow-hidden"
+        className="w-full h-[400px] md:h-[600px] rounded-lg overflow-hidden"
       ></div>
     </>
   );
