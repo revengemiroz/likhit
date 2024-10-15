@@ -1,8 +1,6 @@
 import { Poppins } from "next/font/google";
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
-import Head from "next/head";
 import "leaflet/dist/leaflet.css";
 import Nav from "@/components/home/Nav";
 
@@ -26,18 +24,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        <title>Likhit Exam Nepal</title>
-        <meta
-          name="description"
-          content="Easily transliterate English text to Hindi with our user-friendly tool. Perfect for students, travelers, and anyone looking to bridge the language gap. Experience seamless English to Hindi transliteration today!"
-        />
-        <meta
-          name="keywords"
-          content="transliteration, English to Hindi, language translation, Hindi typing, learn Hindi"
-        />
-        <meta name="author" content="Your Name or Your Company Name" />
-      </Head>
       <body className={`${poppins.className} antialiased`}>
         <Nav />
         <div className="min-h-screen w-full relative">
