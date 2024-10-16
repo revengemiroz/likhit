@@ -221,29 +221,27 @@ export default function DrivingTestCentersLocator() {
 
       <div className="w-full mt-20 ">
         <div className="grid grid-cols-4 container mx-auto ">
-          <div>
-            {Object.keys(centerLocations).map((city) => {
-              return (
-                <>
-                  <h3 className="font-medium text-lg">{city}</h3>
-                  <ul className="ktm">
-                    {centerLocations[city].map((obj) => (
-                      <li
-                        onClick={() =>
-                          flyToLocation({
-                            ...obj,
-                            zoom: 13,
-                          })
-                        }
-                      >
-                        {obj.name}
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              );
-            })}
-          </div>
+          {Object.keys(centerLocations).map((city) => {
+            return (
+              <div>
+                <h3 className="font-medium text-lg">{city}</h3>
+                <ul className="ktm">
+                  {centerLocations[city].map((obj) => (
+                    <li
+                      onClick={() =>
+                        flyToLocation({
+                          ...obj,
+                          zoom: 13,
+                        })
+                      }
+                    >
+                      {obj.name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>
