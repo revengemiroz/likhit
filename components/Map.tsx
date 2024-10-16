@@ -5,6 +5,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Button } from "./ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
+import { centerLocations } from "@/data/centers/locations";
 
 // Fixing Leaflet's default icon issue
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -29,6 +30,11 @@ interface Location {
 
 const locations: Location[] = [
   { name: "Kathmandu", coordinates: [27.7172, 85.324], zoom: 12 },
+  {
+    name: "Ekantkuna",
+    coordinates: [27.665311212571552, 85.31123496596034],
+    zoom: 12,
+  },
   { name: "Lalitpur", coordinates: [27.6588, 85.3247], zoom: 13 },
   { name: "Pokhara", coordinates: [28.2096, 83.9856], zoom: 12 },
   { name: "Biratnagar", coordinates: [26.4525, 87.2718], zoom: 13 },
@@ -207,29 +213,39 @@ export default function DrivingTestCentersLocator() {
   };
 
   return (
-    <Card className="w-full max-w-4xl mx-auto">
-      <CardHeader>
-        <CardTitle className="text-2xl font-bold text-center">
-          Interactive Nepal Map
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="mb-4 flex flex-wrap justify-center gap-2">
-          {locations.map((location) => (
-            <Button
-              key={location.name}
-              onClick={() => flyToLocation(location)}
-              variant={activeLocation === location.name ? "default" : "outline"}
-            >
-              {location.name}
-            </Button>
-          ))}
+    <>
+      <div
+        id="map"
+        className="w-full h-[600px] rounded-lg overflow-hidden"
+      ></div>
+
+      <div className="w-full mt-20 ">
+        <div className="grid grid-cols-4 container mx-auto ">
+          <div>
+            {Object.keys(centerLocations).map((city) => {
+              return (
+                <>
+                  <h3 className="font-medium text-lg">{city}</h3>
+                  <ul className="ktm">
+                    {centerLocations[city].map((obj) => (
+                      <li
+                        onClick={() =>
+                          flyToLocation({
+                            ...obj,
+                            zoom: 13,
+                          })
+                        }
+                      >
+                        {obj.name}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              );
+            })}
+          </div>
         </div>
-        <div
-          id="map"
-          className="w-full h-[600px] rounded-lg overflow-hidden"
-        ></div>
-      </CardContent>
-    </Card>
+      </div>
+    </>
   );
 }
