@@ -18,8 +18,14 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 
+import { useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";
+
 export default function Component() {
   const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const submitFeedback = useMutation(api.feedback.submitFeedback);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -41,14 +47,20 @@ export default function Component() {
               id="feedback"
               className="min-h-[100px] max-h-[200px]"
               placeholder="Share your thoughts"
+              onChange={(e) => setMessage(e.target.value)}
+              value={message}
             />
           </div>
 
           <DialogFooter>
             <Button
-              onClick={(e) => {
+              onClick={async (e) => {
                 e.preventDefault();
+                await submitFeedback({
+                  message,
+                });
                 setOpen(false);
+                setMessage("");
               }}
             >
               Submit Feedback
@@ -59,6 +71,7 @@ export default function Component() {
                 onClick={(e) => {
                   e.preventDefault();
                   setOpen(false);
+                  setMessage("");
                 }}
               >
                 Close

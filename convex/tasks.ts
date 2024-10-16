@@ -1,8 +1,6 @@
-import { query } from "./_generated/server";
+// import { mutation } from "./_generated/server";
 
-export const getTasks = query({
-  args: {},
-  handler: async (ctx) => {
-    return await ctx.db.query("tasks").collect();
-  },
-});
+// export const submitFeedback = mutation({
+//   args: { message: v.string() },
+//   handler: async (ctx, args) => {},
+// });

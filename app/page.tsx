@@ -25,11 +25,11 @@ import { api } from "@/convex/_generated/api";
 // import { cookies } from "next/headers";
 
 export default function Home() {
-  const tasks = useQuery(api.tasks.getTasks);
+  // const tasks = useQuery(api.tasks.getTasks);
   const ENGLISH = "english";
   const NEPALI = "nepali";
 
-  console.log({ tasks });
+  // console.log({ tasks });
 
   const [open, setOpen] = useState(false);
   // Track the current question index
