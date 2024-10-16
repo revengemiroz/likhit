@@ -3,10 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from "./ui/button";
+import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
 
 // Fixing Leaflet's default icon issue
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -23,6 +21,19 @@ interface TestCenter {
   distance: number;
 }
 
+interface Location {
+  name: string;
+  coordinates: [number, number];
+  zoom: number;
+}
+
+const locations: Location[] = [
+  { name: "Kathmandu", coordinates: [27.7172, 85.324], zoom: 12 },
+  { name: "Lalitpur", coordinates: [27.6588, 85.3247], zoom: 13 },
+  { name: "Pokhara", coordinates: [28.2096, 83.9856], zoom: 12 },
+  { name: "Biratnagar", coordinates: [26.4525, 87.2718], zoom: 13 },
+];
+
 export default function DrivingTestCentersLocator() {
   const mapRef = useRef<L.Map | null>(null);
   const [userLocation, setUserLocation] = useState<[number, number] | null>(
@@ -30,7 +41,10 @@ export default function DrivingTestCentersLocator() {
   );
   const [searchRadius, setSearchRadius] = useState<number>(5); // 5km default
   const [testCenters, setTestCenters] = useState<TestCenter[]>([]);
-
+  const [activeLocation, setActiveLocation] = useState<string>(
+    locations[0].name
+  );
+  const markersRef = useRef<L.Marker[]>([]);
   useEffect(() => {
     // console.log(window, typeof window);
     if (typeof window !== undefined) {
@@ -39,13 +53,20 @@ export default function DrivingTestCentersLocator() {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(mapRef.current);
+      // Add markers for all locations
+      locations.forEach((location) => {
+        const marker = L.marker(location.coordinates)
+          .addTo(mapRef.current!)
+          .bindPopup(location.name);
+        markersRef.current.push(marker);
+      });
 
       getUserLocation();
     }
-
     return () => {
       if (mapRef.current) {
         mapRef.current.remove();
+        mapRef.current = null;
       }
     };
   }, []);
@@ -168,48 +189,47 @@ export default function DrivingTestCentersLocator() {
     setSearchRadius(parseInt(event.target.value, 10));
   };
 
-  return (
-    <>
-      {/* <div className=" bg-gray-100 p-4">
-        <Card className=" mx-auto">
-          <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center">
-              Find Nearby Driving Test Centers
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="mb-4 flex items-end gap-4">
-              <div className="flex-1">
-                <Label htmlFor="searchRadius">Search Radius (km)</Label>
-                <Input
-                  id="searchRadius"
-                  type="number"
-                  min="1"
-                  max="50"
-                  value={searchRadius}
-                  onChange={handleRadiusChange}
-                />
-              </div>
-              <Button onClick={searchNearbyTestCenters}>Search</Button>
-            </div>
+  const flyToLocation = (location: Location) => {
+    if (mapRef.current) {
+      mapRef.current.flyTo(location.coordinates, location.zoom, {
+        duration: 2, // Duration of animation in seconds
+      });
+      setActiveLocation(location.name);
 
-            <div className="mt-4">
-              <h3 className="font-semibold mb-2">Nearby Test Centers:</h3>
-              <ul className="space-y-2">
-                {testCenters.map((center, index) => (
-                  <li key={index} className="bg-white p-2 rounded shadow">
-                    {center.name} - {center.distance} km away
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </CardContent>
-        </Card>
-      </div> */}
-      <div
-        id="map"
-        className="w-full h-[400px] md:h-[600px] rounded-lg overflow-hidden"
-      ></div>
-    </>
+      // Find and open the popup for the selected location
+      const marker = markersRef.current.find((m) =>
+        m.getLatLng().equals(L.latLng(location.coordinates))
+      );
+      if (marker) {
+        marker.openPopup();
+      }
+    }
+  };
+
+  return (
+    <Card className="w-full max-w-4xl mx-auto">
+      <CardHeader>
+        <CardTitle className="text-2xl font-bold text-center">
+          Interactive Nepal Map
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="mb-4 flex flex-wrap justify-center gap-2">
+          {locations.map((location) => (
+            <Button
+              key={location.name}
+              onClick={() => flyToLocation(location)}
+              variant={activeLocation === location.name ? "default" : "outline"}
+            >
+              {location.name}
+            </Button>
+          ))}
+        </div>
+        <div
+          id="map"
+          className="w-full h-[600px] rounded-lg overflow-hidden"
+        ></div>
+      </CardContent>
+    </Card>
   );
 }
