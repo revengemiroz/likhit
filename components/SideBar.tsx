@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { MapPin } from "lucide-react";
 import { Phone } from "lucide-react";
+import Image from "next/image";
 const menuItems = [
   { icon: Newspaper, label: "Blog", href: "/" },
   { icon: BadgePlus, label: "Create", href: "/create" },
@@ -20,7 +21,7 @@ const menuItemsOut = [
   { icon: LogOut, label: "Register", href: "/sign-up" },
 ];
 const SidebarContent = ({ location }: { location: CiteType }) => (
-  <ScrollArea className="h-full py-6 pl-6 pr-6 lg:pr-0">
+  <ScrollArea className="h-full py-6 pl-6 pr-6 lg:pr-0 ">
     <h2 className="mb-4 text-lg font-semibold">{location.name}</h2>
     <div className="flex flex-col gap-5 items-start">
       <p className="font">{location.location}</p>
@@ -41,6 +42,13 @@ const SidebarContent = ({ location }: { location: CiteType }) => (
         {" "}
         <MapPin /> Google Maps{" "}
       </Link>
+      <p className="text-lg font-spaceGrotesk">Images: </p>
+      <Image
+        alt="ekantakuna"
+        src={"/images/Ekantakuna.png"}
+        width={300}
+        height={300}
+      ></Image>
     </div>
   </ScrollArea>
 );
@@ -66,7 +74,7 @@ const ResponsiveSidebar = forwardRef(
       openSidebar,
     }));
     return (
-      <div className={`absolute h-screen   `}>
+      <div className={`absolute h-screen `}>
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           {/* <SheetTrigger asChild>
           <Button
@@ -78,7 +86,7 @@ const ResponsiveSidebar = forwardRef(
             <span className="sr-only">Toggle Menu</span>
           </Button>
         </SheetTrigger> */}
-          <SheetContent side="left" className="w-[60rem] p-0 z-[200]">
+          <SheetContent side="left" className="w-[80rem] p-0 z-[200]">
             <SidebarContent location={location} />
           </SheetContent>
         </Sheet>

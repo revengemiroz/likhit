@@ -9,6 +9,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        inter: ["var(--font-inter)"],
+        spaceGrotesk: ["var(--font-spaceGrotesk)"],
+        poppins: ["var(--font-poppins)"],
+      },
       gridTemplateColumns: {
         "16": "repeat(16, minmax(0, 1fr))",
       },
