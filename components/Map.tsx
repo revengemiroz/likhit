@@ -195,6 +195,10 @@ export default function DrivingTestCentersLocator() {
   const handleRadiusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchRadius(parseInt(event.target.value, 10));
   };
+  const sidebarRef = useRef<{
+    openSidebar: () => void;
+    closeSidebar: () => void;
+  }>();
   const [selectedCite, setSelectedCite] = useState<CiteType | null>(null);
   const flyToLocation = (location: CiteType) => {
     setSelectedCite(location);
@@ -229,7 +233,14 @@ export default function DrivingTestCentersLocator() {
                 <h3 className="font-medium text-lg">{city}</h3>
                 <ul className="ktm">
                   {centerLocations[city].map((obj) => (
-                    <li onClick={() => flyToLocation(obj)}>{obj.name}</li>
+                    <li
+                      onClick={() => {
+                        sidebarRef.current?.openSidebar();
+                        flyToLocation(obj);
+                      }}
+                    >
+                      {obj.name}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -237,7 +248,9 @@ export default function DrivingTestCentersLocator() {
           })}
         </div>
       </div>
-      {selectedCite && <ResponsiveSidebar location={selectedCite} />}
+      {selectedCite && (
+        <ResponsiveSidebar ref={sidebarRef} location={selectedCite} />
+      )}
     </>
   );
 }

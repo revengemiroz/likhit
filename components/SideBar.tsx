@@ -1,4 +1,5 @@
 "use client";
+import { forwardRef, useImperativeHandle } from "react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -43,19 +44,31 @@ const SidebarContent = ({ location }: { location: CiteType }) => (
     </div>
   </ScrollArea>
 );
-export default function ResponsiveSidebar({
-  location,
-}: {
-  location: CiteType;
-}) {
-  const [isOpen, setIsOpen] = useState(true);
-  const closeSidebar = () => {
-    setIsOpen(false);
-  };
-  return (
-    <div className={`absolute h-screen   `}>
-      <Sheet open={isOpen} onOpenChange={setIsOpen}>
-        {/* <SheetTrigger asChild>
+
+const ResponsiveSidebar = forwardRef(
+  (
+    {
+      location,
+    }: {
+      location: CiteType;
+    },
+    ref
+  ) => {
+    const [isOpen, setIsOpen] = useState(true);
+    const closeSidebar = () => {
+      setIsOpen(false);
+    };
+    const openSidebar = () => {
+      setIsOpen(true);
+    };
+    useImperativeHandle(ref, () => ({
+      closeSidebar,
+      openSidebar,
+    }));
+    return (
+      <div className={`absolute h-screen   `}>
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          {/* <SheetTrigger asChild>
           <Button
             variant="outline"
             size="icon"
@@ -65,10 +78,13 @@ export default function ResponsiveSidebar({
             <span className="sr-only">Toggle Menu</span>
           </Button>
         </SheetTrigger> */}
-        <SheetContent side="left" className="w-[60rem] p-0 z-[200]">
-          <SidebarContent location={location} />
-        </SheetContent>
-      </Sheet>
-    </div>
-  );
-}
+          <SheetContent side="left" className="w-[60rem] p-0 z-[200]">
+            <SidebarContent location={location} />
+          </SheetContent>
+        </Sheet>
+      </div>
+    );
+  }
+);
+
+export default ResponsiveSidebar;
