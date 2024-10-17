@@ -13,6 +13,7 @@ import { Phone } from "lucide-react";
 import Image from "next/image";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { Clock8 } from "lucide-react";
+import { Map } from "lucide-react";
 const menuItems = [
   { icon: Newspaper, label: "Blog", href: "/" },
   { icon: BadgePlus, label: "Create", href: "/create" },
@@ -25,8 +26,11 @@ const menuItemsOut = [
 ];
 const SidebarContent = ({ location }: { location: CiteType }) => (
   <ScrollArea className="h-full">
-    <div className="h-20 mb-10 flex px-10 items-center bg-blue-400">
-      <h2 className="text-2xl text-white font-semibold ">{location.name}</h2>
+    <div className="h-20 mb-10 flex px-7 items-center bg-blue-400">
+      <h2 className="text-3xl flex items-center gap-3 text-white font-semibold leading-[30px] ">
+        <Map></Map>
+        {location.name}
+      </h2>
     </div>
 
     <div className="flex flex-col gap-5 items-start px-6 text-[15px]">
@@ -79,6 +83,7 @@ const SidebarContent = ({ location }: { location: CiteType }) => (
         alt="ekantakuna"
         src={"/images/Ekantakuna.png"}
         width={400}
+        className="rounded-md border-2 border-gray-400"
         height={300}
       ></Image>
     </div>
@@ -112,7 +117,7 @@ const ResponsiveSidebar = forwardRef(
             {" "}
             <Cross2Icon
               onClick={closeSidebar}
-              className="h-4 w-4 cursor-pointer  z-10 absolute right-3 top-3 "
+              className="h-6 w-6 cursor-pointer text-white z-10 absolute right-3 top-[28px] "
             />
             <SidebarContent location={location} />
           </SheetContent>
