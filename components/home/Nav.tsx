@@ -25,7 +25,7 @@ function Nav() {
           <div className="flex flex-row  items-center md:gap-2  gap-2">
             <Feedback />
 
-            <NavigationMenu className=" hidden sm:block">
+            <NavigationMenu className="  z-[100] hidden sm:block">
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>
