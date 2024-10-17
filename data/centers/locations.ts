@@ -5,6 +5,8 @@ export interface CiteType {
   name: string;
   coordinates: [number, number];
   link: string;
+  location: string;
+  number: string;
 }
 
 export const centerLocations: LocationType = {
@@ -13,6 +15,8 @@ export const centerLocations: LocationType = {
       name: "Ekantakuna",
       coordinates: [27.665311212571552, 85.31123496596034],
       link: "https://maps.app.goo.gl/SvZNNY4UHt9UVvia6",
+      location: "M886+4G6, Ring Rd, Lalitpur 44600",
+      number: "015001793",
     },
   ],
   Biratnagar: [
@@ -20,6 +24,8 @@ export const centerLocations: LocationType = {
       name: "Ekantakuna",
       coordinates: [27.665311212571552, 85.31123496596034],
       link: "https://maps.app.goo.gl/SvZNNY4UHt9UVvia6",
+      location: "M886+4G6, Ring Rd, Lalitpur 44600",
+      number: "015001793",
     },
   ],
   Lalitpur: [
@@ -27,6 +33,8 @@ export const centerLocations: LocationType = {
       name: "Ekantakuna",
       coordinates: [27.665311212571552, 85.31123496596034],
       link: "https://maps.app.goo.gl/SvZNNY4UHt9UVvia6",
+      location: "M886+4G6, Ring Rd, Lalitpur 44600",
+      number: "015001793",
     },
   ],
   Pokhara: [
@@ -34,6 +42,8 @@ export const centerLocations: LocationType = {
       name: "Ekantakuna",
       coordinates: [27.665311212571552, 85.31123496596034],
       link: "https://maps.app.goo.gl/SvZNNY4UHt9UVvia6",
+      location: "M886+4G6, Ring Rd, Lalitpur 44600",
+      number: "015001793",
     },
   ],
 };

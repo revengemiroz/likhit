@@ -7,6 +7,7 @@ import { MenuIcon, Newspaper, BadgePlus, LogIn, LogOut } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { MapPin } from "lucide-react";
+import { Phone } from "lucide-react";
 const menuItems = [
   { icon: Newspaper, label: "Blog", href: "/" },
   { icon: BadgePlus, label: "Create", href: "/create" },
@@ -20,14 +21,26 @@ const menuItemsOut = [
 const SidebarContent = ({ location }: { location: CiteType }) => (
   <ScrollArea className="h-full py-6 pl-6 pr-6 lg:pr-0">
     <h2 className="mb-4 text-lg font-semibold">{location.name}</h2>
-    <Link
-      href={location.link}
-      target="_blank"
-      className="text-blue-400 flex gap-1 items-center"
-    >
-      {" "}
-      <MapPin /> Google Maps{" "}
-    </Link>
+    <div className="flex flex-col gap-5 items-start">
+      <p className="font">{location.location}</p>
+      <div
+        className="flex text-black gap-2"
+        onClick={() => {
+          navigator.clipboard.writeText(location.number);
+        }}
+      >
+        <Phone className="text-blue-400" />
+        {location.number}
+      </div>
+      <Link
+        href={location.link}
+        target="_blank"
+        className="text-blue-400 flex gap-1 items-center"
+      >
+        {" "}
+        <MapPin /> Google Maps{" "}
+      </Link>
+    </div>
   </ScrollArea>
 );
 export default function ResponsiveSidebar({
