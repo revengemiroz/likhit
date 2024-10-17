@@ -6,7 +6,7 @@ export default async function Page() {
     () =>
       dynamic(() => import("@/components/Map"), {
         loading: () => (
-          <div className="w-full h-screen flex items-center justify-center">
+          <div className="w-full h-screen flex mt-[20rem] justify-center">
             {" "}
             <LoaderCircle size={30} className="animate-spin" />
           </div>

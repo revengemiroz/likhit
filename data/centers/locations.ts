@@ -1,9 +1,10 @@
-interface LocationType {
-  [key: string]: {
-    name: string;
-    coordinates: [number, number];
-    link: string;
-  }[];
+export interface LocationType {
+  [key: string]: CiteType[];
+}
+export interface CiteType {
+  name: string;
+  coordinates: [number, number];
+  link: string;
 }
 
 export const centerLocations: LocationType = {

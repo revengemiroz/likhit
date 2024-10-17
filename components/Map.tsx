@@ -5,7 +5,8 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Button } from "./ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
-import { centerLocations } from "@/data/centers/locations";
+import { centerLocations, CiteType } from "@/data/centers/locations";
+import ResponsiveSidebar from "./SideBar";
 
 // Fixing Leaflet's default icon issue
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -194,10 +195,11 @@ export default function DrivingTestCentersLocator() {
   const handleRadiusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchRadius(parseInt(event.target.value, 10));
   };
-
-  const flyToLocation = (location: Location) => {
+  const [selectedCite, setSelectedCite] = useState<CiteType | null>(null);
+  const flyToLocation = (location: CiteType) => {
+    setSelectedCite(location);
     if (mapRef.current) {
-      mapRef.current.flyTo(location.coordinates, location.zoom, {
+      mapRef.current.flyTo(location.coordinates, 13, {
         duration: 2, // Duration of animation in seconds
       });
       setActiveLocation(location.name);
@@ -216,7 +218,7 @@ export default function DrivingTestCentersLocator() {
     <>
       <div
         id="map"
-        className="w-full mt-10  h-[600px] rounded-lg overflow-hidden"
+        className="w-full mt-10 z-20 h-[600px] rounded-lg overflow-hidden"
       ></div>
 
       <div className="w-full mt-20 ">
@@ -227,17 +229,7 @@ export default function DrivingTestCentersLocator() {
                 <h3 className="font-medium text-lg">{city}</h3>
                 <ul className="ktm">
                   {centerLocations[city].map((obj) => (
-                    <li
-                      onClick={() =>
-                        flyToLocation({
-                          name: obj.name,
-                          coordinates: obj.coordinates,
-                          zoom: 13,
-                        })
-                      }
-                    >
-                      {obj.name}
-                    </li>
+                    <li onClick={() => flyToLocation(obj)}>{obj.name}</li>
                   ))}
                 </ul>
               </div>
@@ -245,6 +237,7 @@ export default function DrivingTestCentersLocator() {
           })}
         </div>
       </div>
+      {selectedCite && <ResponsiveSidebar location={selectedCite} />}
     </>
   );
 }
