@@ -230,10 +230,11 @@ export default function DrivingTestCentersLocator() {
           {Object.keys(centerLocations).map((city) => {
             return (
               <div>
-                <h3 className="font-medium text-lg">{city}</h3>
+                <h3 className="font-medium text-xl">{city}</h3>
                 <ul className="ktm">
                   {centerLocations[city].map((obj) => (
                     <li
+                      className="cursor-pointer hover:opacity-70"
                       onClick={() => {
                         sidebarRef.current?.openSidebar();
                         flyToLocation(obj);
