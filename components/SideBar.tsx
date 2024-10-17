@@ -10,6 +10,7 @@ import { useState } from "react";
 import { MapPin } from "lucide-react";
 import { Phone } from "lucide-react";
 import Image from "next/image";
+import { Cross2Icon } from "@radix-ui/react-icons";
 const menuItems = [
   { icon: Newspaper, label: "Blog", href: "/" },
   { icon: BadgePlus, label: "Create", href: "/create" },
@@ -76,17 +77,12 @@ const ResponsiveSidebar = forwardRef(
     return (
       <div className={`absolute h-screen `}>
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          {/* <SheetTrigger asChild>
-          <Button
-            variant="outline"
-            size="icon"
-            className="fixed left-4 top-5 z-40 lg:hidden"
-          >
-            <MenuIcon className="h-4 w-4" />
-            <span className="sr-only">Toggle Menu</span>
-          </Button>
-        </SheetTrigger> */}
-          <SheetContent side="left" className="w-[80rem] p-0 z-[200]">
+          <SheetContent side="left" className="w-[80rem]  p-0 z-[200]">
+            {" "}
+            <Cross2Icon
+              onClick={closeSidebar}
+              className="h-4 w-4 cursor-pointer  z-10 absolute right-3 top-3 "
+            />
             <SidebarContent location={location} />
           </SheetContent>
         </Sheet>
