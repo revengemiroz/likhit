@@ -216,7 +216,7 @@ export default function DrivingTestCentersLocator() {
     <>
       <div
         id="map"
-        className="w-full h-[600px] rounded-lg overflow-hidden"
+        className="w-full mt-10  h-[600px] rounded-lg overflow-hidden"
       ></div>
 
       <div className="w-full mt-20 ">
@@ -230,7 +230,8 @@ export default function DrivingTestCentersLocator() {
                     <li
                       onClick={() =>
                         flyToLocation({
-                          ...obj,
+                          name: obj.name,
+                          coordinates: obj.coordinates,
                           zoom: 13,
                         })
                       }
