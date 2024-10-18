@@ -55,10 +55,18 @@ function Nav() {
                     </NavigationMenuLink>
                     <NavigationMenuLink className="m-0 p-0">
                       <Link
-                        href="blind-test"
+                        href="blog"
                         className="text-xs font-medium hover:underline transition-all"
                       >
                         How it works ?
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink className="m-0 p-0">
+                      <Link
+                        href="written-result"
+                        className="text-xs font-medium hover:underline transition-all"
+                      >
+                        Check your Result
                       </Link>
                     </NavigationMenuLink>
                   </NavigationMenuContent>
