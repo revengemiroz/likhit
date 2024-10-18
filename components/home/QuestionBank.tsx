@@ -58,30 +58,25 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
     <div className="bg-white  border shadow-sm w-full overflow-hidden flex flex-col rounded-xl">
       <Dialog>
         <DialogTrigger>
-          <div
-            className="flex justify-center relative w-full 
-           h-40 smh-64 md:h-80 lg:h-64"
-          >
+          <div className="flex justify-center relative w-full bg-slate-200 p-4 min-h-[200px]">
             <Image
-              src={
-                "https://s.g1.ca/wp-content/uploads/autotest/202001302249003541.jpg"
-              }
+              src={currentQuestion.image}
               alt="question image"
-              objectFit="cover"
-              fill
+              className="flex justify-center items-center"
+              width={150}
+              height={150}
             />
           </div>
         </DialogTrigger>
 
-        <DialogContent className="md:w-full bg-transparent border-0  overflow-hidden xl:min-w-[700px] p-0 max-sm:w-[90%]  ">
-          <div className="flex justify-between relative h-64 md:h-80 lg:h-64 overflow-hidden">
+        <DialogContent className="md:w-full shadow-md  bg-slate-200 border-0 min-h-[200px] flex justify-center items-center overflow-hidden  p-4 max-sm:w-[90%]  ">
+          <div className="flex justify-between items-center relative overflow-hidden">
             <Image
-              src={
-                "https://s.g1.ca/wp-content/uploads/autotest/202001302249003541.jpg"
-              }
+              src={currentQuestion.image}
               alt="question image"
-              className="contain"
-              fill
+              width={200}
+              height={200}
+              className="flex justify-center items-center"
             />
           </div>
         </DialogContent>
