@@ -38,7 +38,6 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
       : null;
 
   if (!currentQuestion) return <div> No question to display </div>;
-  console.log({ currentQuestion });
 
   const handleAnswerSelect = (answerId: number) => {
     // increase correct answer count
