@@ -12,7 +12,6 @@ const RadioButton: React.FC<RadioButtonProps> = ({
   isDisabled,
   isAnimating,
 }) => {
-  console.log({ variant });
   const handleClick = () => {
     if (!isDisabled) {
       onClick();
