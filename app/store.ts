@@ -25,6 +25,8 @@ const useQuestionStore = create(
       },
       currentQuestionIndex: 0,
       finish: false,
+      isReviewMode: false,
+      setIsReviewMode: (value: boolean) => set({ isReviewMode: value }),
 
       // Function to reset all state
       resetAll: () => {
