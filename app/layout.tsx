@@ -39,22 +39,6 @@ export default function RootLayout({
         />
         <meta name="author" content="Your Name or Your Company Name" />
         <link rel="icon" href="/favicon.ico" />
-
-        <>
-          <Script
-            strategy="afterInteractive"
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_TAG_ID}`}
-          />
-
-          <Script id="" strategy="lazyOnload">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_TAG_ID}');
-          `}
-          </Script>
-        </>
       </Head>
       <body className={`${poppins.className} antialiased`}>
         <ConvexClientProvider>
@@ -80,6 +64,22 @@ export default function RootLayout({
           {/* <Toaster /> */}
         </ConvexClientProvider>
       </body>
+
+      <>
+        <Script
+          strategy="lazyOnload"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_TAG_ID}`}
+        />
+
+        <Script id="" strategy="lazyOnload">
+          {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_TAG_ID}');
+          `}
+        </Script>
+      </>
     </html>
   );
 }
