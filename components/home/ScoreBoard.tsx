@@ -64,10 +64,7 @@ function ScoreBoard() {
         <div className="grid grid-cols-7 gap-2  ">
           {/* Render answer buttons dynamically based on the number of shuffled questions */}
           {shuffledQuestions.map((question, index) => (
-            <AnswerButton
-              key={question.id}
-              variant={getVariant(question, index)}
-            >
+            <AnswerButton key={index} variant={getVariant(question, index)}>
               {index + 1}
             </AnswerButton>
           ))}
