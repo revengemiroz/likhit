@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
-        <title>Likhit Exam Nepal</title>
+        <title>Likhit Nepal - Likhit Exam Nepal: Test Your Knowledge Now</title>
         <meta
           name="description"
           content="Rev up your journey in Nepal with our ultimate guide to getting your driving license! Whether you're hitting the scenic highways or navigating bustling city streets, we've got the tips and tricks to steer you through the process. Fast-track your way to freedom on four wheels—let's drive into the future together!"

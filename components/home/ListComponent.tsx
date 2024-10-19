@@ -80,7 +80,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
     <div
       className={`grid grid-cols-[auto_1fr] items-center group ${getVariantStyles(
         variant
-      )} p-4 py-1 sm:py-4 gap-2 ${isAnimating ? "animate-bounce" : ""}`}
+      )} p-4 py-3 sm:py-4 gap-2 ${isAnimating ? "animate-bounce" : ""}`}
       onClick={handleClick}
     >
       <span className="mx-auto w-fit col-span-1">{renderIcon(variant)}</span>
