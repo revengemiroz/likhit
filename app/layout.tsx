@@ -5,6 +5,7 @@ import "./globals.css";
 import Head from "next/head";
 
 import { ConvexClientProvider } from "./ConvexClientProvider";
+import Script from "next/script";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -63,6 +64,29 @@ export default function RootLayout({
           {/* <Toaster /> */}
         </ConvexClientProvider>
       </body>
+
+      <>
+        <Script
+          strategy="lazyOnload"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_TAG_ID}`}
+        />
+
+        <Script id="" strategy="lazyOnload">
+          {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.GOOGLE_TAG_ID}', {
+              page_path: window.location.pathname,
+              });
+          `}
+        </Script>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3843144567571433"
+          crossOrigin="anonymous"
+        ></Script>
+      </>
     </html>
   );
 }
