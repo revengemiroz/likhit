@@ -26,6 +26,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
     (state) => state.shuffledQuestions
   );
   const saveUserAnswer = useQuestionStore((state) => state.saveUserAnswer);
+  const setFinish = useQuestionStore((state) => state.setFinish);
   const nextQuestion = useQuestionStore((state) => state.nextQuestion);
   const currentQuestionIndex = useQuestionStore(
     (state) => state.currentQuestionIndex
@@ -57,17 +58,19 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
   return (
     <div className="bg-white  border shadow-sm w-full overflow-hidden flex flex-col rounded-xl">
       <Dialog>
-        <DialogTrigger>
-          <div className="flex justify-center relative w-full bg-slate-200 p-4 min-h-[200px]">
-            <Image
-              src={currentQuestion.image}
-              alt="question image"
-              className="flex justify-center items-center"
-              width={150}
-              height={150}
-            />
-          </div>
-        </DialogTrigger>
+        {currentQuestion.image && (
+          <DialogTrigger>
+            <div className="flex justify-center relative w-full bg-slate-200 p-4 min-h-[200px]">
+              <Image
+                src={currentQuestion.image}
+                alt="question image"
+                className="flex justify-center items-center"
+                width={150}
+                height={150}
+              />
+            </div>
+          </DialogTrigger>
+        )}
 
         <DialogContent className="md:w-full shadow-md  bg-slate-200 border-0 min-h-[200px] flex justify-center items-center overflow-hidden  p-4 max-sm:w-[90%]  ">
           <div className="flex justify-between items-center relative overflow-hidden">
@@ -113,20 +116,21 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
             </div>
           )}
 
-        {shuffledQuestions.length - 1 === currentQuestionIndex && (
-          <div className="flex justify-end pb-6 pr-6">
-            <Link href="/result">
-              <Button
-                // onClick={handleNextQuestion}
-                // disabled={currentQuestion?.user_answer == null} // Disable until answered
-                variant="outline"
-                className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 text-[12px] sm:text-sm"
-              >
-                Finish quiz
-              </Button>
-            </Link>
-          </div>
-        )}
+        {shuffledQuestions.length - 1 === currentQuestionIndex &&
+          shuffledQuestions[currentQuestionIndex].user_answer && (
+            <div className="flex justify-end pb-6 pr-6">
+              <Link href="/result">
+                <Button
+                  onClick={() => setFinish(true)}
+                  // disabled={currentQuestion?.user_answer == null} // Disable until answered
+                  variant="outline"
+                  className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 text-[12px] sm:text-sm"
+                >
+                  Finish quiz
+                </Button>
+              </Link>
+            </div>
+          )}
       </div>
     </div>
   );

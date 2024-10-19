@@ -24,6 +24,7 @@ const useQuestionStore = create(
         incorrect: 0,
       },
       currentQuestionIndex: 0,
+      finish: false,
 
       // Function to reset all state
       resetAll: () => {
@@ -66,6 +67,8 @@ const useQuestionStore = create(
         set({ started: value });
       },
 
+      setFinish: (value: boolean) => set({ finish: value }),
+
       // Function to move to the next question
       nextQuestion: () => {
         set((state) => ({
@@ -78,6 +81,10 @@ const useQuestionStore = create(
         return get().shuffledQuestions[get().currentQuestionIndex];
       },
 
+      // get score
+      getScore: () => {
+        return get().count;
+      },
       // Function to save the user's answer to the current question
       saveUserAnswer: (questionId: number, userAnswer: number) => {
         set((state) => ({

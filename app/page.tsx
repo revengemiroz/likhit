@@ -23,6 +23,7 @@ import { Language, QuestionType } from "../types";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 // import { cookies } from "next/headers";
+import TimerComponent from "@/components/home/timer/timer-component";
 
 export default function Home() {
   // const tasks = useQuery(api.tasks.getTasks);
@@ -59,12 +60,12 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full min-h-screen pb-6 flex flex-col  lg:mx-auto">
+    <div className="w-full  min-h-screen flex flex-col lg:mx-auto">
       <Nav />
-      <main className="">
+      <main className=" flex-1 flex items-center justify-center py-12">
         <div className="flex items-center  flex-col flex-1 justify-center ">
-          <div className="w-[90%] md:w-5/6 xl:w-4/6 flex items-center  justify-end  my-4 gap-2">
-            <span className="group w-8 h-8 flex justify-center items-center rounded-full cursor-pointer transition-all hover:bg-gray-200">
+          <div className="w-[90%] md:w-5/6 xl:w-4/6 flex items-center  justify-end  my-4 pr-6 gap-2">
+            {/* <span className="group w-8 h-8 flex justify-center items-center rounded-full cursor-pointer transition-all hover:bg-gray-200">
               <Flag
                 className="w-4 h-4 text-gray-500 group-hover:fill-blue-500 group-hover:stroke-blue-500"
                 color="gray"
@@ -74,21 +75,23 @@ export default function Home() {
 
             {selectedLanguage === ENGLISH ? (
               <span
-                className="font-medium text-md text-muted-foreground/90 cursor-pointer hover:text-blue-500 transition-all"
+                className="font-medium mr-8 text-md text-muted-foreground/90 cursor-pointer hover:text-blue-500 transition-all"
                 onClick={() => handleLanguageChange(NEPALI)}
               >
                 Np
               </span>
             ) : (
               <span
-                className="font-medium text-md text-muted-foreground/90 cursor-pointer hover:text-blue-500 transition-all"
+                className="font-medium mr-8 text-md text-muted-foreground/90 cursor-pointer hover:text-blue-500 transition-all"
                 onClick={() => handleLanguageChange(ENGLISH)}
               >
                 En
               </span>
-            )}
+            )} */}
+
+            <TimerComponent />
           </div>
-          <div className="w-[90%] md:w-5/6 xl:w-4/6 flex flex-col lg:flex-row gap-4">
+          <div className="w-[90%] md:w-5/6 xl:w-4/6 flex flex-col lg:flex-row gap-4 ">
             <ScoreBoard />
 
             {shuffledQuestions.length > 0 ? (

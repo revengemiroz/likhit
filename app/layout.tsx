@@ -37,6 +37,7 @@ export default function RootLayout({
           content="transliteration, English to Hindi, language translation, Hindi typing, learn Hindi"
         />
         <meta name="author" content="Your Name or Your Company Name" />
+        <link rel="icon" href="/favicons/favicon.svg" type="image/svg+xml" />
       </Head>
       <body className={`${poppins.className} antialiased`}>
         <ConvexClientProvider>
