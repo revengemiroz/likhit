@@ -37,7 +37,7 @@ export default function RootLayout({
           content="Driving License Nepal, Nepal Driving License Process, How to Get Driving License in Nepal, Driving License Application Nepal, Nepal Driving Test, Online Driving License Application Nepal, Renew Driving License Nepal, Driving License Requirements Nepal, Driving License Fees Nepal, Best Tips for Driving Test Nepal, Nepal Transport Authority, Driving License Verification Nepal, Learner's License Nepal, International Driving License Nepal, Road Safety in Nepal"
         />
         <meta name="author" content="Your Name or Your Company Name" />
-        <link rel="icon" href="/favicons/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <body className={`${poppins.className} antialiased`}>
         <ConvexClientProvider>
