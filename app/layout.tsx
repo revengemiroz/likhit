@@ -1,12 +1,13 @@
 import { Poppins } from "next/font/google";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
 import Head from "next/head";
 
 import { ConvexClientProvider } from "./ConvexClientProvider";
 import Script from "next/script";
 import { Toaster } from "@/components/ui/toaster";
+import "./globals.css";
+import "simplebar-react/dist/simplebar.min.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
