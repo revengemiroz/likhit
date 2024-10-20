@@ -158,7 +158,7 @@ export default function Component() {
           </Badge>
         </div>
       </CardContent>
-      <Link href={"/test-1"}>
+      <Link href={"/test/1"}>
         <CardFooter className="bg-gray-50">
           <Button className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white">
             Start Test
