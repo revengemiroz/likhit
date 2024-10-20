@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -8,21 +10,29 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Car, Book, CheckCircle, ChevronRight } from "lucide-react";
+import Nav from "@/components/home/Nav";
+import { useRouter } from "next/navigation";
 
 export default function Component() {
+  const router = useRouter();
+
   return (
-    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-900">
-      <header className="w-full max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
+    <div className="flex flex-col min-h-screen bg-transparent dark:bg-gray-900">
+      {/* <header className="w-full max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
         <Link className="flex items-center justify-center" href="#">
           <Car className="h-6 w-6 text-primary" />
-          <span className="ml-2 text-lg font-semibold">Nepal Driving Test</span>
+          <span className="ml-2 text-lg font-semibold">Likhit Nepal</span>
         </Link>
         <nav>
-          <Link className="text-sm font-medium hover:text-primary" href="#">
+          <Link
+            className="text-sm font-medium hover:text-primary"
+            href="/all-tests"
+          >
             Mock Tests
           </Link>
         </nav>
-      </header>
+      </header> */}
+      <Nav />
       <main className="flex-1 w-full max-w-3xl mx-auto px-4">
         <section className="py-12 md:py-20 flex flex-col items-center text-center">
           <Image
@@ -38,7 +48,13 @@ export default function Component() {
           <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-md">
             Practice, learn, and succeed with our comprehensive mock exams.
           </p>
-          <Button size="lg">Start Free Mock Test</Button>
+          <Button
+            size="lg"
+            onClick={() => router.push("/all-tests")}
+            className="text-sm font-medium bg-blue-500 hover:bg-blue-600"
+          >
+            Start Free Mock Test
+          </Button>
         </section>
 
         <section className="py-12 border-t border-gray-200 dark:border-gray-800">
@@ -115,7 +131,11 @@ export default function Component() {
           <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">
             Begin your journey towards your Nepali driving license today.
           </p>
-          <Button size="lg">
+          <Button
+            size="lg"
+            onClick={() => router.push("/all-tests")}
+            className="text-sm font-medium bg-blue-500 hover:bg-blue-600"
+          >
             Start Free Mock Test
             <ChevronRight className="ml-2 h-4 w-4" />
           </Button>
