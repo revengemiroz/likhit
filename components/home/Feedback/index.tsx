@@ -65,18 +65,6 @@ export default function Component() {
             >
               Submit Feedback
             </Button>
-            <div>
-              <Button
-                variant="ghost"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setOpen(false);
-                  setMessage("");
-                }}
-              >
-                Close
-              </Button>
-            </div>
           </DialogFooter>
         </form>
       </DialogContent>
