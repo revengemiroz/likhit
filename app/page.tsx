@@ -1,173 +1,215 @@
 "use client";
-import Image from "next/image";
-
-import { RotateCcw, ChevronLeft, Flag } from "lucide-react";
-import ScoreBoard from "@/components/home/ScoreBoard";
-import QuestionBank from "@/components/home/QuestionBank";
 
 import { Button } from "@/components/ui/button";
-import Nav from "../components/home/Nav";
-
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import {
+  CarIcon,
+  BikeIcon,
+  ImageIcon,
+  ClipboardListIcon,
+  TimerIcon,
+  AwardIcon,
+} from "lucide-react";
+import Nav from "@/components/home/Nav";
+import Link from "next/link";
 
-import { useState, useEffect } from "react";
-import { questions } from "@/data/en";
-import { Language, QuestionType } from "../types";
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
-// import { cookies } from "next/headers";
-import TimerComponent from "@/components/home/timer/timer-component";
-
-export default function Home() {
-  // const tasks = useQuery(api.tasks.getTasks);
-  const ENGLISH = "english";
-  const NEPALI = "nepali";
-
-  // console.log({ tasks });
-
-  const [open, setOpen] = useState(false);
-  // Track the current question index
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [shuffledQuestions, setShuffledQuestions] = useState<QuestionType[]>(
-    []
-  );
-  const [selectedLanguage, setSelectedLanguage] = useState<Language>(ENGLISH);
-
-  const shuffleArray = (array: QuestionType[]) => {
-    return array.sort(() => Math.random() - 0.5);
+export default function Component() {
+  const tests = {
+    car: [
+      {
+        id: "car1",
+        name: "Car Test 1",
+        description: "General knowledge test for cars",
+        questions: 25,
+        images: 3,
+        time: 30,
+        difficulty: "Easy",
+        link: "/",
+      },
+      {
+        id: "car2",
+        name: "Car Test 2",
+        description: "Advanced rules and regulations for car driving",
+        questions: 25,
+        images: 3,
+        time: 30,
+        difficulty: "Medium",
+      },
+      {
+        id: "car3",
+        name: "Car Test 3",
+        description:
+          "Situational awareness and decision making for car drivers",
+        questions: 25,
+        images: 3,
+        time: 30,
+        difficulty: "Hard",
+      },
+      {
+        id: "carImages",
+        name: "Car Image Test",
+        description: "Practice with image-based questions for car driving",
+        questions: 25,
+        images: 25,
+        time: 35,
+        difficulty: "Mixed",
+      },
+    ],
+    bike: [
+      {
+        id: "bike1",
+        name: "Bike Test 1",
+        description: "Basic knowledge test for motorcycles",
+        questions: 25,
+        images: 3,
+        time: 30,
+        difficulty: "Easy",
+      },
+      {
+        id: "bike2",
+        name: "Bike Test 2",
+        description: "Traffic rules and safety for motorcycle riders",
+        questions: 25,
+        images: 3,
+        time: 30,
+        difficulty: "Medium",
+      },
+      {
+        id: "bike3",
+        name: "Bike Test 3",
+        description: "Advanced motorcycle handling and road strategies",
+        questions: 25,
+        images: 3,
+        time: 30,
+        difficulty: "Hard",
+      },
+      {
+        id: "bikeImages",
+        name: "Bike Image Test",
+        description:
+          "Practice with image-based questions for motorcycle riding",
+        questions: 25,
+        images: 25,
+        time: 35,
+        difficulty: "Mixed",
+      },
+    ],
   };
 
-  const handleLanguageChange = (lang: Language) => {
-    setSelectedLanguage(lang); // Change language
-  };
-
-  useEffect(() => {
-    setShuffledQuestions(shuffleArray([...questions])); // Shuffle a copy of the questions array
-  }, []);
-
-  const handleNextQuestion = () => {
-    // Check if we are not at the last question
-    if (currentQuestionIndex < shuffledQuestions.length - 1) {
-      setCurrentQuestionIndex((prev) => prev + 1);
+  const getDifficultyColor = (difficulty: string) => {
+    switch (difficulty) {
+      case "Easy":
+        return "bg-green-500";
+      case "Medium":
+        return "bg-yellow-500";
+      case "Hard":
+        return "bg-red-500";
+      default:
+        return "bg-blue-500";
     }
   };
 
-  return (
-    <div className="w-full  min-h-screen flex flex-col lg:mx-auto">
-      <Nav />
-      <main className=" flex-1 flex items-center justify-center py-12">
-        <div className="flex items-center  flex-col flex-1 justify-center ">
-          <div className="w-[90%] md:w-5/6 xl:w-4/6 flex items-center  justify-end  my-4 pr-6 gap-2">
-            {/* <span className="group w-8 h-8 flex justify-center items-center rounded-full cursor-pointer transition-all hover:bg-gray-200">
-              <Flag
-                className="w-4 h-4 text-gray-500 group-hover:fill-blue-500 group-hover:stroke-blue-500"
-                color="gray"
-                fill="gray"
-              />
-            </span>
-
-            {selectedLanguage === ENGLISH ? (
-              <span
-                className="font-medium mr-8 text-md text-muted-foreground/90 cursor-pointer hover:text-blue-500 transition-all"
-                onClick={() => handleLanguageChange(NEPALI)}
-              >
-                Np
-              </span>
-            ) : (
-              <span
-                className="font-medium mr-8 text-md text-muted-foreground/90 cursor-pointer hover:text-blue-500 transition-all"
-                onClick={() => handleLanguageChange(ENGLISH)}
-              >
-                En
-              </span>
-            )} */}
-
-            <TimerComponent />
-          </div>
-          <div className="w-[90%] md:w-5/6 xl:w-4/6 flex flex-col lg:flex-row gap-4 ">
-            <ScoreBoard />
-
-            {shuffledQuestions.length > 0 ? (
-              <QuestionBank
-                handleNextQuestion={handleNextQuestion}
-                questionList={shuffledQuestions[currentQuestionIndex]}
-                disabled={currentQuestionIndex >= shuffledQuestions.length - 1}
-                language={selectedLanguage}
-              />
-            ) : (
-              <div className="border shadow-sm w-full overflow-hidden flex flex-col rounded-xl bg-white">
-                <div className="animate-pulse flex flex-col ">
-                  <div className="w-full h-52 bg-gray-200 rounded-md mb-4"></div>
-                  <div className="w-full px-6">
-                    <div className="w-2/3 h-6  bg-gray-200 rounded-md mb-2"></div>
-                    <div className="w-1/2 h-6 bg-gray-200 rounded-md mb-4"></div>
-                  </div>
-
-                  <div className="space-y-2 px-6">
-                    <div className="w-full h-10 bg-gray-200 rounded-md"></div>
-                    <div className="w-full h-10 bg-gray-200 rounded-md"></div>
-                    <div className="w-full h-10 bg-gray-200 rounded-md"></div>
-                    <div className="w-full h-10 bg-gray-200 rounded-md"></div>
-                  </div>
-
-                  <div className="flex justify-end p-6">
-                    <div className="w-32 h-10 bg-gray-200 rounded-md"></div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* add spinner */}
-          </div>
+  const TestCard = ({ test }: { test: any }) => (
+    <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+      <CardHeader
+        className={`min-h-24 ${test.id.includes("Images") ? "" : ""} pb-2`}
+      >
+        <CardTitle className="flex items-center space-x-2 text-lg">
+          {test.id.includes("Images") ? (
+            <ImageIcon className="w-5 h-5 text-purple-600" />
+          ) : (
+            <ClipboardListIcon className="w-5 h-5 text-blue-600" />
+          )}
+          <span>{test.name}</span>
+        </CardTitle>
+        <CardDescription>{test.description}</CardDescription>
+      </CardHeader>
+      <CardContent className="flex-grow pt-4">
+        <div className="flex flex-wrap gap-2 mb-4">
+          <Badge variant="secondary" className="flex items-center space-x-1">
+            <ClipboardListIcon className="w-3 h-3" />
+            <span>{test.questions} questions</span>
+          </Badge>
+          <Badge variant="secondary" className="flex items-center space-x-1">
+            <ImageIcon className="w-3 h-3" />
+            <span>{test.images} images</span>
+          </Badge>
+          <Badge variant="secondary" className="flex items-center space-x-1">
+            <TimerIcon className="w-3 h-3" />
+            <span>{test.time} min</span>
+          </Badge>
         </div>
+        <div className="flex items-center space-x-2">
+          <AwardIcon className="w-4 h-4 text-orange-500" />
+          <span className="text-sm font-medium">Difficulty:</span>
+          <Badge
+            className={`${getDifficultyColor(test.difficulty)} text-white`}
+          >
+            {test.difficulty}
+          </Badge>
+        </div>
+      </CardContent>
+      <Link href={"/test-1"}>
+        <CardFooter className="bg-gray-50">
+          <Button className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white">
+            Start Test
+          </Button>
+        </CardFooter>
+      </Link>
+    </Card>
+  );
 
-        <Dialog
-          open={open}
-          onOpenChange={() => {
-            setOpen(false);
-          }}
-        >
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Choose Language for Driving Exam</DialogTitle>
-              <DialogDescription>
-                Select the language you would like to use for your driving exam.
-              </DialogDescription>
-            </DialogHeader>
-            <div className=" flex justify-between">
-              <div
-                // onClick={() => cookieStore.set("lang", "en")}
-                className="group hover:bg-blue-600 transition-all cursor-pointer w-56 h-32 border border-blue-400 shadow-sm  rounded-md items-center justify-center flex flex-col gap-1"
+  return (
+    <div className="w-full  min-h-screen flex flex-col">
+      <Nav />
+      <div className="flex flex-col  items-center py-24 transition-all justify-center flex-1">
+        <div className="sm:w-3/5 w-4/5 m-auto">
+          <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">
+            Select Your Path: The Test Awaits!
+          </h1>
+          <Tabs defaultValue="car" className="w-full ">
+            <TabsList className="grid h-fit border  shadow-lg w-full max-w-md mx-auto grid-cols-2 gap-2 p-2 mb-8">
+              <TabsTrigger
+                value="car"
+                className="flex items-center hover:shadow-md  space-x-2 py-3"
               >
-                <span className="group-hover:text-blue-600 group-hover:bg-white group-hover:font-medium group-hover:border-blue-600 group-hover:border text-sm w-8 h-8 rounded-md bg-blue-600 text-white flex justify-center items-center">
-                  En
-                </span>
-                <span className="group-hover:text-white text-md font-semibold">
-                  English
-                </span>
-              </div>
-              <div
-                // onClick={() => cookieStore.set("lang", "np")}
-                className="group hover:bg-red-600 transition-all cursor-pointer w-56 h-32 border rounded-md items-center justify-center   flex flex-col gap-1"
+                <CarIcon className="w-5 h-5" />
+                <span>Car Tests</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="bike"
+                className="flex items-center space-x-2 py-3"
               >
-                <span className="group-hover:text-red-600 group-hover:bg-white group-hover:font-medium group-hover:border-red-600 group-hover:border text-sm w-8 h-8 rounded-md bg-red-600 text-white flex justify-center items-center">
-                  Np
-                </span>
-                <span className="group-hover:text-white text-md font-semibold">
-                  Nepali
-                </span>
+                <BikeIcon className="w-5 h-5" />
+                <span>Bike Tests</span>
+              </TabsTrigger>
+            </TabsList>
+            <TabsContent value="car">
+              <div className="grid gap-x-12 gap-y-6 sm:grid-cols-2 lg:grid-cols-2">
+                {tests.car.map((test) => (
+                  <TestCard key={test.id} test={test} />
+                ))}
               </div>
-            </div>
-          </DialogContent>
-        </Dialog>
-      </main>
+            </TabsContent>
+            <TabsContent value="bike">
+              <div className="grid gap-x-12 gap-y-6 sm:grid-cols-2 lg:grid-cols-2">
+                {tests.bike.map((test) => (
+                  <TestCard key={test.id} test={test} />
+                ))}
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
+      </div>
     </div>
   );
 }

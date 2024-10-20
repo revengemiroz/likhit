@@ -6,6 +6,7 @@ import Head from "next/head";
 
 import { ConvexClientProvider } from "./ConvexClientProvider";
 import Script from "next/script";
+import { Toaster } from "@/components/ui/toaster";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -61,7 +62,7 @@ export default function RootLayout({
               />
             </div>
           </div>
-          {/* <Toaster /> */}
+          <Toaster />
         </ConvexClientProvider>
       </body>
 
