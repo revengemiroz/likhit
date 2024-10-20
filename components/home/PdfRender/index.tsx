@@ -6,6 +6,8 @@ import {
   Loader2,
   RotateCw,
   Search,
+  Download,
+  Share2,
 } from "lucide-react";
 import { Document, Page, pdfjs } from "react-pdf";
 
@@ -30,6 +32,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import SimpleBar from "simplebar-react";
+import { useToast } from "@/hooks/use-toast";
+
+// import { us } from "@/components/ui/toast"; // Add this import for notifications
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/legacy/build/pdf.worker.min.mjs",
@@ -47,6 +52,8 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
   const [renderedScale, setRenderedScale] = useState<number | null>(null);
 
   const isLoading = renderedScale !== scale;
+
+  const { toast } = useToast();
 
   const { width, ref } = useResizeDetector();
 
@@ -88,6 +95,26 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
     setScale(scale);
   };
 
+  const handleDownload = () => {
+    // Open the PDF URL in a new tab, which will trigger the download
+    window.open(url, "_blank");
+  };
+
+  const handleShare = async () => {
+    try {
+      const currentUrl = window.location.href;
+      await navigator.clipboard.writeText(currentUrl);
+      toast({
+        description: "Website URL copied to clipboard!",
+      });
+    } catch (err) {
+      toast({
+        variant: "destructive",
+        description: "Failed to copy URL. Please try again.",
+      });
+    }
+  };
+
   return (
     <div className="w-full bg-white rounded-md shadow flex flex-col items-center">
       <div className="h-14 w-full border-b border-zinc-200 flex items-center justify-between px-2">
@@ -98,6 +125,22 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
             aria-label="rotate left 90 degrees"
           >
             <RotateCw className="h-4 w-4" />
+          </Button>
+
+          <Button
+            onClick={handleDownload}
+            variant="ghost"
+            aria-label="download pdf"
+          >
+            <Download className="h-4 w-4" />
+          </Button>
+
+          <Button
+            onClick={handleShare}
+            variant="ghost"
+            aria-label="share website url"
+          >
+            <Share2 className="h-4 w-4" />
           </Button>
 
           <DropdownMenu>
@@ -171,5 +214,4 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
     </div>
   );
 };
-
 export default PdfRenderer;

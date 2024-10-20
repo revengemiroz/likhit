@@ -55,7 +55,7 @@ export default function DrivingExamResults() {
     <div className="min-h-screen flex flex-col ">
       <Nav />
       <div className="flex flex-col flex-1 items-center  justify-center ">
-        <div className="w-3/5 py-12 flex flex-col items-center">
+        <div className="w-4/5 sm:w-3/5 py-12 flex flex-col items-center">
           <span className="text-2xl font-bold mb-6">Written Result</span>
           <PdfRenderer url="https://utfs.io/f/Ug3TBysra1dXFFFEzOuAZLuxpKXShfMY6GqCmHoy2VraUn8B" />
         </div>
