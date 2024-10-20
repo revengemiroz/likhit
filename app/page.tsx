@@ -1,215 +1,143 @@
-"use client";
-
+import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
-import {
-  CarIcon,
-  BikeIcon,
-  ImageIcon,
-  ClipboardListIcon,
-  TimerIcon,
-  AwardIcon,
-} from "lucide-react";
-import Nav from "@/components/home/Nav";
-import Link from "next/link";
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Car, Book, CheckCircle, ChevronRight } from "lucide-react";
 
 export default function Component() {
-  const tests = {
-    car: [
-      {
-        id: "car1",
-        name: "Car Test 1",
-        description: "General knowledge test for cars",
-        questions: 25,
-        images: 3,
-        time: 30,
-        difficulty: "Easy",
-        link: "/",
-      },
-      {
-        id: "car2",
-        name: "Car Test 2",
-        description: "Advanced rules and regulations for car driving",
-        questions: 25,
-        images: 3,
-        time: 30,
-        difficulty: "Medium",
-      },
-      {
-        id: "car3",
-        name: "Car Test 3",
-        description:
-          "Situational awareness and decision making for car drivers",
-        questions: 25,
-        images: 3,
-        time: 30,
-        difficulty: "Hard",
-      },
-      {
-        id: "carImages",
-        name: "Car Image Test",
-        description: "Practice with image-based questions for car driving",
-        questions: 25,
-        images: 25,
-        time: 35,
-        difficulty: "Mixed",
-      },
-    ],
-    bike: [
-      {
-        id: "bike1",
-        name: "Bike Test 1",
-        description: "Basic knowledge test for motorcycles",
-        questions: 25,
-        images: 3,
-        time: 30,
-        difficulty: "Easy",
-      },
-      {
-        id: "bike2",
-        name: "Bike Test 2",
-        description: "Traffic rules and safety for motorcycle riders",
-        questions: 25,
-        images: 3,
-        time: 30,
-        difficulty: "Medium",
-      },
-      {
-        id: "bike3",
-        name: "Bike Test 3",
-        description: "Advanced motorcycle handling and road strategies",
-        questions: 25,
-        images: 3,
-        time: 30,
-        difficulty: "Hard",
-      },
-      {
-        id: "bikeImages",
-        name: "Bike Image Test",
-        description:
-          "Practice with image-based questions for motorcycle riding",
-        questions: 25,
-        images: 25,
-        time: 35,
-        difficulty: "Mixed",
-      },
-    ],
-  };
-
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty) {
-      case "Easy":
-        return "bg-green-500";
-      case "Medium":
-        return "bg-yellow-500";
-      case "Hard":
-        return "bg-red-500";
-      default:
-        return "bg-blue-500";
-    }
-  };
-
-  const TestCard = ({ test }: { test: any }) => (
-    <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-      <CardHeader
-        className={`min-h-24 ${test.id.includes("Images") ? "" : ""} pb-2`}
-      >
-        <CardTitle className="flex items-center space-x-2 text-lg">
-          {test.id.includes("Images") ? (
-            <ImageIcon className="w-5 h-5 text-purple-600" />
-          ) : (
-            <ClipboardListIcon className="w-5 h-5 text-blue-600" />
-          )}
-          <span>{test.name}</span>
-        </CardTitle>
-        <CardDescription>{test.description}</CardDescription>
-      </CardHeader>
-      <CardContent className="flex-grow pt-4">
-        <div className="flex flex-wrap gap-2 mb-4">
-          <Badge variant="secondary" className="flex items-center space-x-1">
-            <ClipboardListIcon className="w-3 h-3" />
-            <span>{test.questions} questions</span>
-          </Badge>
-          <Badge variant="secondary" className="flex items-center space-x-1">
-            <ImageIcon className="w-3 h-3" />
-            <span>{test.images} images</span>
-          </Badge>
-          <Badge variant="secondary" className="flex items-center space-x-1">
-            <TimerIcon className="w-3 h-3" />
-            <span>{test.time} min</span>
-          </Badge>
-        </div>
-        <div className="flex items-center space-x-2">
-          <AwardIcon className="w-4 h-4 text-orange-500" />
-          <span className="text-sm font-medium">Difficulty:</span>
-          <Badge
-            className={`${getDifficultyColor(test.difficulty)} text-white`}
-          >
-            {test.difficulty}
-          </Badge>
-        </div>
-      </CardContent>
-      <Link href={"/test/1"}>
-        <CardFooter className="bg-gray-50">
-          <Button className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white">
-            Start Test
-          </Button>
-        </CardFooter>
-      </Link>
-    </Card>
-  );
-
   return (
-    <div className="w-full  min-h-screen flex flex-col">
-      <Nav />
-      <div className="flex flex-col  items-center py-24 transition-all justify-center flex-1">
-        <div className="sm:w-3/5 w-4/5 m-auto">
-          <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">
-            Select Your Path: The Test Awaits!
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-900">
+      <header className="w-full max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
+        <Link className="flex items-center justify-center" href="#">
+          <Car className="h-6 w-6 text-primary" />
+          <span className="ml-2 text-lg font-semibold">Nepal Driving Test</span>
+        </Link>
+        <nav>
+          <Link className="text-sm font-medium hover:text-primary" href="#">
+            Mock Tests
+          </Link>
+        </nav>
+      </header>
+      <main className="flex-1 w-full max-w-3xl mx-auto px-4">
+        <section className="py-12 md:py-20 flex flex-col items-center text-center">
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-3c24Ae3dKwxVOIEM2KzvfcBMQKJ3hm.png"
+            alt="Nepal Driving Test Logo"
+            width={250}
+            height={250}
+            className="mb-8"
+          />
+          <h1 className="text-3xl font-bold tracking-tight mb-4">
+            Master Your Nepal Driving Test
           </h1>
-          <Tabs defaultValue="car" className="w-full ">
-            <TabsList className="grid h-fit border  shadow-lg w-full max-w-md mx-auto grid-cols-2 gap-2 p-2 mb-8">
-              <TabsTrigger
-                value="car"
-                className="flex items-center hover:shadow-md  space-x-2 py-3"
-              >
-                <CarIcon className="w-5 h-5" />
-                <span>Car Tests</span>
-              </TabsTrigger>
-              <TabsTrigger
-                value="bike"
-                className="flex items-center space-x-2 py-3"
-              >
-                <BikeIcon className="w-5 h-5" />
-                <span>Bike Tests</span>
-              </TabsTrigger>
-            </TabsList>
-            <TabsContent value="car">
-              <div className="grid gap-x-12 gap-y-6 sm:grid-cols-2 lg:grid-cols-2">
-                {tests.car.map((test) => (
-                  <TestCard key={test.id} test={test} />
-                ))}
-              </div>
-            </TabsContent>
-            <TabsContent value="bike">
-              <div className="grid gap-x-12 gap-y-6 sm:grid-cols-2 lg:grid-cols-2">
-                {tests.bike.map((test) => (
-                  <TestCard key={test.id} test={test} />
-                ))}
-              </div>
-            </TabsContent>
-          </Tabs>
+          <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-md">
+            Practice, learn, and succeed with our comprehensive mock exams.
+          </p>
+          <Button size="lg">Start Free Mock Test</Button>
+        </section>
+
+        <section className="py-12 border-t border-gray-200 dark:border-gray-800">
+          <h2 className="text-2xl font-bold text-center mb-8">
+            Why Choose Us?
+          </h2>
+          <div className="grid gap-8 md:grid-cols-3">
+            <div className="flex flex-col items-center text-center">
+              <Book className="h-8 w-8 text-primary mb-2" />
+              <h3 className="text-lg font-semibold mb-1">Comprehensive</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Cover all aspects of the test syllabus.
+              </p>
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <CheckCircle className="h-8 w-8 text-primary mb-2" />
+              <h3 className="text-lg font-semibold mb-1">Instant Results</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Get immediate performance feedback.
+              </p>
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <Car className="h-8 w-8 text-primary mb-2" />
+              <h3 className="text-lg font-semibold mb-1">Nepal-specific</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Aligned with local traffic rules.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-12 border-t border-gray-200 dark:border-gray-800">
+          <h2 className="text-2xl font-bold text-center mb-8">FAQ</h2>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-1">
+              <AccordionTrigger>
+                How many questions are in the mock test?
+              </AccordionTrigger>
+              <AccordionContent>
+                Our mock tests contain 50 questions, mirroring the actual Nepali
+                driving theory test.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>Is this mock test free?</AccordionTrigger>
+              <AccordionContent>
+                Yes, our basic mock tests are completely free. Premium tests
+                with additional features are available for a small fee.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>
+                How often are the questions updated?
+              </AccordionTrigger>
+              <AccordionContent>
+                We regularly update our question bank to align with the latest
+                Nepali traffic rules and regulations.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-4">
+              <AccordionTrigger>
+                Can I take the test on my mobile phone?
+              </AccordionTrigger>
+              <AccordionContent>
+                Yes, our website is fully responsive and can be accessed on
+                smartphones, tablets, and desktop computers.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </section>
+
+        <section className="py-12 text-center border-t border-gray-200 dark:border-gray-800">
+          <h2 className="text-2xl font-bold mb-4">Ready to Get Started?</h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">
+            Begin your journey towards your Nepali driving license today.
+          </p>
+          <Button size="lg">
+            Start Free Mock Test
+            <ChevronRight className="ml-2 h-4 w-4" />
+          </Button>
+        </section>
+      </main>
+      <footer className="w-full max-w-3xl mx-auto px-4 py-8 border-t border-gray-200 dark:border-gray-800 text-center">
+        <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
+          © 2024 Nepal Driving Mock Test. All rights reserved.
+        </p>
+        <nav className="flex justify-center gap-4 mb-4">
+          <Link className="text-xs hover:underline underline-offset-4" href="#">
+            Terms of Service
+          </Link>
+          <Link className="text-xs hover:underline underline-offset-4" href="#">
+            Privacy
+          </Link>
+        </nav>
+        <div className="text-xs text-gray-500 dark:text-gray-400">
+          <p>Contact us: info@nepaldrivingtest.com</p>
+          <p>Phone: +977 1234567890</p>
         </div>
-      </div>
+      </footer>
     </div>
   );
 }
