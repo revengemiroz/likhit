@@ -3,12 +3,13 @@
 import { useState } from "react";
 
 import Nav from "@/components/home/Nav";
+import dynamic from "next/dynamic";
 const PdfRenderer = dynamic(() => import("@/components/home/PdfRender"), {
   loading: () => <p>Loading...</p>,
+  ssr: false,
 });
 
 // import PdfRenderer from "@/components/home/PdfRender";
-import dynamic from "next/dynamic";
 
 // Sample data for demonstration
 const examResults = [
@@ -25,6 +26,30 @@ export default function DrivingExamResults() {
   const filteredResults = examResults.filter((result) =>
     result.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  if (typeof Promise.withResolvers === "undefined") {
+    if (typeof window !== "undefined") {
+      // @ts-expect-error This does not exist outside of polyfill which this is doing
+      window.Promise.withResolvers = function () {
+        let resolve, reject;
+        const promise = new Promise((res, rej) => {
+          resolve = res;
+          reject = rej;
+        });
+        return { promise, resolve, reject };
+      };
+    } else {
+      // @ts-expect-error This does not exist outside of polyfill which this is doing
+      global.Promise.withResolvers = function () {
+        let resolve, reject;
+        const promise = new Promise((res, rej) => {
+          resolve = res;
+          reject = rej;
+        });
+        return { promise, resolve, reject };
+      };
+    }
+  }
 
   return (
     <div className="min-h-screen flex flex-col ">
