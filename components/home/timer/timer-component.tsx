@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 import { Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import TimesUp from "./times-up";
 
 export default function Component() {
   const [timeLeft, setTimeLeft] = useState(30 * 60); // 30 minutes in seconds
@@ -33,6 +34,11 @@ export default function Component() {
     };
   }, [isRunning, timeLeft]);
 
+  // if time left is 0, show the times up component
+  if (timeLeft === 0) {
+    return <TimesUp />;
+  }
+
   // start timer when the component mounts
   useEffect(() => {
     setIsRunning(true);
@@ -46,10 +52,10 @@ export default function Component() {
 
   return (
     <div className="flex items-center gap-2 ">
-      <Clock className="w-4 h-4" />
+      <Clock className="w-4 h-4 text-gray-700" />
       <div
         className={`text-md font-semibold tabular-nums ${
-          timeLeft < 600 ? "text-red-600" : "text-green-600"
+          timeLeft < 600 ? "text-red-600" : "text-gray-700"
         }`}
       >
         {formatTime(timeLeft)}

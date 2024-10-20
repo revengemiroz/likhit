@@ -25,10 +25,12 @@ import { api } from "@/convex/_generated/api";
 import TimerComponent from "@/components/home/timer/timer-component";
 import { Language, QuestionType } from "@/types";
 
-export default function Home() {
+export default function Home({ params }: { params: { "test-id": string } }) {
   // const tasks = useQuery(api.tasks.getTasks);
   const ENGLISH = "english";
   const NEPALI = "nepali";
+
+  console.log({ params });
 
   // console.log({ tasks });
 
@@ -64,7 +66,11 @@ export default function Home() {
       <Nav />
       <main className=" flex-1 flex items-center justify-center py-12">
         <div className="flex items-center  flex-col flex-1 justify-center ">
-          <div className="w-[90%] md:w-5/6 xl:w-4/6 flex items-center  justify-end  my-4 pr-6 gap-2">
+          <div className="w-[90%] md:w-5/6 xl:w-4/6 flex items-center  justify-between  my-4 px-4 gap-2">
+            <span className="text-xl font-semibold text-gray-700">
+              {/* {params["test-id"]} */}
+              Bike Test: {params["test-id"]}
+            </span>
             {/* <span className="group w-8 h-8 flex justify-center items-center rounded-full cursor-pointer transition-all hover:bg-gray-200">
               <Flag
                 className="w-4 h-4 text-gray-500 group-hover:fill-blue-500 group-hover:stroke-blue-500"
