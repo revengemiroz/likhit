@@ -9,6 +9,7 @@ export interface ListProps {
 }
 
 export type QuestionStoreType = {
+  finish: boolean;
   nextQuestion: any;
   start: any;
   saveUserAnswer: (questionId: number, userAnswer: number) => void;
@@ -21,6 +22,9 @@ export type QuestionStoreType = {
   getSpecificQuestion: () => QuestionType;
   increaseCorrect: () => void;
   increaseIncorrect: () => void;
+  setFinish: (value: boolean) => void;
+  isReviewMode: boolean;
+  setIsReviewMode: (value: boolean) => void;
 };
 
 export interface QuestionType {
@@ -52,4 +56,5 @@ export interface RadioButtonProps {
   language: Language;
   onClick: () => void;
   isDisabled: boolean;
+  isAnimating: boolean;
 }

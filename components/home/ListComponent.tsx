@@ -1,6 +1,6 @@
 import { Language, ListProps, RadioButtonProps, Variant } from "@/types";
 import { Check, X } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 // Expandable for more languages
 
@@ -10,24 +10,24 @@ const RadioButton: React.FC<RadioButtonProps> = ({
   language,
   onClick,
   isDisabled,
+  isAnimating,
 }) => {
   const handleClick = () => {
     if (!isDisabled) {
       onClick();
     }
   };
-  19;
 
   const getVariantStyles = (variant: Variant) => {
     switch (variant) {
       case "neutral":
-        return "cursor-pointer font-medium text-sm hover:bg-[#F2F2F7] text-black   rounded-lg";
+        return "cursor-pointer font-medium text-sm hover:bg-[#F2F2F7] text-black rounded-lg";
       case "right":
-        return "cursor-default bg-green-100 rounded-lg  ";
+        return "cursor-default bg-green-100 rounded-lg transition-all duration-500 ease-in-out";
       case "wrong":
-        return "cursor-default bg-red-100   rounded-lg";
+        return "cursor-default bg-red-100 rounded-lg transition-all duration-500 ease-in-out";
       case "disabled":
-        return "  rounded-lg opacity-50 cursor-not-allowed";
+        return "rounded-lg opacity-50 cursor-not-allowed transition-all duration-500 ease-in-out";
       default:
         return "";
     }
@@ -52,28 +52,24 @@ const RadioButton: React.FC<RadioButtonProps> = ({
     switch (variant) {
       case "right":
         return (
-          <div className="w-4 h-4  sm:w-5 sm:h-5 mr-5 bg-green-500 rounded-md flex items-center justify-center rotate-45">
+          <div className="w-4 h-4 sm:w-5 sm:h-5 mr-5 bg-green-500 rounded-md flex items-center justify-center rotate-45">
             <Check className="w-4 h-4 text-white rotate-[-45deg]" />
           </div>
         );
       case "wrong":
         return (
-          <div className="w-4 h-4  sm:w-5 sm:h-5 mr-5 bg-red-500 rounded-md flex items-center justify-center rotate-45">
+          <div className="w-4 h-4 sm:w-5 sm:h-5 mr-5 bg-red-500 rounded-md flex items-center justify-center rotate-45">
             <X className="w-4 h-4 text-white rotate-[-45deg]" />
           </div>
         );
       default:
         return (
           <div className="flex items-center">
-            <label title="normal" htmlFor="normal"></label>
-            <input
-              id="normal"
-              type="radio"
-              disabled={isDisabled}
-              className={`transition-all  mr-4 w-5 h-5 border-4 rounded-full ${getRadioStyles(
-                variant
-              )}`}
-            />
+            <div
+              className={`w-5 h-5 mr-4 rounded-full border-[2px] border-gray-300 flex items-center justify-center
+            transition-all duration-200 ease-in-out
+            ${variant === "neutral" ? "group-hover:border-[6px] group-hover:border-gray-400" : ""}`}
+            ></div>
           </div>
         );
     }
@@ -81,16 +77,16 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 
   return (
     <div
-      className={`grid grid-cols-16 items-center  ${getVariantStyles(
+      className={`grid grid-cols-[auto_1fr] items-center group ${getVariantStyles(
         variant
-      )}  p-4 py-1 sm:py-4 gap-5`}
+      )} p-4 py-3 sm:py-4 gap-2 ${isAnimating ? "animate-bounce" : ""}`}
       onClick={handleClick}
     >
-      <span className="mx-auto w-fit col-span-2">{renderIcon(variant)}</span>
+      <span className="mx-auto w-fit col-span-1">{renderIcon(variant)}</span>
       <span
         className={`${
           language === "english" ? "font-normal" : "font-medium"
-        }   text-[13px] sm:text-sm text-black col-span-12 `}
+        } md:text-[15px] text-sm text-black col-span-1`}
       >
         {label}
       </span>
@@ -107,15 +103,38 @@ const List: React.FC<ListProps> = ({
 }) => {
   const [selectedOptionId, setSelectedOptionId] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
+  const [animatingOptionId, setAnimatingOptionId] = useState<number | null>(
+    null
+  );
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (userAnswer !== null) {
       setSelectedOptionId(userAnswer);
       setShowResult(true);
+      setAnimatingOptionId(userAnswer);
+
+      // Clear any existing timeout
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+
+      // Set a new timeout to stop the animation after 500ms
+      timeoutRef.current = setTimeout(() => {
+        setAnimatingOptionId(null);
+      }, 500);
     } else {
       setSelectedOptionId(null);
       setShowResult(false);
+      setAnimatingOptionId(null);
     }
+
+    // Cleanup function
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, [userAnswer]);
 
   const handleOptionClick = (optionId: number) => {
@@ -126,7 +145,7 @@ const List: React.FC<ListProps> = ({
   };
 
   return (
-    <div className="flex flex-col transition-all  md:gap-2 gap-1">
+    <div className="flex flex-col transition-all md:gap-1 gap-1">
       {options.map((option) => {
         let variant: Variant = "neutral";
 
@@ -148,6 +167,7 @@ const List: React.FC<ListProps> = ({
             language={language}
             onClick={() => handleOptionClick(option.id)}
             isDisabled={showResult} // Disable all options once one is selected
+            isAnimating={option.id === animatingOptionId}
           />
         );
       })}

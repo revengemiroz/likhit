@@ -1,7 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { questions } from "../data/en";
+// import { questions } from "../data/en";
+import { questions } from "../data/np/two_wheeler_pic_qsn";
 import { QuestionStoreType } from "../types";
 
 // Add `user_answer` property to each question during initialization
@@ -23,6 +24,9 @@ const useQuestionStore = create(
         incorrect: 0,
       },
       currentQuestionIndex: 0,
+      finish: false,
+      isReviewMode: false,
+      setIsReviewMode: (value: boolean) => set({ isReviewMode: value }),
 
       // Function to reset all state
       resetAll: () => {
@@ -65,6 +69,8 @@ const useQuestionStore = create(
         set({ started: value });
       },
 
+      setFinish: (value: boolean) => set({ finish: value }),
+
       // Function to move to the next question
       nextQuestion: () => {
         set((state) => ({
@@ -77,6 +83,10 @@ const useQuestionStore = create(
         return get().shuffledQuestions[get().currentQuestionIndex];
       },
 
+      // get score
+      getScore: () => {
+        return get().count;
+      },
       // Function to save the user's answer to the current question
       saveUserAnswer: (questionId: number, userAnswer: number) => {
         set((state) => ({

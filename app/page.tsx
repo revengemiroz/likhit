@@ -1,164 +1,143 @@
-"use client";
 import Image from "next/image";
-
-import { RotateCcw, ChevronLeft, Flag } from "lucide-react";
-import ScoreBoard from "@/components/home/ScoreBoard";
-import QuestionBank from "@/components/home/QuestionBank";
-
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import Nav from "../components/home/Nav";
-
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Car, Book, CheckCircle, ChevronRight } from "lucide-react";
 
-import { useState, useEffect } from "react";
-import { questions } from "@/data/en";
-import { Language, QuestionType } from "../types";
-// import { cookies } from "next/headers";
-
-export default function Home() {
-  const ENGLISH = "english";
-  const NEPALI = "nepali";
-
-  const [open, setOpen] = useState(false);
-  // Track the current question index
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [shuffledQuestions, setShuffledQuestions] = useState<QuestionType[]>(
-    []
-  );
-  const [selectedLanguage, setSelectedLanguage] = useState<Language>(ENGLISH);
-
-  const shuffleArray = (array: QuestionType[]) => {
-    return array.sort(() => Math.random() - 0.5);
-  };
-
-  const handleLanguageChange = (lang: Language) => {
-    setSelectedLanguage(lang); // Change language
-  };
-
-  useEffect(() => {
-    setShuffledQuestions(shuffleArray([...questions])); // Shuffle a copy of the questions array
-  }, []);
-
-  const handleNextQuestion = () => {
-    // Check if we are not at the last question
-    if (currentQuestionIndex < shuffledQuestions.length - 1) {
-      setCurrentQuestionIndex((prev) => prev + 1);
-    }
-  };
-
+export default function Component() {
   return (
-    <div className="w-full min-h-screen pb-6 flex flex-col  lg:container lg:mx-auto">
-      <main className="">
-        <div className="flex items-center  flex-col flex-1 justify-center ">
-          <div className="w-[90%] md:w-5/6 xl:w-4/6 flex items-center  justify-end  my-4 gap-2">
-            <span className="group w-8 h-8 flex justify-center items-center rounded-full cursor-pointer transition-all hover:bg-gray-200">
-              <Flag
-                className="w-4 h-4 text-gray-500 group-hover:fill-blue-500 group-hover:stroke-blue-500"
-                color="gray"
-                fill="gray"
-              />
-            </span>
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-900">
+      <header className="w-full max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
+        <Link className="flex items-center justify-center" href="#">
+          <Car className="h-6 w-6 text-primary" />
+          <span className="ml-2 text-lg font-semibold">Nepal Driving Test</span>
+        </Link>
+        <nav>
+          <Link className="text-sm font-medium hover:text-primary" href="#">
+            Mock Tests
+          </Link>
+        </nav>
+      </header>
+      <main className="flex-1 w-full max-w-3xl mx-auto px-4">
+        <section className="py-12 md:py-20 flex flex-col items-center text-center">
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-3c24Ae3dKwxVOIEM2KzvfcBMQKJ3hm.png"
+            alt="Nepal Driving Test Logo"
+            width={250}
+            height={250}
+            className="mb-8"
+          />
+          <h1 className="text-3xl font-bold tracking-tight mb-4">
+            Master Your Nepal Driving Test
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-md">
+            Practice, learn, and succeed with our comprehensive mock exams.
+          </p>
+          <Button size="lg">Start Free Mock Test</Button>
+        </section>
 
-            {selectedLanguage === ENGLISH ? (
-              <span
-                className="font-medium text-md text-muted-foreground/90 cursor-pointer hover:text-blue-500 transition-all"
-                onClick={() => handleLanguageChange(NEPALI)}
-              >
-                Np
-              </span>
-            ) : (
-              <span
-                className="font-medium text-md text-muted-foreground/90 cursor-pointer hover:text-blue-500 transition-all"
-                onClick={() => handleLanguageChange(ENGLISH)}
-              >
-                En
-              </span>
-            )}
-          </div>
-          <div className="w-[90%] md:w-5/6 xl:w-4/6 flex flex-col lg:flex-row gap-4">
-            <ScoreBoard />
-
-            {shuffledQuestions.length > 0 ? (
-              <QuestionBank
-                handleNextQuestion={handleNextQuestion}
-                questionList={shuffledQuestions[currentQuestionIndex]}
-                disabled={currentQuestionIndex >= shuffledQuestions.length - 1}
-                language={selectedLanguage}
-              />
-            ) : (
-              <div className="border shadow-sm w-full overflow-hidden flex flex-col rounded-xl bg-white">
-                <div className="animate-pulse flex flex-col ">
-                  <div className="w-full h-52 bg-gray-200 rounded-md mb-4"></div>
-                  <div className="w-full px-6">
-                    <div className="w-2/3 h-6  bg-gray-200 rounded-md mb-2"></div>
-                    <div className="w-1/2 h-6 bg-gray-200 rounded-md mb-4"></div>
-                  </div>
-
-                  <div className="space-y-2 px-6">
-                    <div className="w-full h-10 bg-gray-200 rounded-md"></div>
-                    <div className="w-full h-10 bg-gray-200 rounded-md"></div>
-                    <div className="w-full h-10 bg-gray-200 rounded-md"></div>
-                    <div className="w-full h-10 bg-gray-200 rounded-md"></div>
-                  </div>
-
-                  <div className="flex justify-end p-6">
-                    <div className="w-32 h-10 bg-gray-200 rounded-md"></div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* add spinner */}
-          </div>
-        </div>
-
-        <Dialog
-          open={open}
-          onOpenChange={() => {
-            setOpen(false);
-          }}
-        >
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Choose Language for Driving Exam</DialogTitle>
-              <DialogDescription>
-                Select the language you would like to use for your driving exam.
-              </DialogDescription>
-            </DialogHeader>
-            <div className=" flex justify-between">
-              <div
-                // onClick={() => cookieStore.set("lang", "en")}
-                className="group hover:bg-blue-600 transition-all cursor-pointer w-56 h-32 border border-blue-400 shadow-sm  rounded-md items-center justify-center flex flex-col gap-1"
-              >
-                <span className="group-hover:text-blue-600 group-hover:bg-white group-hover:font-medium group-hover:border-blue-600 group-hover:border text-sm w-8 h-8 rounded-md bg-blue-600 text-white flex justify-center items-center">
-                  En
-                </span>
-                <span className="group-hover:text-white text-md font-semibold">
-                  English
-                </span>
-              </div>
-              <div
-                // onClick={() => cookieStore.set("lang", "np")}
-                className="group hover:bg-red-600 transition-all cursor-pointer w-56 h-32 border rounded-md items-center justify-center   flex flex-col gap-1"
-              >
-                <span className="group-hover:text-red-600 group-hover:bg-white group-hover:font-medium group-hover:border-red-600 group-hover:border text-sm w-8 h-8 rounded-md bg-red-600 text-white flex justify-center items-center">
-                  Np
-                </span>
-                <span className="group-hover:text-white text-md font-semibold">
-                  Nepali
-                </span>
-              </div>
+        <section className="py-12 border-t border-gray-200 dark:border-gray-800">
+          <h2 className="text-2xl font-bold text-center mb-8">
+            Why Choose Us?
+          </h2>
+          <div className="grid gap-8 md:grid-cols-3">
+            <div className="flex flex-col items-center text-center">
+              <Book className="h-8 w-8 text-primary mb-2" />
+              <h3 className="text-lg font-semibold mb-1">Comprehensive</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Cover all aspects of the test syllabus.
+              </p>
             </div>
-          </DialogContent>
-        </Dialog>
+            <div className="flex flex-col items-center text-center">
+              <CheckCircle className="h-8 w-8 text-primary mb-2" />
+              <h3 className="text-lg font-semibold mb-1">Instant Results</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Get immediate performance feedback.
+              </p>
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <Car className="h-8 w-8 text-primary mb-2" />
+              <h3 className="text-lg font-semibold mb-1">Nepal-specific</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Aligned with local traffic rules.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-12 border-t border-gray-200 dark:border-gray-800">
+          <h2 className="text-2xl font-bold text-center mb-8">FAQ</h2>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-1">
+              <AccordionTrigger>
+                How many questions are in the mock test?
+              </AccordionTrigger>
+              <AccordionContent>
+                Our mock tests contain 50 questions, mirroring the actual Nepali
+                driving theory test.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>Is this mock test free?</AccordionTrigger>
+              <AccordionContent>
+                Yes, our basic mock tests are completely free. Premium tests
+                with additional features are available for a small fee.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>
+                How often are the questions updated?
+              </AccordionTrigger>
+              <AccordionContent>
+                We regularly update our question bank to align with the latest
+                Nepali traffic rules and regulations.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-4">
+              <AccordionTrigger>
+                Can I take the test on my mobile phone?
+              </AccordionTrigger>
+              <AccordionContent>
+                Yes, our website is fully responsive and can be accessed on
+                smartphones, tablets, and desktop computers.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </section>
+
+        <section className="py-12 text-center border-t border-gray-200 dark:border-gray-800">
+          <h2 className="text-2xl font-bold mb-4">Ready to Get Started?</h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">
+            Begin your journey towards your Nepali driving license today.
+          </p>
+          <Button size="lg">
+            Start Free Mock Test
+            <ChevronRight className="ml-2 h-4 w-4" />
+          </Button>
+        </section>
       </main>
+      <footer className="w-full max-w-3xl mx-auto px-4 py-8 border-t border-gray-200 dark:border-gray-800 text-center">
+        <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
+          © 2024 Nepal Driving Mock Test. All rights reserved.
+        </p>
+        <nav className="flex justify-center gap-4 mb-4">
+          <Link className="text-xs hover:underline underline-offset-4" href="#">
+            Terms of Service
+          </Link>
+          <Link className="text-xs hover:underline underline-offset-4" href="#">
+            Privacy
+          </Link>
+        </nav>
+        <div className="text-xs text-gray-500 dark:text-gray-400">
+          <p>Contact us: info@nepaldrivingtest.com</p>
+          <p>Phone: +977 1234567890</p>
+        </div>
+      </footer>
     </div>
   );
 }

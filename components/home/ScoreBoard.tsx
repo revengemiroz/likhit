@@ -5,13 +5,15 @@ import React from "react";
 
 import AnswerButton from "@/components/home/AnswerButton";
 import useQuestionStore from "../../app/store"; // Import the Zustand store
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 function ScoreBoard() {
   // Access shuffledQuestions and currentQuestionIndex from Zustand
   const shuffledQuestions = useQuestionStore(
     (state) => state.shuffledQuestions
   );
-  // console.log({ shuffledQuestions });
+  const router = useRouter();
   const currentQuestionIndex = useQuestionStore(
     (state) => state.currentQuestionIndex
   );
@@ -38,6 +40,7 @@ function ScoreBoard() {
         <Button
           className="w-full hover:bg-white flex items-center py-5 justify-center gap-2 group"
           variant="outline"
+          onClick={() => router.push("/all-tests")}
         >
           <span className="group-hover:text-blue-500">
             <ChevronLeft className="w-4 h-4" />
@@ -61,10 +64,7 @@ function ScoreBoard() {
         <div className="grid grid-cols-7 gap-2  ">
           {/* Render answer buttons dynamically based on the number of shuffled questions */}
           {shuffledQuestions.map((question, index) => (
-            <AnswerButton
-              key={question.id}
-              variant={getVariant(question, index)}
-            >
+            <AnswerButton key={index} variant={getVariant(question, index)}>
               {index + 1}
             </AnswerButton>
           ))}
