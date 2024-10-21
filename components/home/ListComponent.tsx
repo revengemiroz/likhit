@@ -29,7 +29,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
       case "disabled":
         return "rounded-lg opacity-50 cursor-not-allowed transition-all duration-500 ease-in-out";
       case "selected":
-        return "cursor-default bg-pink-100 rounded-lg transition-all duration-500 ease-in-out";
+        return "cursor-default bg-blue-100 rounded-lg transition-all duration-500 ease-in-out";
       default:
         return "";
     }
@@ -44,6 +44,8 @@ const RadioButton: React.FC<RadioButtonProps> = ({
       case "wrong":
         return "accent-pink-500";
       case "disabled":
+        return "accent-black opacity-100 cursor-not-allowed";
+      case "selected":
         return "accent-black opacity-100 cursor-not-allowed";
       default:
         return "";
