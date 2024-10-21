@@ -46,8 +46,6 @@ export default function DrivingTestCentersLocator() {
   const [userLocation, setUserLocation] = useState<[number, number] | null>(
     null
   );
-  const [searchRadius, setSearchRadius] = useState<number>(5); // 5km default
-  // const [testCenters, setTestCenters] = useState<TestCenter[]>([]);
   const [activeLocation, setActiveLocation] = useState<string>(
     locations[0].name
   );
@@ -101,7 +99,6 @@ export default function DrivingTestCentersLocator() {
     }
   };
 
-  // const searchNearbyTestCenters = async () => {
   //   if (!userLocation) return;
 
   //   const [lat, lon] = userLocation;
@@ -222,19 +219,19 @@ export default function DrivingTestCentersLocator() {
     <>
       <div
         id="map"
-        className="w-full mt-10 z-20 h-[600px] rounded-lg overflow-hidden"
+        className="w-full h-[600px] z-20 lg:h-[690px] rounded-lg overflow-hidden"
       ></div>
 
-      <div className="w-full mt-20 ">
-        <div className="grid grid-cols-4 container mx-auto ">
+      <div className="w-full my-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 container mx-auto px-5">
           {Object.keys(centerLocations).map((city) => {
             return (
               <div>
-                <h3 className="font-medium text-xl">{city}</h3>
+                <h3 className="font-medium text-[20px] sm:text-xl">{city}</h3>
                 <ul className="ktm">
                   {centerLocations[city].map((obj) => (
                     <li
-                      className="cursor-pointer hover:opacity-70"
+                      className="cursor-pointer hover:opacity-70 text-sm"
                       onClick={() => {
                         sidebarRef.current?.openSidebar();
                         flyToLocation(obj);

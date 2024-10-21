@@ -18,7 +18,7 @@ export default async function Page() {
 
   return (
     <>
-      <div className="bg-white-700 my-5  h-[480px]">
+      <div className="bg-white-700 mb-5  h-[480px]">
         <Map />
       </div>
     </>
