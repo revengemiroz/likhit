@@ -2,6 +2,7 @@ import { Language, ListProps, RadioButtonProps, Variant } from "@/types";
 import { Check, X } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 import useQuestionStore from "@/app/store";
+import { CircleHelp } from "lucide-react";
 // Expandable for more languages
 
 const RadioButton: React.FC<RadioButtonProps> = ({
@@ -58,6 +59,12 @@ const RadioButton: React.FC<RadioButtonProps> = ({
         return (
           <div className="w-4 h-4 sm:w-5 sm:h-5 mr-5 bg-green-500 rounded-md flex items-center justify-center rotate-45">
             <Check className="w-4 h-4 text-white rotate-[-45deg]" />
+          </div>
+        );
+      case "selected":
+        return (
+          <div className="w-4 h-4 sm:w-5 sm:h-5 mr-5 bg-blue-500 rounded-md flex items-center justify-center rotate-45">
+            <CircleHelp className="w-4 h-4 text-white rotate-[-45deg]" />
           </div>
         );
       case "wrong":

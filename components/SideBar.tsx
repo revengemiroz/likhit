@@ -14,6 +14,7 @@ import Image from "next/image";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { Clock8 } from "lucide-react";
 import { Map } from "lucide-react";
+import { CircleHelp } from "lucide-react";
 const menuItems = [
   { icon: Newspaper, label: "Blog", href: "/" },
   { icon: BadgePlus, label: "Create", href: "/create" },
