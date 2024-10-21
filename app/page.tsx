@@ -126,7 +126,7 @@ export default function Component() {
           </Accordion>
         </section>
 
-        <section className="py-12 text-center border-t border-gray-200 dark:border-gray-800">
+        <section className="py-12 text-center bg-white border-t border-gray-200 dark:border-gray-800">
           <h2 className="text-2xl font-bold mb-4">Ready to Get Started?</h2>
           <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">
             Begin your journey towards your Nepali driving license today.
