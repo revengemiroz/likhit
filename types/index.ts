@@ -6,6 +6,8 @@ export interface ListProps {
   language: Language;
   handleAnswerSelect: (answerId: number) => void;
   userAnswer: number | null;
+  setConfirmAnswerState: (value: boolean) => void;
+  confirmAnswerState: boolean;
 }
 
 export type QuestionStoreType = {
@@ -42,7 +44,7 @@ export interface QuestionType {
   image: string;
   user_answer?: number | null;
 }
-export type Variant = "neutral" | "right" | "wrong" | "disabled";
+export type Variant = "neutral" | "right" | "wrong" | "disabled" | "selected";
 
 export interface Option {
   id: number;

@@ -24,6 +24,7 @@ const useQuestionStore = create(
         incorrect: 0,
       },
       currentQuestionIndex: 0,
+      confirmAnswerState: false,
       finish: false,
       isReviewMode: false,
       setIsReviewMode: (value: boolean) => set({ isReviewMode: value }),
@@ -71,6 +72,8 @@ const useQuestionStore = create(
 
       setFinish: (value: boolean) => set({ finish: value }),
 
+      setConfirmAnswerState: (value: boolean) =>
+        set({ confirmAnswerState: value }),
       // Function to move to the next question
       nextQuestion: () => {
         set((state) => ({

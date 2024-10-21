@@ -55,6 +55,12 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
     saveUserAnswer(currentQuestion?.id as number, answerId); // Save the user's answer to the store
   };
 
+  const [confirmAnswerState, setConfirmAnswerState] = useState(false);
+
+  const handleSetConfirmState = (value: boolean) => {
+    setConfirmAnswerState(value);
+  };
+
   return (
     <div className="bg-white  border shadow-sm w-full overflow-hidden flex flex-col rounded-xl">
       <Dialog>
@@ -99,9 +105,19 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
               handleAnswerSelect={handleAnswerSelect}
               //@ts-ignore
               userAnswer={currentQuestion.user_answer} // Pass the callback to the list
+              setConfirmAnswerState={handleSetConfirmState}
+              confirmAnswerState={confirmAnswerState}
             />
           )}
         </div>
+
+        {confirmAnswerState && (
+          <div className="flex justify-end pb-6 pr-6">
+            <Button onClick={() => setConfirmAnswerState(false)}>
+              Confirm Answer
+            </Button>
+          </div>
+        )}
 
         {currentQuestion?.user_answer &&
           shuffledQuestions[currentQuestionIndex + 1] && (

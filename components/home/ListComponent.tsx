@@ -28,6 +28,8 @@ const RadioButton: React.FC<RadioButtonProps> = ({
         return "cursor-default bg-red-100 rounded-lg transition-all duration-500 ease-in-out";
       case "disabled":
         return "rounded-lg opacity-50 cursor-not-allowed transition-all duration-500 ease-in-out";
+      case "selected":
+        return "cursor-default bg-pink-100 rounded-lg transition-all duration-500 ease-in-out";
       default:
         return "";
     }
@@ -100,6 +102,8 @@ const List: React.FC<ListProps> = ({
   language,
   handleAnswerSelect,
   userAnswer,
+  setConfirmAnswerState,
+  confirmAnswerState,
 }) => {
   const [selectedOptionId, setSelectedOptionId] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
@@ -138,18 +142,22 @@ const List: React.FC<ListProps> = ({
   }, [userAnswer]);
 
   const handleOptionClick = (optionId: number) => {
-    setSelectedOptionId(optionId);
-    setShowResult(true);
-
-    handleAnswerSelect(optionId); // Notify the parent component that an answer has been selected
+    if (!confirmAnswerState) {
+      setConfirmAnswerState(true);
+      setSelectedOptionId(optionId);
+    } else {
+      setShowResult(true);
+      handleAnswerSelect(optionId); // Notify the parent component that an answer has been selected
+    }
   };
 
   return (
     <div className="flex flex-col transition-all md:gap-1 gap-1">
       {options.map((option) => {
         let variant: Variant = "neutral";
-
-        if (showResult) {
+        if (confirmAnswerState) {
+          variant = "selected";
+        } else if (showResult) {
           if (option.id === correctAnswerId) {
             variant = "right"; // Show correct answer
           } else if (option.id === selectedOptionId) {
