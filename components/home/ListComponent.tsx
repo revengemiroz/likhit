@@ -1,7 +1,7 @@
 import { Language, ListProps, RadioButtonProps, Variant } from "@/types";
 import { Check, X } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
-
+import useQuestionStore from "@/app/store";
 // Expandable for more languages
 
 const RadioButton: React.FC<RadioButtonProps> = ({
@@ -102,8 +102,6 @@ const List: React.FC<ListProps> = ({
   language,
   handleAnswerSelect,
   userAnswer,
-  setConfirmAnswerState,
-  confirmAnswerState,
 }) => {
   const [selectedOptionId, setSelectedOptionId] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
@@ -111,7 +109,12 @@ const List: React.FC<ListProps> = ({
     null
   );
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
+  const confirmAnswerState = useQuestionStore(
+    (state) => state.confirmAnswerState
+  );
+  const setConfirmAnswerState = useQuestionStore(
+    (state) => state.setConfirmAnswerState
+  );
   useEffect(() => {
     if (userAnswer !== null) {
       setSelectedOptionId(userAnswer);
@@ -145,9 +148,9 @@ const List: React.FC<ListProps> = ({
     if (!confirmAnswerState) {
       setConfirmAnswerState(true);
       setSelectedOptionId(optionId);
-    } else {
-      setShowResult(true);
-      handleAnswerSelect(optionId); // Notify the parent component that an answer has been selected
+      // } else {
+      //   setShowResult(true);
+      //   handleAnswerSelect(optionId); // Notify the parent component that an answer has been selected
     }
   };
 

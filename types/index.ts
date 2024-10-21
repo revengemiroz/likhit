@@ -6,14 +6,14 @@ export interface ListProps {
   language: Language;
   handleAnswerSelect: (answerId: number) => void;
   userAnswer: number | null;
-  setConfirmAnswerState: (value: boolean) => void;
-  confirmAnswerState: boolean;
 }
 
 export type QuestionStoreType = {
   finish: boolean;
   nextQuestion: any;
   start: any;
+  confirmAnswerState: number | null;
+  setConfirmAnswerState: (value: number | null) => void;
   saveUserAnswer: (questionId: number, userAnswer: number) => void;
   questions: QuestionType[];
   shuffledQuestions: QuestionType[];

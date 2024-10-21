@@ -28,6 +28,12 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
   const saveUserAnswer = useQuestionStore((state) => state.saveUserAnswer);
   const setFinish = useQuestionStore((state) => state.setFinish);
   const nextQuestion = useQuestionStore((state) => state.nextQuestion);
+  const confirmAnswerState = useQuestionStore(
+    (state) => state.confirmAnswerState
+  );
+  const setConfirmAnswerState = useQuestionStore(
+    (state) => state.setConfirmAnswerState
+  );
   const currentQuestionIndex = useQuestionStore(
     (state) => state.currentQuestionIndex
   );
@@ -53,12 +59,6 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
 
     // Save the user's answer to the store
     saveUserAnswer(currentQuestion?.id as number, answerId); // Save the user's answer to the store
-  };
-
-  const [confirmAnswerState, setConfirmAnswerState] = useState(false);
-
-  const handleSetConfirmState = (value: boolean) => {
-    setConfirmAnswerState(value);
   };
 
   return (
@@ -105,15 +105,18 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
               handleAnswerSelect={handleAnswerSelect}
               //@ts-ignore
               userAnswer={currentQuestion.user_answer} // Pass the callback to the list
-              setConfirmAnswerState={handleSetConfirmState}
-              confirmAnswerState={confirmAnswerState}
             />
           )}
         </div>
 
-        {confirmAnswerState && (
+        {confirmAnswerState != null && (
           <div className="flex justify-end pb-6 pr-6">
-            <Button onClick={() => setConfirmAnswerState(false)}>
+            <Button
+              onClick={() => {
+                handleAnswerSelect(confirmAnswerState);
+                setConfirmAnswerState(null);
+              }}
+            >
               Confirm Answer
             </Button>
           </div>
