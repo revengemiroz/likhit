@@ -47,7 +47,7 @@ export default function DrivingTestCentersLocator() {
     null
   );
   const [searchRadius, setSearchRadius] = useState<number>(5); // 5km default
-  const [testCenters, setTestCenters] = useState<TestCenter[]>([]);
+  // const [testCenters, setTestCenters] = useState<TestCenter[]>([]);
   const [activeLocation, setActiveLocation] = useState<string>(
     locations[0].name
   );
@@ -101,100 +101,100 @@ export default function DrivingTestCentersLocator() {
     }
   };
 
-  const searchNearbyTestCenters = async () => {
-    if (!userLocation) return;
+  // const searchNearbyTestCenters = async () => {
+  //   if (!userLocation) return;
 
-    const [lat, lon] = userLocation;
-    const query = `
-      [out:json];
-      (
-        node["amenity"="driving_school"](around:${
-          searchRadius * 1000
-        },${lat},${lon});
-        way["amenity"="driving_school"](around:${
-          searchRadius * 1000
-        },${lat},${lon});
-        relation["amenity"="driving_school"](around:${
-          searchRadius * 1000
-        },${lat},${lon});
-      );
-      out center;
-    `;
+  //   const [lat, lon] = userLocation;
+  //   const query = `
+  //     [out:json];
+  //     (
+  //       node["amenity"="driving_school"](around:${
+  //         searchRadius * 1000
+  //       },${lat},${lon});
+  //       way["amenity"="driving_school"](around:${
+  //         searchRadius * 1000
+  //       },${lat},${lon});
+  //       relation["amenity"="driving_school"](around:${
+  //         searchRadius * 1000
+  //       },${lat},${lon});
+  //     );
+  //     out center;
+  //   `;
 
-    try {
-      const response = await fetch(`https://overpass-api.de/api/interpreter`, {
-        method: "POST",
-        body: query,
-      });
-      const data = await response.json();
+  //   try {
+  //     const response = await fetch(`https://overpass-api.de/api/interpreter`, {
+  //       method: "POST",
+  //       body: query,
+  //     });
+  //     const data = await response.json();
 
-      const centers: TestCenter[] = data.elements.map((element: any) => ({
-        name: element.tags.name || "Unnamed Driving School",
-        lat: element.lat || element.center.lat,
-        lon: element.lon || element.center.lon,
-        distance: calculateDistance(
-          lat,
-          lon,
-          element.lat || element.center.lat,
-          element.lon || element.center.lon
-        ),
-      }));
+  //     const centers: TestCenter[] = data.elements.map((element: any) => ({
+  //       name: element.tags.name || "Unnamed Driving School",
+  //       lat: element.lat || element.center.lat,
+  //       lon: element.lon || element.center.lon,
+  //       distance: calculateDistance(
+  //         lat,
+  //         lon,
+  //         element.lat || element.center.lat,
+  //         element.lon || element.center.lon
+  //       ),
+  //     }));
 
-      setTestCenters(centers.sort((a, b) => a.distance - b.distance));
+  //     setTestCenters(centers.sort((a, b) => a.distance - b.distance));
 
-      if (mapRef.current) {
-        // Clear existing markers
-        mapRef.current.eachLayer((layer) => {
-          if (layer instanceof L.Marker) {
-            mapRef.current?.removeLayer(layer);
-          }
-        });
+  //     if (mapRef.current) {
+  //       // Clear existing markers
+  //       mapRef.current.eachLayer((layer) => {
+  //         if (layer instanceof L.Marker) {
+  //           mapRef.current?.removeLayer(layer);
+  //         }
+  //       });
 
-        // Add user location marker
-        L.marker([lat, lon])
-          .addTo(mapRef.current)
-          .bindPopup("Your Location")
-          .openPopup();
+  //       // Add user location marker
+  //       L.marker([lat, lon])
+  //         .addTo(mapRef.current)
+  //         .bindPopup("Your Location")
+  //         .openPopup();
 
-        // Add test center markers
-        centers.forEach((center) => {
-          L.marker([center.lat, center.lon])
-            .addTo(mapRef.current!)
-            .bindPopup(center.name);
-        });
-      }
-    } catch (error) {
-      console.error("Error fetching nearby test centers:", error);
-    }
-  };
+  //       // Add test center markers
+  //       centers.forEach((center) => {
+  //         L.marker([center.lat, center.lon])
+  //           .addTo(mapRef.current!)
+  //           .bindPopup(center.name);
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching nearby test centers:", error);
+  //   }
+  // };
 
-  const calculateDistance = (
-    lat1: number,
-    lon1: number,
-    lat2: number,
-    lon2: number
-  ) => {
-    const R = 6371; // Radius of the earth in km
-    const dLat = deg2rad(lat2 - lat1);
-    const dLon = deg2rad(lon2 - lon1);
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(deg2rad(lat1)) *
-        Math.cos(deg2rad(lat2)) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const d = R * c; // Distance in km
-    return Math.round(d * 100) / 100;
-  };
+  // const calculateDistance = (
+  //   lat1: number,
+  //   lon1: number,
+  //   lat2: number,
+  //   lon2: number
+  // ) => {
+  //   const R = 6371; // Radius of the earth in km
+  //   const dLat = deg2rad(lat2 - lat1);
+  //   const dLon = deg2rad(lon2 - lon1);
+  //   const a =
+  //     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+  //     Math.cos(deg2rad(lat1)) *
+  //       Math.cos(deg2rad(lat2)) *
+  //       Math.sin(dLon / 2) *
+  //       Math.sin(dLon / 2);
+  //   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  //   const d = R * c; // Distance in km
+  //   return Math.round(d * 100) / 100;
+  // };
 
-  const deg2rad = (deg: number) => {
-    return deg * (Math.PI / 180);
-  };
+  // const deg2rad = (deg: number) => {
+  //   return deg * (Math.PI / 180);
+  // };
 
-  const handleRadiusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchRadius(parseInt(event.target.value, 10));
-  };
+  // const handleRadiusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setSearchRadius(parseInt(event.target.value, 10));
+  // };
   const sidebarRef = useRef<{
     openSidebar: () => void;
     closeSidebar: () => void;

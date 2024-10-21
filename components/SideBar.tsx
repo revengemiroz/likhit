@@ -113,7 +113,7 @@ const ResponsiveSidebar = forwardRef(
     return (
       <div className={`absolute h-screen `}>
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetContent side="left" className="w-[80rem]  p-0 z-[200]">
+          <SheetContent side="left" className="lg:w-[80rem]  p-0 z-[200]">
             {" "}
             <Cross2Icon
               onClick={closeSidebar}
