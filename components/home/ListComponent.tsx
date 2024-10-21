@@ -145,12 +145,9 @@ const List: React.FC<ListProps> = ({
   }, [userAnswer]);
 
   const handleOptionClick = (optionId: number) => {
-    if (!confirmAnswerState) {
-      setConfirmAnswerState(true);
+    if (confirmAnswerState != optionId) {
+      setConfirmAnswerState(optionId);
       setSelectedOptionId(optionId);
-      // } else {
-      //   setShowResult(true);
-      //   handleAnswerSelect(optionId); // Notify the parent component that an answer has been selected
     }
   };
 
@@ -158,7 +155,7 @@ const List: React.FC<ListProps> = ({
     <div className="flex flex-col transition-all md:gap-1 gap-1">
       {options.map((option) => {
         let variant: Variant = "neutral";
-        if (confirmAnswerState) {
+        if (confirmAnswerState && confirmAnswerState == option.id) {
           variant = "selected";
         } else if (showResult) {
           if (option.id === correctAnswerId) {
