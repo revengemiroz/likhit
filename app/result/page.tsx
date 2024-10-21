@@ -36,8 +36,6 @@ function page() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Nav />
-
       <div className="flex-1 flex items-center justify-center ">
         <div className="text-3xl  w-3/5 text-center m-auto">
           <div className="grid grid-cols-[300px_1fr] gap-4">
