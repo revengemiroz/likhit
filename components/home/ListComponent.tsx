@@ -114,7 +114,7 @@ const List: React.FC<ListProps> = ({
 }) => {
   const isReviewMode = useQuestionStore((state) => state.isReviewMode);
   const [selectedOptionId, setSelectedOptionId] = useState<number | null>(null);
-  const [showResult, setShowResult] = useState(isReviewMode ? true : false);
+  const [showResult, setShowResult] = useState(false);
   const [animatingOptionId, setAnimatingOptionId] = useState<number | null>(
     null
   );
@@ -170,7 +170,7 @@ const List: React.FC<ListProps> = ({
         let variant: Variant = "neutral";
         if (confirmAnswerState && confirmAnswerState == option.id) {
           variant = "selected";
-        } else if (showResult) {
+        } else if (showResult || isReviewMode) {
           if (option.id === correctAnswerId) {
             variant = "right"; // Show correct answer
           } else if (option.id === selectedOptionId) {
