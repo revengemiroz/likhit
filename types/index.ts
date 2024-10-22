@@ -12,6 +12,7 @@ export type QuestionStoreType = {
   finish: boolean;
   nextQuestion: () => void;
   backQuestion: () => void;
+  setCurrentQuestionIndex: (value: number) => void;
   start: any;
   confirmAnswerState: number | null;
   setConfirmAnswerState: (value: number | null) => void;

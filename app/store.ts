@@ -85,6 +85,8 @@ const useQuestionStore = create(
           currentQuestionIndex: state.currentQuestionIndex - 1,
         }));
       },
+      setCurrentQuestionIndex: (value: number) =>
+        set({ currentQuestionIndex: value }),
       // Function to get a specific question by index
       getSpecificQuestion: () => {
         return get().shuffledQuestions[get().currentQuestionIndex];

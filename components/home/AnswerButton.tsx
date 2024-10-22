@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-
+import useQuestionStore from "@/app/store";
 export default function Index({
   variant = "neutral",
   children,
@@ -16,9 +16,16 @@ export default function Index({
       "bg-white text-[black] font-semibold hover:bg-white-300 border-2 border-blue-500",
   };
 
+  const setCurrentQuestionIndex = useQuestionStore(
+    (state) => state.setCurrentQuestionIndex
+  );
+
   return (
     <Button
       className={`w-[28px] h-[28px]  sm:w-[32px] sm:h-[32px] text-[12px] sm:text-[14px] flex items-center justify-center font-medium rounded-lg  ${variantStyles[variant]}`}
+      onClick={() => {
+        setCurrentQuestionIndex(Number(children) - 1);
+      }}
     >
       {children}
     </Button>
