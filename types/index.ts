@@ -10,7 +10,8 @@ export interface ListProps {
 
 export type QuestionStoreType = {
   finish: boolean;
-  nextQuestion: any;
+  nextQuestion: () => void;
+  backQuestion: () => void;
   start: any;
   confirmAnswerState: number | null;
   setConfirmAnswerState: (value: number | null) => void;

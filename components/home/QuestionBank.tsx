@@ -28,6 +28,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
   const saveUserAnswer = useQuestionStore((state) => state.saveUserAnswer);
   const setFinish = useQuestionStore((state) => state.setFinish);
   const nextQuestion = useQuestionStore((state) => state.nextQuestion);
+  const backQuestion = useQuestionStore((state) => state.backQuestion);
   const confirmAnswerState = useQuestionStore(
     (state) => state.confirmAnswerState
   );
@@ -122,19 +123,34 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
           </div>
         )}
 
-        {currentQuestion?.user_answer &&
-          shuffledQuestions[currentQuestionIndex + 1] && (
-            <div className="flex justify-end pb-6 pr-6">
-              <Button
-                onClick={nextQuestion}
-                disabled={currentQuestion?.user_answer == null} // Disable until answered
-                variant="outline"
-                className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
-              >
-                Next question
-              </Button>
-            </div>
-          )}
+        <div className="flex justify-between px-10">
+          {currentQuestion?.user_answer &&
+            shuffledQuestions[currentQuestionIndex - 1] && (
+              <div className="flex justify-start w-full pb-6 pr-6">
+                <Button
+                  onClick={backQuestion}
+                  disabled={currentQuestion?.user_answer == null} // Disable until answered
+                  variant="outline"
+                  className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
+                >
+                  Back
+                </Button>
+              </div>
+            )}
+          {currentQuestion?.user_answer &&
+            shuffledQuestions[currentQuestionIndex + 1] && (
+              <div className="flex justify-end w-full pb-6 pr-6">
+                <Button
+                  onClick={nextQuestion}
+                  disabled={currentQuestion?.user_answer == null} // Disable until answered
+                  variant="outline"
+                  className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
+                >
+                  Next
+                </Button>
+              </div>
+            )}
+        </div>
 
         {shuffledQuestions.length - 1 === currentQuestionIndex &&
           shuffledQuestions[currentQuestionIndex].user_answer && (
