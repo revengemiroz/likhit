@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-// import { questions } from "../data/en";
 import { questions } from "../data/np/two_wheeler_pic_qsn";
 import { QuestionStoreType } from "../types";
 
@@ -91,7 +90,6 @@ const useQuestionStore = create(
       getSpecificQuestion: () => {
         return get().shuffledQuestions[get().currentQuestionIndex];
       },
-
       // get score
       getScore: () => {
         return get().count;

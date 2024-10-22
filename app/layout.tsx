@@ -43,12 +43,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-  
-   
-      <body  className={`${poppins.variable} ${inter.variable} ${spaceGrotesk.variable} antialiased font-poppins`}>
-
+      <body
+        className={`${poppins.variable} ${inter.variable} ${spaceGrotesk.variable} antialiased font-poppins`}
+      >
         <ConvexClientProvider>
-        <Nav />
+          <Nav />
           <div className="min-h-screen w-full relative">
             {children}
             <div

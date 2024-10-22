@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -8,8 +10,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Car, Book, CheckCircle, ChevronRight } from "lucide-react";
-
+import Nav from "@/components/home/Nav";
+import { useRouter } from "next/navigation";
 export default function Component() {
+  const router = useRouter();
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-900">
       <header className="w-full max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -38,7 +42,13 @@ export default function Component() {
           <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-md">
             Practice, learn, and succeed with our comprehensive mock exams.
           </p>
-          <Button size="lg">Start Free Mock Test</Button>
+          <Button
+            size="lg"
+            onClick={() => router.push("/all-tests")}
+            className="text-sm font-medium bg-blue-500 hover:bg-blue-600"
+          >
+            Start Free Mock Test
+          </Button>
         </section>
 
         <section className="py-12 border-t border-gray-200 dark:border-gray-800">
@@ -110,12 +120,16 @@ export default function Component() {
           </Accordion>
         </section>
 
-        <section className="py-12 text-center border-t border-gray-200 dark:border-gray-800">
+        <section className="py-12 text-center bg-white border-t border-gray-200 dark:border-gray-800">
           <h2 className="text-2xl font-bold mb-4">Ready to Get Started?</h2>
           <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">
             Begin your journey towards your Nepali driving license today.
           </p>
-          <Button size="lg">
+          <Button
+            size="lg"
+            onClick={() => router.push("/all-tests")}
+            className="text-sm font-medium bg-blue-500 hover:bg-blue-600"
+          >
             Start Free Mock Test
             <ChevronRight className="ml-2 h-4 w-4" />
           </Button>

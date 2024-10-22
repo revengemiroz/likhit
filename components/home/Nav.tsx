@@ -77,8 +77,8 @@ function Nav() {
             </NavigationMenu>
 
             <Button
-              className=" text-[12px] sm:text-sm  font-medium bg-blue-500 hover:bg-blue-600"
-              onClick={() => router.push("/test/1")}
+              onClick={() => router.push("/all-tests")}
+              className="text-sm font-medium bg-blue-500 hover:bg-blue-600"
             >
               Take a test
             </Button>
