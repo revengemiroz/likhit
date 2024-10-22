@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import useQuestionStore from "../store";
 import ProgressBar from "./progressbar";
 import {
   Card,
@@ -11,6 +10,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import useQuestionStore from "../store";
 
 function ResultPage() {
   const correctCount = useQuestionStore((state) => state.count.correct);
@@ -19,9 +20,9 @@ function ResultPage() {
 
   const percentage = Math.round((correctCount / totalCount) * 100);
   const message = percentage >= 70 ? "Congratulations!" : "Keep practicing!";
-
+  const setIsReviewMode = useQuestionStore((state) => state.setIsReviewMode);
   // ... existing loading state ...
-
+  const router = useRouter();
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
       <div className="flex justify-center my-20 p-4">
@@ -81,7 +82,14 @@ function ResultPage() {
                 </CardDescription>
               </CardHeader>
               <CardFooter>
-                <Button onClick={() => {}}>Review All</Button>
+                <Button
+                  onClick={() => {
+                    setIsReviewMode(true);
+                    router.push("/result/review/1");
+                  }}
+                >
+                  Review All
+                </Button>
               </CardFooter>
             </Card>
           </div>

@@ -124,12 +124,12 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
         )}
 
         <div className="flex justify-between px-10">
-          {currentQuestion?.user_answer &&
+          {!confirmAnswerState &&
             shuffledQuestions[currentQuestionIndex - 1] && (
               <div className="flex justify-start w-full pb-6 pr-6">
                 <Button
                   onClick={backQuestion}
-                  disabled={currentQuestion?.user_answer == null} // Disable until answered
+                  // Disable until answered
                   variant="outline"
                   className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
                 >
@@ -137,12 +137,12 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
                 </Button>
               </div>
             )}
-          {currentQuestion?.user_answer &&
+          {!confirmAnswerState &&
             shuffledQuestions[currentQuestionIndex + 1] && (
               <div className="flex justify-end w-full pb-6 pr-6">
                 <Button
                   onClick={nextQuestion}
-                  disabled={currentQuestion?.user_answer == null} // Disable until answered
+                  // Disable until answered
                   variant="outline"
                   className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
                 >

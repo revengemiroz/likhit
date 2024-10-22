@@ -112,8 +112,9 @@ const List: React.FC<ListProps> = ({
   handleAnswerSelect,
   userAnswer,
 }) => {
+  const isReviewMode = useQuestionStore((state) => state.isReviewMode);
   const [selectedOptionId, setSelectedOptionId] = useState<number | null>(null);
-  const [showResult, setShowResult] = useState(false);
+  const [showResult, setShowResult] = useState(isReviewMode ? true : false);
   const [animatingOptionId, setAnimatingOptionId] = useState<number | null>(
     null
   );
