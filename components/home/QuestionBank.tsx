@@ -133,7 +133,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
                   variant="outline"
                   className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
                 >
-                  Back
+                  Previous
                 </Button>
               </div>
             )}
