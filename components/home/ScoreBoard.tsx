@@ -13,6 +13,7 @@ function ScoreBoard() {
   const shuffledQuestions = useQuestionStore(
     (state) => state.shuffledQuestions
   );
+
   const router = useRouter();
   const currentQuestionIndex = useQuestionStore(
     (state) => state.currentQuestionIndex
