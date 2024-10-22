@@ -187,7 +187,7 @@ const List: React.FC<ListProps> = ({
             label={option[language]}
             language={language}
             onClick={() => handleOptionClick(option.id)}
-            isDisabled={showResult} // Disable all options once one is selected
+            isDisabled={showResult || isReviewMode} // Disable all options once one is selected
             isAnimating={option.id === animatingOptionId}
           />
         );
