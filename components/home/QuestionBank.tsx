@@ -38,6 +38,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
   const currentQuestionIndex = useQuestionStore(
     (state) => state.currentQuestionIndex
   );
+  const setIsReviewMode = useQuestionStore((state) => state.setIsReviewMode);
   const isReviewMode = useQuestionStore((state) => state.isReviewMode);
   const currentQuestion =
     shuffledQuestions.length > 0
@@ -155,7 +156,10 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
               <div className="flex justify-end pb-6 pr-6">
                 <Link href="/result">
                   <Button
-                    onClick={() => setFinish(true)}
+                    onClick={() => {
+                      setIsReviewMode(false);
+                      setFinish(true);
+                    }}
                     // disabled={currentQuestion?.user_answer == null} // Disable until answered
                     variant="outline"
                     className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 text-[12px] sm:text-sm"
