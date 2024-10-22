@@ -40,6 +40,9 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
   );
   const setIsReviewMode = useQuestionStore((state) => state.setIsReviewMode);
   const isReviewMode = useQuestionStore((state) => state.isReviewMode);
+  const setCurrentQuestionIndex = useQuestionStore(
+    (state) => state.setCurrentQuestionIndex
+  );
   const currentQuestion =
     shuffledQuestions.length > 0
       ? shuffledQuestions[currentQuestionIndex]
@@ -158,6 +161,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
                   <Button
                     onClick={() => {
                       setIsReviewMode(false);
+                      setCurrentQuestionIndex(0);
                       setFinish(true);
                     }}
                     // disabled={currentQuestion?.user_answer == null} // Disable until answered
