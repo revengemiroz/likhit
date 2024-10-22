@@ -155,7 +155,10 @@ const List: React.FC<ListProps> = ({
   }, [userAnswer]);
 
   const handleOptionClick = (optionId: number) => {
-    if (confirmAnswerState != optionId) {
+    if (confirmAnswerState == optionId) {
+      setConfirmAnswerState(null);
+      setSelectedOptionId(null);
+    } else {
       setConfirmAnswerState(optionId);
       setSelectedOptionId(optionId);
     }
