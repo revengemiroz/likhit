@@ -38,7 +38,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
   const currentQuestionIndex = useQuestionStore(
     (state) => state.currentQuestionIndex
   );
-
+  const isReviewMode = useQuestionStore((state) => state.isReviewMode);
   const currentQuestion =
     shuffledQuestions.length > 0
       ? shuffledQuestions[currentQuestionIndex]
@@ -160,7 +160,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
                     variant="outline"
                     className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 text-[12px] sm:text-sm"
                   >
-                    Finish quiz
+                    Finish {isReviewMode ? "review" : "quiz"}
                   </Button>
                 </Link>
               </div>
