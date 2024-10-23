@@ -1,6 +1,5 @@
 import { Inter, Poppins, Space_Grotesk } from "next/font/google";
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import Head from "next/head";
 
 import { ConvexClientProvider } from "./ConvexClientProvider";
@@ -8,8 +7,8 @@ import Script from "next/script";
 import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 import "simplebar-react/dist/simplebar.min.css";
-import "leaflet/dist/leaflet.css";
 import Nav from "@/components/home/Nav";
+import "leaflet/dist/leaflet.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -34,6 +33,10 @@ export const metadata: Metadata = {
     "Rev up your journey in Nepal with our ultimate guide to getting your driving license! Whether you're hitting the scenic highways or navigating bustling city streets, we've got the tips and tricks to steer you through the process. Fast-track your way to freedom on four wheels—let's drive into the future together!",
   keywords:
     "Driving License Nepal, Nepal Driving License Process, How to Get Driving License in Nepal, Driving License Application Nepal, Nepal Driving Test, Online Driving License Application Nepal, Renew Driving License Nepal, Driving License Requirements Nepal, Driving License Fees Nepal, Best Tips for Driving Test Nepal, Nepal Transport Authority, Driving License Verification Nepal, Learner's License Nepal, International Driving License Nepal, Road Safety in Nepal",
+  openGraph: {
+    images:
+      "https://utfs.io/f/Ug3TBysra1dXA9sImtE41SFw0mNZDItClxTshGraHEp72j4e",
+  },
 };
 
 export default function RootLayout({
@@ -49,6 +52,7 @@ export default function RootLayout({
         <ConvexClientProvider>
           <Nav />
           <div className="min-h-screen w-full relative">
+            <Nav />
             {children}
             <div
               className="fixed inset-0 z-[-1] bg-transparent h-screen w-screen" // bg-gradient-to-b from-muted to-background
