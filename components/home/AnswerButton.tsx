@@ -4,9 +4,11 @@ import useQuestionStore from "@/app/store";
 export default function Index({
   variant = "neutral",
   children,
+  isReviewMode = false,
 }: {
   variant: "right" | "wrong" | "neutral" | "selected";
   children?: React.ReactNode;
+  isReviewMode?: boolean;
 }) {
   const variantStyles = {
     right: "bg-green-400 text-white hover:bg-green-300",
@@ -27,7 +29,9 @@ export default function Index({
       className={`w-[28px] h-[28px]  sm:w-[32px] sm:h-[32px] text-[12px] sm:text-[14px] flex items-center justify-center font-medium rounded-lg  ${variantStyles[variant]}`}
       disabled={confirmAnswerState ? true : false}
       onClick={() => {
-        setCurrentQuestionIndex(Number(children) - 1);
+        if (isReviewMode) {
+          setCurrentQuestionIndex(Number(children) - 1);
+        }
       }}
     >
       {children}
