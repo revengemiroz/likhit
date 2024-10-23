@@ -1,8 +1,10 @@
+"use client";
 import { Language, ListProps, RadioButtonProps, Variant } from "@/types";
 import { Check, X } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 import useQuestionStore from "@/app/store";
 import { CircleHelp } from "lucide-react";
+import { usePathname } from "next/navigation";
 // Expandable for more languages
 
 const RadioButton: React.FC<RadioButtonProps> = ({
@@ -112,7 +114,8 @@ const List: React.FC<ListProps> = ({
   handleAnswerSelect,
   userAnswer,
 }) => {
-  const isReviewMode = useQuestionStore((state) => state.isReviewMode);
+  const pathname = usePathname();
+  const isReviewMode = useRef<boolean>(pathname.includes("review"));
   const [selectedOptionId, setSelectedOptionId] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [animatingOptionId, setAnimatingOptionId] = useState<number | null>(
@@ -187,7 +190,7 @@ const List: React.FC<ListProps> = ({
             label={option[language]}
             language={language}
             onClick={() => handleOptionClick(option.id)}
-            isDisabled={showResult || isReviewMode} // Disable all options once one is selected
+            isDisabled={showResult || isReviewMode.current} // Disable all options once one is selected
             isAnimating={option.id === animatingOptionId}
           />
         );
