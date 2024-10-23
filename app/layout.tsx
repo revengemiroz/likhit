@@ -1,4 +1,4 @@
-import { Poppins } from "next/font/google";
+import { Inter, Poppins, Space_Grotesk } from "next/font/google";
 import type { Metadata } from "next";
 import Head from "next/head";
 
@@ -8,10 +8,23 @@ import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 import "simplebar-react/dist/simplebar.min.css";
 import Nav from "@/components/home/Nav";
+import "leaflet/dist/leaflet.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-poppins",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-inter",
+});
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-spaceGrotesk",
 });
 
 export const metadata: Metadata = {
@@ -33,20 +46,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        <title>Likhit Nepal - Likhit Exam Nepal: Test Your Knowledge Now</title>
-        <meta
-          name="description"
-          content="Rev up your journey in Nepal with our ultimate guide to getting your driving license! Whether you're hitting the scenic highways or navigating bustling city streets, we've got the tips and tricks to steer you through the process. Fast-track your way to freedom on four wheels—let's drive into the future together!"
-        />
-        <meta
-          name="keywords"
-          content="Driving License Nepal, Nepal Driving License Process, How to Get Driving License in Nepal, Driving License Application Nepal, Nepal Driving Test, Online Driving License Application Nepal, Renew Driving License Nepal, Driving License Requirements Nepal, Driving License Fees Nepal, Best Tips for Driving Test Nepal, Nepal Transport Authority, Driving License Verification Nepal, Learner's License Nepal, International Driving License Nepal, Road Safety in Nepal"
-        />
-        <meta name="author" content="Your Name or Your Company Name" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <body className={`${poppins.className} antialiased`}>
+      <body
+        className={`${poppins.variable} ${inter.variable} ${spaceGrotesk.variable} antialiased font-poppins`}
+      >
         <ConvexClientProvider>
           <div className="min-h-screen w-full relative">
             <Nav />

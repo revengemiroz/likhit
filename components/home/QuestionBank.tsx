@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import List from "@/components/home/ListComponent"; // Ensure you have the List component in place
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -8,7 +8,7 @@ import { Language } from "@/types";
 import useQuestionStore from "@/app/store";
 import Image from "next/image";
 import Link from "next/link";
-
+import { usePathname } from "next/navigation";
 interface QuestionBankProps {
   questionList: any;
   handleNextQuestion: () => void;
@@ -25,19 +25,32 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
   const shuffledQuestions = useQuestionStore(
     (state) => state.shuffledQuestions
   );
+  const pathname = usePathname();
+  const isReviewMode = useRef<boolean>(pathname.includes("review"));
   const saveUserAnswer = useQuestionStore((state) => state.saveUserAnswer);
   const setFinish = useQuestionStore((state) => state.setFinish);
   const nextQuestion = useQuestionStore((state) => state.nextQuestion);
+  const backQuestion = useQuestionStore((state) => state.backQuestion);
+  const confirmAnswerState = useQuestionStore(
+    (state) => state.confirmAnswerState
+  );
+  const setConfirmAnswerState = useQuestionStore(
+    (state) => state.setConfirmAnswerState
+  );
   const currentQuestionIndex = useQuestionStore(
     (state) => state.currentQuestionIndex
   );
 
+  const setCurrentQuestionIndex = useQuestionStore(
+    (state) => state.setCurrentQuestionIndex
+  );
   const currentQuestion =
     shuffledQuestions.length > 0
       ? shuffledQuestions[currentQuestionIndex]
       : null;
 
   if (!currentQuestion) return <div> No question to display </div>;
+  // console.log({ currentQuestion });
 
   const handleAnswerSelect = (answerId: number) => {
     // increase correct answer count
@@ -96,40 +109,74 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
               language={language as Language}
               correctAnswerId={currentQuestion.correctAnswerId}
               handleAnswerSelect={handleAnswerSelect}
+              //@ts-ignore
               userAnswer={currentQuestion.user_answer} // Pass the callback to the list
             />
           )}
         </div>
 
-        {currentQuestion?.user_answer &&
-          shuffledQuestions[currentQuestionIndex + 1] && (
-            <div className="flex justify-end pb-6 pr-6">
-              <Button
-                onClick={nextQuestion}
-                disabled={currentQuestion?.user_answer == null} // Disable until answered
-                variant="outline"
-                className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
-              >
-                Next question
-              </Button>
-            </div>
-          )}
+        {confirmAnswerState != null && (
+          <div className="flex justify-end pb-6 pr-6">
+            <Button
+              variant="outline"
+              className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
+              onClick={() => {
+                handleAnswerSelect(confirmAnswerState);
+                setConfirmAnswerState(null);
+              }}
+            >
+              Confirm Answer
+            </Button>
+          </div>
+        )}
 
-        {shuffledQuestions.length - 1 === currentQuestionIndex &&
-          shuffledQuestions[currentQuestionIndex].user_answer && (
-            <div className="flex justify-end pb-6 pr-6">
-              <Link href="/result">
+        <div className="flex justify-between px-10 ">
+          {isReviewMode.current &&
+            shuffledQuestions[currentQuestionIndex - 1] && (
+              <div className="flex justify-start w-full pb-6 pr-6">
                 <Button
-                  onClick={() => setFinish(true)}
-                  // disabled={currentQuestion?.user_answer == null} // Disable until answered
+                  onClick={backQuestion}
+                  // Disable until answered
                   variant="outline"
-                  className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 text-[12px] sm:text-sm"
+                  className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
                 >
-                  Finish quiz
+                  Previous
                 </Button>
-              </Link>
-            </div>
-          )}
+              </div>
+            )}
+          {(currentQuestion?.user_answer || isReviewMode.current) &&
+            !confirmAnswerState &&
+            shuffledQuestions[currentQuestionIndex + 1] && (
+              <div className="flex justify-end w-full pb-6 pr-6">
+                <Button
+                  onClick={nextQuestion}
+                  // Disable until answered
+                  variant="outline"
+                  className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
+                >
+                  Next
+                </Button>
+              </div>
+            )}
+          {currentQuestion.user_answer &&
+            shuffledQuestions.length - 1 === currentQuestionIndex && (
+              <div className="flex justify-end pb-6 pr-6">
+                <Link href="/result">
+                  <Button
+                    onClick={() => {
+                      setCurrentQuestionIndex(0);
+                      setFinish(true);
+                    }}
+                    // disabled={currentQuestion?.user_answer == null} // Disable until answered
+                    variant="outline"
+                    className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 text-[12px] sm:text-sm"
+                  >
+                    Finish {isReviewMode ? "review" : "quiz"}
+                  </Button>
+                </Link>
+              </div>
+            )}
+        </div>
       </div>
     </div>
   );

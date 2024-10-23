@@ -12,7 +12,7 @@ function Card({
   onClick: () => void;
 }) {
   return (
-    <div className="bg-white flex flex-col gap-2 p-4 items-start rounded-lg shadow-md">
+    <div className="bg-white flex flex-col gap-2 p-4  items-start rounded-lg shadow-md">
       <p className="text-black text-base font-semibold">{title}</p>
       <p className="text-muted-foreground font-normal leading-4 text-left text-xs">
         {description}

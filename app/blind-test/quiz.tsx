@@ -42,38 +42,45 @@ function Quiz({ selected = false }: { selected: boolean }) {
     const lowScore = score < ishiharaTestPlate.length * 0.8;
 
     return (
-      <div className="rounded-md border">
+      <div className="rounded-md border shadow-xl  mb-10">
         <Result answer={colorBlindnessResult} lowScore={lowScore} />
-        <div className="flex justify-center mb-8">
-          <Button onClick={() => window.location.reload()}>Restart Quiz</Button>
+        <div className="flex justify-center  mb-8">
+          <Button
+            onClick={() => window.location.reload()}
+            className="text-[12px] sm:text-sm"
+          >
+            Restart Quiz
+          </Button>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col gap-6 p-6">
-      <div className="flex items-center justify-center h-[326px] overflow-hidden">
-        <img
-          className="w-full h-full object-contain"
-          src={ishiharaTestPlate[currentQuestionIndex].imageUrl}
-          alt="Ishihara test plate"
-        />
-      </div>
+    <div className="shadow-lg bg-white rounded-md md:w-2/5 mb-12 mx-auto max-w-[540px]">
+      <div className="flex flex-col  gap-6 p-6">
+        <div className="flex items-center justify-center h-[326px] overflow-hidden">
+          <img
+            className="w-full h-full object-contain"
+            src={ishiharaTestPlate[currentQuestionIndex].imageUrl}
+            alt="Ishihara test plate"
+          />
+        </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        {ishiharaTestPlate[currentQuestionIndex].options.map((option) => (
-          <Button
-            key={option.id} // Use a unique key for the mapped options
-            onClick={() => handleAnswer(option.answer)}
-            variant={"outline"}
-            className={`text-sm py-[20px] font-medium ${
-              selected && "bg-blue-500 text-white"
-            }`}
-          >
-            {option.answer}
-          </Button>
-        ))}
+        <div className="grid grid-cols-2 gap-4">
+          {ishiharaTestPlate[currentQuestionIndex].options.map((option) => (
+            <Button
+              key={option.id} // Use a unique key for the mapped options
+              onClick={() => handleAnswer(option.answer)}
+              variant={"outline"}
+              className={`text-sm py-[20px] font-medium ${
+                selected && "bg-blue-500 text-white"
+              }`}
+            >
+              {option.answer}
+            </Button>
+          ))}
+        </div>
       </div>
     </div>
   );

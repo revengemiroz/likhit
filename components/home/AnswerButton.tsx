@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
-
+import useQuestionStore from "@/app/store";
+import { usePathname } from "next/navigation";
 export default function Index({
   variant = "neutral",
   children,
@@ -16,9 +17,23 @@ export default function Index({
       "bg-white text-[black] font-semibold hover:bg-white-300 border-2 border-blue-500",
   };
 
+  const setCurrentQuestionIndex = useQuestionStore(
+    (state) => state.setCurrentQuestionIndex
+  );
+  const confirmAnswerState = useQuestionStore(
+    (state) => state.confirmAnswerState
+  );
+  const pathname = usePathname();
+  const isReviewMode = useRef<boolean>(pathname.includes("review"));
   return (
     <Button
       className={`w-[28px] h-[28px]  sm:w-[32px] sm:h-[32px] text-[12px] sm:text-[14px] flex items-center justify-center font-medium rounded-lg  ${variantStyles[variant]}`}
+      disabled={confirmAnswerState ? true : false}
+      onClick={() => {
+        if (isReviewMode.current) {
+          setCurrentQuestionIndex(Number(children) - 1);
+        }
+      }}
     >
       {children}
     </Button>

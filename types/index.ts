@@ -10,8 +10,12 @@ export interface ListProps {
 
 export type QuestionStoreType = {
   finish: boolean;
-  nextQuestion: any;
+  nextQuestion: () => void;
+  backQuestion: () => void;
+  setCurrentQuestionIndex: (value: number) => void;
   start: any;
+  confirmAnswerState: number | null;
+  setConfirmAnswerState: (value: number | null) => void;
   saveUserAnswer: (questionId: number, userAnswer: number) => void;
   questions: QuestionType[];
   shuffledQuestions: QuestionType[];
@@ -23,8 +27,6 @@ export type QuestionStoreType = {
   increaseCorrect: () => void;
   increaseIncorrect: () => void;
   setFinish: (value: boolean) => void;
-  isReviewMode: boolean;
-  setIsReviewMode: (value: boolean) => void;
 };
 
 export interface QuestionType {
@@ -42,7 +44,7 @@ export interface QuestionType {
   image: string;
   user_answer?: number | null;
 }
-export type Variant = "neutral" | "right" | "wrong" | "disabled";
+export type Variant = "neutral" | "right" | "wrong" | "disabled" | "selected";
 
 export interface Option {
   id: number;

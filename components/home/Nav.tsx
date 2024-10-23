@@ -19,15 +19,15 @@ function Nav() {
 
   return (
     <div className="bg-white w-full">
-      <div className="flex items-center justify-center bg-white py-4 lg:container lg:mx-auto">
-        <div className="w-[90%] md:w-5/6 xl:w-4/6 flex items-center justify-between">
-          <Link className="text-xl font-bold text-blue-600" href="/">
+      <div className=" flex items-center justify-center  bg-white py-4   lg:container lg:mx-auto">
+        <div className="w-[90%] md:w-5/6 xl:w-4/6 flex items-center justify-between  ">
+          <Link className="text-lg sm:text-xl font-bold text-blue-600" href="/">
             Likhit.np
           </Link>
           <div className="flex flex-row items-center md:gap-2 gap-2">
             <Feedback />
 
-            <NavigationMenu className="hidden sm:block">
+            <NavigationMenu className="  z-[100] hidden sm:block">
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>
@@ -49,7 +49,7 @@ function Nav() {
                     </NavigationMenuLink>
                     <NavigationMenuLink className="m-0 p-0">
                       <Link
-                        href="/driving-exam-center"
+                        href="/find-centers-near"
                         className="text-xs font-medium hover:underline transition-all"
                       >
                         Find nearest driving exam center

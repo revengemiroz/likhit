@@ -1,7 +1,10 @@
+"use client";
 import { Language, ListProps, RadioButtonProps, Variant } from "@/types";
 import { Check, X } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
-
+import useQuestionStore from "@/app/store";
+import { CircleHelp } from "lucide-react";
+import { usePathname } from "next/navigation";
 // Expandable for more languages
 
 const RadioButton: React.FC<RadioButtonProps> = ({
@@ -28,6 +31,8 @@ const RadioButton: React.FC<RadioButtonProps> = ({
         return "cursor-default bg-red-100 rounded-lg transition-all duration-500 ease-in-out";
       case "disabled":
         return "rounded-lg opacity-50 cursor-not-allowed transition-all duration-500 ease-in-out";
+      case "selected":
+        return "cursor-default bg-blue-100 rounded-lg transition-all duration-500 ease-in-out";
       default:
         return "";
     }
@@ -43,6 +48,8 @@ const RadioButton: React.FC<RadioButtonProps> = ({
         return "accent-pink-500";
       case "disabled":
         return "accent-black opacity-100 cursor-not-allowed";
+      case "selected":
+        return "accent-black opacity-100 cursor-not-allowed";
       default:
         return "";
     }
@@ -54,6 +61,12 @@ const RadioButton: React.FC<RadioButtonProps> = ({
         return (
           <div className="w-4 h-4 sm:w-5 sm:h-5 mr-5 bg-green-500 rounded-md flex items-center justify-center rotate-45">
             <Check className="w-4 h-4 text-white rotate-[-45deg]" />
+          </div>
+        );
+      case "selected":
+        return (
+          <div className="w-4 h-4 sm:w-5 sm:h-5 mr-5 bg-blue-500 rounded-md flex items-center justify-center rotate-45">
+            <CircleHelp className="w-4 h-4 text-white rotate-[-45deg]" />
           </div>
         );
       case "wrong":
@@ -101,13 +114,20 @@ const List: React.FC<ListProps> = ({
   handleAnswerSelect,
   userAnswer,
 }) => {
+  const pathname = usePathname();
+  const isReviewMode = useRef<boolean>(pathname.includes("review"));
   const [selectedOptionId, setSelectedOptionId] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [animatingOptionId, setAnimatingOptionId] = useState<number | null>(
     null
   );
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
+  const confirmAnswerState = useQuestionStore(
+    (state) => state.confirmAnswerState
+  );
+  const setConfirmAnswerState = useQuestionStore(
+    (state) => state.setConfirmAnswerState
+  );
   useEffect(() => {
     if (userAnswer !== null) {
       setSelectedOptionId(userAnswer);
@@ -138,18 +158,22 @@ const List: React.FC<ListProps> = ({
   }, [userAnswer]);
 
   const handleOptionClick = (optionId: number) => {
-    setSelectedOptionId(optionId);
-    setShowResult(true);
-
-    handleAnswerSelect(optionId); // Notify the parent component that an answer has been selected
+    if (confirmAnswerState == optionId) {
+      setConfirmAnswerState(null);
+      setSelectedOptionId(null);
+    } else {
+      setConfirmAnswerState(optionId);
+      setSelectedOptionId(optionId);
+    }
   };
 
   return (
     <div className="flex flex-col transition-all md:gap-1 gap-1">
       {options.map((option) => {
         let variant: Variant = "neutral";
-
-        if (showResult) {
+        if (confirmAnswerState && confirmAnswerState == option.id) {
+          variant = "selected";
+        } else if (showResult || isReviewMode.current) {
           if (option.id === correctAnswerId) {
             variant = "right"; // Show correct answer
           } else if (option.id === selectedOptionId) {
@@ -166,7 +190,7 @@ const List: React.FC<ListProps> = ({
             label={option[language]}
             language={language}
             onClick={() => handleOptionClick(option.id)}
-            isDisabled={showResult} // Disable all options once one is selected
+            isDisabled={showResult || isReviewMode.current} // Disable all options once one is selected
             isAnimating={option.id === animatingOptionId}
           />
         );
