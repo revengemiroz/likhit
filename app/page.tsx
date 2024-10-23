@@ -9,9 +9,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Car, Book, CheckCircle, ChevronRight } from "lucide-react";
+import { Car, Book, CheckCircle, ChevronRight, Eye } from "lucide-react";
 import Nav from "@/components/home/Nav";
 import { useRouter } from "next/navigation";
+
+import Timeline from "@/components/home/Timeline";
 
 export default function Component() {
   const router = useRouter();
@@ -61,32 +63,77 @@ export default function Component() {
           <h2 className="text-2xl font-bold text-center mb-8">
             Why Choose Us?
           </h2>
+
           <div className="grid gap-8 md:grid-cols-3">
-            <div className="flex flex-col items-center text-center">
+            <div className="flex flex-col items-center  p-8   rounded-xl text-center">
               <Book className="h-8 w-8 text-primary mb-2" />
-              <h3 className="text-lg font-semibold mb-1">Comprehensive</h3>
+              <h3 className="text-lg font-semibold mb-1">Practice Questions</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Cover all aspects of the test syllabus.
+                Cover all aspects of the test syllabus. Take the test in English
+                or Nepali.
               </p>
             </div>
-            <div className="flex flex-col items-center text-center">
+
+            <div className="flex flex-col items-center bg-white p-8 shadow-md rounded-xl text-center">
               <CheckCircle className="h-8 w-8 text-primary mb-2" />
-              <h3 className="text-lg font-semibold mb-1">Instant Results</h3>
+              <h3 className="text-lg font-semibold mb-1">See Results</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Get immediate performance feedback.
+                Want to see the license results? You can see the latest results
+                here.
               </p>
             </div>
-            <div className="flex flex-col items-center text-center">
-              <Car className="h-8 w-8 text-primary mb-2" />
-              <h3 className="text-lg font-semibold mb-1">Nepal-specific</h3>
+
+            <div className="flex flex-col items-center p-8 rounded-xl text-center">
+              <Eye className="h-8 w-8 text-primary mb-2" />
+              <h3 className="text-lg font-semibold mb-1">Take Eye Test</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Aligned with local traffic rules.
+                Find out if you have good eyesight for driving.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center bg-white p-8  shadow-md rounded-xl text-center">
+              <Car className="h-8 w-8 text-primary mb-2" />
+              <h3 className="text-lg font-semibold mb-1">
+                Tips Nepal-specific
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Get tips on how to pass the test and what to expect.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center  p-8  rounded-xl text-center">
+              <Car className="h-8 w-8 text-primary mb-2" />
+              <h3 className="text-lg font-semibold mb-1">TAX Informations</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Find out about the tax for your vehicle. Don't miss out on the
+                latest updates.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center bg-white p-8  shadow-md rounded-xl text-center">
+              <Car className="h-8 w-8 text-primary mb-2" />
+              <h3 className="text-lg font-semibold mb-1">
+                Helpful Informations
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Find out about the tax for your vehicle. Don't miss out on the
+                latest updates.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center transition-all duration-300 cursor-pointer ease-in-out p-8 col-span-3 hover:bg-white hover:shadow-md rounded-xl text-center">
+              <Car className="h-8 w-8 text-primary mb-2" />
+              <h3 className="text-lg font-semibold mb-1">Study Materials</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                View study materials to help you prepare for the test.
               </p>
             </div>
           </div>
         </section>
 
-        <section className="py-12 border-t border-gray-200 dark:border-gray-800">
+        <Timeline />
+
+        <section className="py-12">
           <h2 className="text-2xl font-bold text-center mb-8">FAQ</h2>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
@@ -126,7 +173,7 @@ export default function Component() {
           </Accordion>
         </section>
 
-        <section className="py-12 text-center bg-white border-t border-gray-200 dark:border-gray-800">
+        <section className="py-12 text-center bg-white shadow-lg rounded-xl">
           <h2 className="text-2xl font-bold mb-4">Ready to Get Started?</h2>
           <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">
             Begin your journey towards your Nepali driving license today.
@@ -141,7 +188,9 @@ export default function Component() {
           </Button>
         </section>
       </main>
-      <footer className="w-full max-w-3xl mx-auto px-4 py-8 border-t border-gray-200 dark:border-gray-800 text-center">
+
+      {/* <div className="border-t border-gray-200 dark:border-gray-800 w-full max-w-3xl mx-auto my-12"></div> */}
+      <footer className="w-full max-w-3xl mx-auto px-4 py-8 mt-12 text-center">
         <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
           © 2024 Nepal Driving Mock Test. All rights reserved.
         </p>
@@ -154,8 +203,8 @@ export default function Component() {
           </Link>
         </nav>
         <div className="text-xs text-gray-500 dark:text-gray-400">
-          <p>Contact us: info@nepaldrivingtest.com</p>
-          <p>Phone: +977 1234567890</p>
+          <p>Contact us: info@likhitnepal.com</p>
+          <p>Phone: +1 4375334199</p>
         </div>
       </footer>
     </div>
