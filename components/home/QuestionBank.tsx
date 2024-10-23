@@ -144,7 +144,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
                 </Button>
               </div>
             )}
-          {currentQuestion?.user_answer &&
+          {(currentQuestion?.user_answer || isReviewMode.current) &&
             !confirmAnswerState &&
             shuffledQuestions[currentQuestionIndex + 1] && (
               <div className="flex justify-end w-full pb-6 pr-6">
