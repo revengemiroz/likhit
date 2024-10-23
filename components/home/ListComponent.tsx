@@ -173,7 +173,7 @@ const List: React.FC<ListProps> = ({
         let variant: Variant = "neutral";
         if (confirmAnswerState && confirmAnswerState == option.id) {
           variant = "selected";
-        } else if (showResult || isReviewMode) {
+        } else if (showResult || isReviewMode.current) {
           if (option.id === correctAnswerId) {
             variant = "right"; // Show correct answer
           } else if (option.id === selectedOptionId) {
