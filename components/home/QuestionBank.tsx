@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import React, { useState, useEffect, useRef, usePathname } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import List from "@/components/home/ListComponent"; // Ensure you have the List component in place
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -8,7 +8,7 @@ import { Language } from "@/types";
 import useQuestionStore from "@/app/store";
 import Image from "next/image";
 import Link from "next/link";
-
+import { usePathname, usePathname } from "next/navigation";
 interface QuestionBankProps {
   questionList: any;
   handleNextQuestion: () => void;
