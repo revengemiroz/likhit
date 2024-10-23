@@ -170,7 +170,6 @@ export default function Component() {
 
   return (
     <div className="w-full  min-h-screen flex flex-col">
-      <Nav />
       <div className="flex flex-col  items-center py-24 transition-all justify-center flex-1">
         <div className="sm:w-3/5 w-4/5 m-auto">
           <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">

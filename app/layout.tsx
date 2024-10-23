@@ -1,6 +1,5 @@
 import { Poppins } from "next/font/google";
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import Head from "next/head";
 
 import { ConvexClientProvider } from "./ConvexClientProvider";
@@ -8,6 +7,7 @@ import Script from "next/script";
 import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 import "simplebar-react/dist/simplebar.min.css";
+import Nav from "@/components/home/Nav";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -49,6 +49,7 @@ export default function RootLayout({
       <body className={`${poppins.className} antialiased`}>
         <ConvexClientProvider>
           <div className="min-h-screen w-full relative">
+            <Nav />
             {children}
             <div
               className="fixed inset-0 z-[-1] bg-transparent h-screen w-screen" // bg-gradient-to-b from-muted to-background

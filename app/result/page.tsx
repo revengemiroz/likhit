@@ -30,7 +30,6 @@ function Page() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Nav />
       <div className="flex-1 py-12 flex items-center justify-center px-4">
         <div className="w-full lg:w-3/5 text-center m-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-4">
