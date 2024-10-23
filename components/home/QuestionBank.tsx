@@ -158,23 +158,24 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
                 </Button>
               </div>
             )}
-          {shuffledQuestions.length - 1 === currentQuestionIndex && (
-            <div className="flex justify-end pb-6 pr-6">
-              <Link href="/result">
-                <Button
-                  onClick={() => {
-                    setCurrentQuestionIndex(0);
-                    setFinish(true);
-                  }}
-                  // disabled={currentQuestion?.user_answer == null} // Disable until answered
-                  variant="outline"
-                  className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 text-[12px] sm:text-sm"
-                >
-                  Finish {isReviewMode ? "review" : "quiz"}
-                </Button>
-              </Link>
-            </div>
-          )}
+          {currentQuestion.user_answer &&
+            shuffledQuestions.length - 1 === currentQuestionIndex && (
+              <div className="flex justify-end pb-6 pr-6">
+                <Link href="/result">
+                  <Button
+                    onClick={() => {
+                      setCurrentQuestionIndex(0);
+                      setFinish(true);
+                    }}
+                    // disabled={currentQuestion?.user_answer == null} // Disable until answered
+                    variant="outline"
+                    className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 text-[12px] sm:text-sm"
+                  >
+                    Finish {isReviewMode ? "review" : "quiz"}
+                  </Button>
+                </Link>
+              </div>
+            )}
         </div>
       </div>
     </div>
