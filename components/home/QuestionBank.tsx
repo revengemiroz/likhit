@@ -128,8 +128,8 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
           </div>
         )}
 
-        <div className="flex justify-between px-10">
-          {!confirmAnswerState &&
+        <div className="flex justify-between px-10 ">
+          {isReviewMode.current &&
             shuffledQuestions[currentQuestionIndex - 1] && (
               <div className="flex justify-start w-full pb-6 pr-6">
                 <Button
@@ -142,7 +142,8 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
                 </Button>
               </div>
             )}
-          {!confirmAnswerState &&
+          {currentQuestion?.user_answer &&
+            !confirmAnswerState &&
             shuffledQuestions[currentQuestionIndex + 1] && (
               <div className="flex justify-end w-full pb-6 pr-6">
                 <Button
