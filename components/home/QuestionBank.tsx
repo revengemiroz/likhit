@@ -118,6 +118,8 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
         {confirmAnswerState != null && (
           <div className="flex justify-end pb-6 pr-6">
             <Button
+              variant="outline"
+              className="transition-all border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500"
               onClick={() => {
                 handleAnswerSelect(confirmAnswerState);
                 setConfirmAnswerState(null);
