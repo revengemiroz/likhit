@@ -5,11 +5,13 @@ import useQuestionStore from "../store";
 import ProgressBar from "./progressbar";
 import Card from "./Card";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 function Page() {
   const correctCount = useQuestionStore((state) => state.count.correct);
   const incorrectCount = useQuestionStore((state) => state.count.incorrect);
   const totalCount = correctCount + incorrectCount;
+  const router = useRouter();
   const percentage = totalCount
     ? Math.round((correctCount / totalCount) * 100)
     : 0;
@@ -54,13 +56,17 @@ function Page() {
                 <Card
                   title="Restart this test"
                   description="Want to revisit the same questions you just did? Take this test once again."
-                  onClick={() => {}}
+                  onClick={() => {
+                    router.push("/test/1");
+                  }}
                   buttonText="Restart"
                 />
                 <Card
                   title="Review your answers"
                   description="See which answers you chose and what the correct answers are."
-                  onClick={() => {}}
+                  onClick={() => {
+                    router.push("/result/review/1");
+                  }}
                   buttonText="Review"
                 />
               </div>
