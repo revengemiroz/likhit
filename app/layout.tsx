@@ -20,6 +20,10 @@ export const metadata: Metadata = {
     "Rev up your journey in Nepal with our ultimate guide to getting your driving license! Whether you're hitting the scenic highways or navigating bustling city streets, we've got the tips and tricks to steer you through the process. Fast-track your way to freedom on four wheels—let's drive into the future together!",
   keywords:
     "Driving License Nepal, Nepal Driving License Process, How to Get Driving License in Nepal, Driving License Application Nepal, Nepal Driving Test, Online Driving License Application Nepal, Renew Driving License Nepal, Driving License Requirements Nepal, Driving License Fees Nepal, Best Tips for Driving Test Nepal, Nepal Transport Authority, Driving License Verification Nepal, Learner's License Nepal, International Driving License Nepal, Road Safety in Nepal",
+  openGraph: {
+    images:
+      "https://utfs.io/f/Ug3TBysra1dXA9sImtE41SFw0mNZDItClxTshGraHEp72j4e",
+  },
 };
 
 export default function RootLayout({
