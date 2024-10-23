@@ -20,7 +20,7 @@ function ResultPage() {
 
   const percentage = Math.round((correctCount / totalCount) * 100);
   const message = percentage >= 70 ? "Congratulations!" : "Keep practicing!";
-  const setIsReviewMode = useQuestionStore((state) => state.setIsReviewMode);
+
   // ... existing loading state ...
   const router = useRouter();
   return (
@@ -84,7 +84,6 @@ function ResultPage() {
               <CardFooter>
                 <Button
                   onClick={() => {
-                    setIsReviewMode(true);
                     router.push("/result/review/1");
                   }}
                 >
