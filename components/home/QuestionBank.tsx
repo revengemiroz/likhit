@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, usePathname } from "react";
 
 import List from "@/components/home/ListComponent"; // Ensure you have the List component in place
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -25,6 +25,8 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
   const shuffledQuestions = useQuestionStore(
     (state) => state.shuffledQuestions
   );
+  const pathname = usePathname();
+  const isReviewMode = useRef<boolean>(pathname.includes("review"));
   const saveUserAnswer = useQuestionStore((state) => state.saveUserAnswer);
   const setFinish = useQuestionStore((state) => state.setFinish);
   const nextQuestion = useQuestionStore((state) => state.nextQuestion);
@@ -38,8 +40,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
   const currentQuestionIndex = useQuestionStore(
     (state) => state.currentQuestionIndex
   );
-  const setIsReviewMode = useQuestionStore((state) => state.setIsReviewMode);
-  const isReviewMode = useQuestionStore((state) => state.isReviewMode);
+
   const setCurrentQuestionIndex = useQuestionStore(
     (state) => state.setCurrentQuestionIndex
   );
@@ -159,7 +160,6 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
               <Link href="/result">
                 <Button
                   onClick={() => {
-                    setIsReviewMode(false);
                     setCurrentQuestionIndex(0);
                     setFinish(true);
                   }}
