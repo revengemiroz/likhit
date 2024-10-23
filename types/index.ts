@@ -27,8 +27,6 @@ export type QuestionStoreType = {
   increaseCorrect: () => void;
   increaseIncorrect: () => void;
   setFinish: (value: boolean) => void;
-  isReviewMode: boolean;
-  setIsReviewMode: (value: boolean) => void;
 };
 
 export interface QuestionType {
