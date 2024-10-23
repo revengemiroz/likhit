@@ -8,7 +8,7 @@ import { Language } from "@/types";
 import useQuestionStore from "@/app/store";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 interface QuestionBankProps {
   questionList: any;
   handleNextQuestion: () => void;
