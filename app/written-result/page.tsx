@@ -53,7 +53,6 @@ export default function DrivingExamResults() {
 
   return (
     <div className="min-h-screen flex flex-col ">
-      <Nav />
       <div className="flex flex-col flex-1 items-center  justify-center ">
         <div className="w-4/5 sm:w-3/5 py-12 flex flex-col items-center">
           <span className="text-2xl font-bold mb-6">Written Result</span>

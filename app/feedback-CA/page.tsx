@@ -45,7 +45,6 @@ export default function UserFeedbackTable() {
 
   return (
     <div className="w-full flex flex-col items-center min-h-screen">
-      <Nav />
       <div className="w-full max-w-4xl px-4 flex flex-col flex-1 mx-auto items-center justify-center">
         <Card className="w-full p-4">
           <CardHeader>

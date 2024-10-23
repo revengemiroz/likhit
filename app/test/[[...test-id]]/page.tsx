@@ -63,7 +63,6 @@ export default function Home({ params }: { params: { "test-id": string } }) {
 
   return (
     <div className="w-full  min-h-screen flex flex-col lg:mx-auto">
-      <Nav />
       <main className=" flex-1 flex items-center justify-center py-12">
         <div className="flex items-center  flex-col flex-1 justify-center ">
           <div className="w-[90%] md:w-5/6 xl:w-4/6 flex items-center  justify-between  my-4 px-4 gap-2">

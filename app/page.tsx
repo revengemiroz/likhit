@@ -20,7 +20,6 @@ export default function Component() {
 
   return (
     <div className="flex flex-col min-h-screen bg-transparent dark:bg-gray-900">
-      <Nav />
       <main className="flex-1 w-full max-w-4xl mx-auto px-4 md:px-6">
         <section className="py-12 md:py-20 flex flex-col items-center text-center">
           <Image
