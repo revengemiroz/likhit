@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import useQuestionStore from "@/app/store";
+import { usePathname } from "next/navigation";
 export default function Index({
   variant = "neutral",
   children,
-  isReviewMode = false,
 }: {
   variant: "right" | "wrong" | "neutral" | "selected";
   children?: React.ReactNode;
-  isReviewMode?: boolean;
 }) {
   const variantStyles = {
     right: "bg-green-400 text-white hover:bg-green-300",
@@ -24,6 +23,8 @@ export default function Index({
   const confirmAnswerState = useQuestionStore(
     (state) => state.confirmAnswerState
   );
+  const pathname = usePathname();
+  const isReviewMode = useRef<boolean>(pathname.includes("review"));
   return (
     <Button
       className={`w-[28px] h-[28px]  sm:w-[32px] sm:h-[32px] text-[12px] sm:text-[14px] flex items-center justify-center font-medium rounded-lg  ${variantStyles[variant]}`}

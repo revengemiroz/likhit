@@ -8,7 +8,7 @@ import useQuestionStore from "../../app/store"; // Import the Zustand store
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-function ScoreBoard({ isReviewMode = false }: { isReviewMode?: boolean }) {
+function ScoreBoard() {
   // Access shuffledQuestions and currentQuestionIndex from Zustand
   const shuffledQuestions = useQuestionStore(
     (state) => state.shuffledQuestions
@@ -64,11 +64,7 @@ function ScoreBoard({ isReviewMode = false }: { isReviewMode?: boolean }) {
         <div className="grid grid-cols-7 gap-2  ">
           {/* Render answer buttons dynamically based on the number of shuffled questions */}
           {shuffledQuestions.map((question, index) => (
-            <AnswerButton
-              isReviewMode={isReviewMode}
-              key={index}
-              variant={getVariant(question, index)}
-            >
+            <AnswerButton key={index} variant={getVariant(question, index)}>
               {index + 1}
             </AnswerButton>
           ))}

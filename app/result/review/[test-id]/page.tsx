@@ -72,7 +72,7 @@ export default function Home({ params }: { params: { "test-id": string } }) {
             {/* <TimerComponent /> */}
           </div>
           <div className="w-[90%] md:w-5/6 xl:w-4/6 flex flex-col lg:flex-row gap-4 ">
-            <ScoreBoard isReviewMode={true} />
+            <ScoreBoard />
 
             {shuffledQuestions.length > 0 ? (
               <QuestionBank
