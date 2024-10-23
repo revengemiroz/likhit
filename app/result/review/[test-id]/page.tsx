@@ -24,14 +24,19 @@ import { api } from "@/convex/_generated/api";
 // import { cookies } from "next/headers";
 import TimerComponent from "@/components/home/timer/timer-component";
 import { Language, QuestionType } from "@/types";
-
+import useQuestionStore from "@/app/store";
 export default function Home({ params }: { params: { "test-id": string } }) {
   // const tasks = useQuery(api.tasks.getTasks);
   const ENGLISH = "english";
   const NEPALI = "nepali";
-
+  const setIsReviewMode = useQuestionStore((state) => state.setIsReviewMode);
   console.log({ params });
-
+  useEffect(() => {
+    setIsReviewMode(true);
+    return () => {
+      setIsReviewMode(false);
+    };
+  }, []);
   // console.log({ tasks });
 
   const [open, setOpen] = useState(false);
