@@ -160,7 +160,7 @@ const QuestionBank: React.FC<QuestionBankProps> = ({
             )}
           {currentQuestion.user_answer &&
             shuffledQuestions.length - 1 === currentQuestionIndex && (
-              <div className="flex justify-end pb-6 pr-6">
+              <div className="flex justify-end w-full pb-6 pr-6">
                 <Link href="/result">
                   <Button
                     onClick={() => {
