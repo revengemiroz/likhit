@@ -1,17 +1,26 @@
-"use client";
+// "use client";
 import React from "react";
-import Nav from "@/components/home/Nav";
 import useQuestionStore from "../store";
 import ProgressBar from "./progressbar";
 import Card from "./Card";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Test Result",
+  description:
+    "View your test results and analyze your performance. See your score, review your answers, and find out how you can improve.",
+  keywords:
+    "Test Result, Performance Analysis, Score Review, Answer Review, Improve Test Performance",
+  openGraph: {
+    images:
+      "https://utfs.io/f/Ug3TBysra1dXA9sImtE41SFw0mNZDItClxTshGraHEp72j4e", // Using the same image URL
+  },
+};
 
 function Page() {
   const correctCount = useQuestionStore((state) => state.count.correct);
   const incorrectCount = useQuestionStore((state) => state.count.incorrect);
   const totalCount = correctCount + incorrectCount;
-  const router = useRouter();
   const percentage = totalCount
     ? Math.round((correctCount / totalCount) * 100)
     : 0;
@@ -56,17 +65,13 @@ function Page() {
                 <Card
                   title="Restart this test"
                   description="Want to revisit the same questions you just did? Take this test once again."
-                  onClick={() => {
-                    router.push("/test/1");
-                  }}
+                  push={"/test/1"}
                   buttonText="Restart"
                 />
                 <Card
                   title="Review your answers"
                   description="See which answers you chose and what the correct answers are."
-                  onClick={() => {
-                    router.push("/result/review/1");
-                  }}
+                  push={"/result/review/1"}
                   buttonText="Review"
                 />
               </div>
