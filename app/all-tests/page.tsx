@@ -21,7 +21,18 @@ import {
 } from "lucide-react";
 import Nav from "@/components/home/Nav";
 import Link from "next/link";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "All Tests",
+  description:
+    "Explore a variety of tests for cars and bikes. Prepare for your driving exams with our comprehensive test collection, including general knowledge, rules, and image-based questions.",
+  keywords:
+    "Driving Tests, Car Tests, Bike Tests, Driving Exam Preparation, General Knowledge Tests, Image-Based Questions, Driving Rules",
+  openGraph: {
+    images:
+      "https://utfs.io/f/Ug3TBysra1dXA9sImtE41SFw0mNZDItClxTshGraHEp72j4e", // Using the same image URL
+  },
+};
 export default function Component() {
   const tests = {
     car: [
