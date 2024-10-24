@@ -1,12 +1,17 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import L from "leaflet";
-import "leaflet/dist/leaflet.css";
-import { Button } from "./ui/button";
-import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
-import { centerLocations, CiteType } from "@/data/centers/locations";
+
 import ResponsiveSidebar from "./SideBar";
+
+import {
+  centerLocations,
+  CiteType,
+} from "@/data/driving-centers-locations/locations";
+
+import "leaflet/dist/leaflet.css";
 
 // Fixing Leaflet's default icon issue
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -15,13 +20,6 @@ L.Icon.Default.mergeOptions({
   iconUrl: "/images/marker1.png",
   shadowUrl: "/leaflet/images/marker-shadow.png",
 });
-
-interface TestCenter {
-  name: string;
-  lat: number;
-  lon: number;
-  distance: number;
-}
 
 interface Location {
   name: string;
@@ -49,9 +47,9 @@ export default function DrivingTestCentersLocator() {
   const [activeLocation, setActiveLocation] = useState<string>(
     locations[0].name
   );
+
   const markersRef = useRef<L.Marker[]>([]);
   useEffect(() => {
-    // console.log(window, typeof window);
     if (typeof window !== undefined) {
       mapRef.current = L.map("map").setView([51.505, -0.09], 13);
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -99,104 +97,12 @@ export default function DrivingTestCentersLocator() {
     }
   };
 
-  //   if (!userLocation) return;
-
-  //   const [lat, lon] = userLocation;
-  //   const query = `
-  //     [out:json];
-  //     (
-  //       node["amenity"="driving_school"](around:${
-  //         searchRadius * 1000
-  //       },${lat},${lon});
-  //       way["amenity"="driving_school"](around:${
-  //         searchRadius * 1000
-  //       },${lat},${lon});
-  //       relation["amenity"="driving_school"](around:${
-  //         searchRadius * 1000
-  //       },${lat},${lon});
-  //     );
-  //     out center;
-  //   `;
-
-  //   try {
-  //     const response = await fetch(`https://overpass-api.de/api/interpreter`, {
-  //       method: "POST",
-  //       body: query,
-  //     });
-  //     const data = await response.json();
-
-  //     const centers: TestCenter[] = data.elements.map((element: any) => ({
-  //       name: element.tags.name || "Unnamed Driving School",
-  //       lat: element.lat || element.center.lat,
-  //       lon: element.lon || element.center.lon,
-  //       distance: calculateDistance(
-  //         lat,
-  //         lon,
-  //         element.lat || element.center.lat,
-  //         element.lon || element.center.lon
-  //       ),
-  //     }));
-
-  //     setTestCenters(centers.sort((a, b) => a.distance - b.distance));
-
-  //     if (mapRef.current) {
-  //       // Clear existing markers
-  //       mapRef.current.eachLayer((layer) => {
-  //         if (layer instanceof L.Marker) {
-  //           mapRef.current?.removeLayer(layer);
-  //         }
-  //       });
-
-  //       // Add user location marker
-  //       L.marker([lat, lon])
-  //         .addTo(mapRef.current)
-  //         .bindPopup("Your Location")
-  //         .openPopup();
-
-  //       // Add test center markers
-  //       centers.forEach((center) => {
-  //         L.marker([center.lat, center.lon])
-  //           .addTo(mapRef.current!)
-  //           .bindPopup(center.name);
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching nearby test centers:", error);
-  //   }
-  // };
-
-  // const calculateDistance = (
-  //   lat1: number,
-  //   lon1: number,
-  //   lat2: number,
-  //   lon2: number
-  // ) => {
-  //   const R = 6371; // Radius of the earth in km
-  //   const dLat = deg2rad(lat2 - lat1);
-  //   const dLon = deg2rad(lon2 - lon1);
-  //   const a =
-  //     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-  //     Math.cos(deg2rad(lat1)) *
-  //       Math.cos(deg2rad(lat2)) *
-  //       Math.sin(dLon / 2) *
-  //       Math.sin(dLon / 2);
-  //   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  //   const d = R * c; // Distance in km
-  //   return Math.round(d * 100) / 100;
-  // };
-
-  // const deg2rad = (deg: number) => {
-  //   return deg * (Math.PI / 180);
-  // };
-
-  // const handleRadiusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setSearchRadius(parseInt(event.target.value, 10));
-  // };
   const sidebarRef = useRef<{
     openSidebar: () => void;
     closeSidebar: () => void;
   }>();
   const [selectedCite, setSelectedCite] = useState<CiteType | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
   const flyToLocation = (location: CiteType) => {
     setSelectedCite(location);
     if (mapRef.current) {
@@ -216,25 +122,37 @@ export default function DrivingTestCentersLocator() {
   };
 
   return (
-    <>
-      <div
-        id="map"
-        className="w-full h-[600px] z-20 lg:h-[690px] rounded-lg overflow-hidden"
-      ></div>
+    <div className="w-full   justify-center items-center flex flex-col gap-6 py-12 ">
+      <div className="w-full  flex flex-col gap-6 justify-center items-center">
+        <Image
+          src="https://openfreemap.org/logo.jpg"
+          alt="map"
+          width={100}
+          height={100}
+          className=" P-4 border shadow-md overflow-hidden"
+        />
+        <div className="w-full border shadow-md bg-white rounded-lg h-[20rem] md:max-h-[70rem] max-w-[20rem] md:max-w-3xl p-4">
+          <div
+            id="map"
+            className="w-full h-full border shadow-md z-20 rounded-lg overflow-hidden"
+          ></div>
+        </div>
+      </div>
 
-      <div className="w-full my-10">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 container mx-auto px-5">
+      <div className="w-full h-full  bg-white rounded-lg p-6 max-w-[20rem] md:max-w-3xl shadow-md border">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 container mx-auto">
           {Object.keys(centerLocations).map((city) => {
             return (
-              <div>
-                <h3 className="font-medium text-[20px] sm:text-xl">{city}</h3>
-                <ul className="ktm">
+              <div className="flex flex-col gap-2">
+                <h3 className="font-semibold text-sm  sm:text-xl">{city}</h3>
+                <ul className="ktm hover:underline">
                   {centerLocations[city].map((obj) => (
                     <li
                       className="cursor-pointer hover:opacity-70 text-sm"
                       onClick={() => {
                         sidebarRef.current?.openSidebar();
                         flyToLocation(obj);
+                        setIsOpen(true);
                       }}
                     >
                       {obj.name}
@@ -249,6 +167,6 @@ export default function DrivingTestCentersLocator() {
       {selectedCite && (
         <ResponsiveSidebar ref={sidebarRef} location={selectedCite} />
       )}
-    </>
+    </div>
   );
 }

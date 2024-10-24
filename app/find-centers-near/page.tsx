@@ -1,14 +1,14 @@
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
 import { LoaderCircle } from "lucide-react";
+
 export default async function Page() {
   const Map = useMemo(
     () =>
-      dynamic(() => import("@/components/Map"), {
+      dynamic(() => import("@/components/map/Map"), {
         loading: () => (
-          <div className="w-full h-screen flex mt-[20rem] justify-center">
-            {" "}
-            <LoaderCircle size={30} className="animate-spin" />
+          <div className="w-full h-screen flex items-center justify-center">
+            <LoaderCircle size={30} className="text-blue-500 animate-spin" />
           </div>
         ),
         ssr: false,
@@ -18,7 +18,7 @@ export default async function Page() {
 
   return (
     <>
-      <div className="bg-white-700 mb-5  h-[480px]">
+      <div className=" h-full">
         <Map />
       </div>
     </>
