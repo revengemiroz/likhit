@@ -1,9 +1,17 @@
-"use client";
-
-import { useState } from "react";
-
 import Nav from "@/components/home/Nav";
 import dynamic from "next/dynamic";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Written Result",
+  description:
+    "View your written test results. Offical result of written test released here. ",
+  keywords:
+    "Written Result, Test Results, Performance Analysis, Detailed Reports, Skill Improvement, Exam Results",
+  openGraph: {
+    images:
+      "https://utfs.io/f/Ug3TBysra1dXA9sImtE41SFw0mNZDItClxTshGraHEp72j4e", // Using the same image URL
+  },
+};
 const PdfRenderer = dynamic(() => import("@/components/home/PdfRender"), {
   loading: () => <p>Loading...</p>,
   ssr: false,
@@ -21,35 +29,35 @@ const examResults = [
 ];
 
 export default function DrivingExamResults() {
-  const [searchQuery, setSearchQuery] = useState("");
+  // const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredResults = examResults.filter((result) =>
-    result.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // const filteredResults = examResults.filter((result) =>
+  //   result.name.toLowerCase().includes(searchQuery.toLowerCase())
+  // );
 
-  if (typeof Promise.withResolvers === "undefined") {
-    if (typeof window !== "undefined") {
-      // @ts-expect-error This does not exist outside of polyfill which this is doing
-      window.Promise.withResolvers = function () {
-        let resolve, reject;
-        const promise = new Promise((res, rej) => {
-          resolve = res;
-          reject = rej;
-        });
-        return { promise, resolve, reject };
-      };
-    } else {
-      // @ts-expect-error This does not exist outside of polyfill which this is doing
-      global.Promise.withResolvers = function () {
-        let resolve, reject;
-        const promise = new Promise((res, rej) => {
-          resolve = res;
-          reject = rej;
-        });
-        return { promise, resolve, reject };
-      };
-    }
-  }
+  // if (typeof Promise.withResolvers === "undefined") {
+  //   if (typeof window !== "undefined") {
+  //     // @ts-expect-error This does not exist outside of polyfill which this is doing
+  //     window.Promise.withResolvers = function () {
+  //       let resolve, reject;
+  //       const promise = new Promise((res, rej) => {
+  //         resolve = res;
+  //         reject = rej;
+  //       });
+  //       return { promise, resolve, reject };
+  //     };
+  //   } else {
+  //     // @ts-expect-error This does not exist outside of polyfill which this is doing
+  //     global.Promise.withResolvers = function () {
+  //       let resolve, reject;
+  //       const promise = new Promise((res, rej) => {
+  //         resolve = res;
+  //         reject = rej;
+  //       });
+  //       return { promise, resolve, reject };
+  //     };
+  //   }
+  // }
 
   return (
     <div className="min-h-screen flex flex-col ">
